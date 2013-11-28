@@ -38,7 +38,7 @@ public class CardCodeServiceImpl implements ICardCodeService {
     @Override
     public BaseResultBean<Integer> generateCardCode(int count, int term, int smsCount, String saleChannel) {
         BaseResultBean<Integer> result = new BaseResultBean<Integer>();
-        CardCode cardCode = null;
+        CardCode cardCode;
         int successCount = 0;
         for (int i = 0; i < count; i++) {
             String code = CodeUtils.getCode(CODE_MIN, CODE_MAX);
