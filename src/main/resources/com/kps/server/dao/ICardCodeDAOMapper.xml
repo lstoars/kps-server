@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kps.server.dao.ICardCodeDAO">
+
+    <resultMap id="cardCode" type="com.kps.server.entity.CardCode">
+        <result property="id" column="ID"/>
+        <result property="code" column="CODE"/>
+        <result property="term" column="TERM"/>
+        <result property="smsCount" column="SMS_COUNT"/>
+        <result property="beginTime" column="BEGIN_TIME"/>
+        <result property="endTime" column="END_TIME"/>
+        <result property="smsUseCount" column="SMS_USE_COUNT"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="clientId" column="CLIENT_ID"/>
+        <result property="saleChannel" column="SALE_CHANNEL"/>
+        <result property="features" column="FEATURES"/>
+        <result property="createTime" column="CREATE_TIME"/>
+    </resultMap>
+
+    <insert id="saveCardCode" parameterType="com.kps.server.entity.CardCode">
+        INSERT INTO CARD_CODE (CODE,TERM,SMS_COUNT,SALE_CHANNEL,CREATE_TIME)
+        values (#{code},#{term},#{smsCount},#{saleChannel},now())
+    </insert>
+
+    <select id="queryByCode" parameterType="java.lang.String" resultMap="cardCode">
+        select * from CARD_CODE where code = #{code}
+    </select>
+
+    <update id="bindUser" parameterType="com.kps.server.entity.CardCode">
+        update CARD_CODE set BEGIN_TIME=#{beginTime},END_TIME=#{endTime},USER_NAME=#{userName},
+        CLIENT_ID=#{clientId}
+        where id = #{id} and BEGIN_TIME is null
+    </update>
+
+    <select id="querySmsCodeByMobile" parameterType="java.lang.String" resultMap="cardCode">
+        select * from CARD_CODE where USER_NAME=#{mobile}
+          and CLIENT_ID='tools' and SMS_USE_COUNT &lt; SMS_COUNT
+    </select>
+
+
+</mapper>
