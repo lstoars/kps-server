@@ -9,7 +9,7 @@ import java.util.Date;
  * Date: 13-11-23
  * Time: 下午10:41
  */
-public class CardCode {
+public class CardCode extends BaseEntity{
 
     private int id;
 

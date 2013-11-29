@@ -9,7 +9,7 @@ import java.util.Date;
  * Time: 下午9:09
  * To change this template use File | Settings | File Templates.
  */
-public class VersionInfo {
+public class VersionInfo extends BaseEntity{
 
     private int id;
 

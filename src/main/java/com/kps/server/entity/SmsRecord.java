@@ -9,7 +9,7 @@ import java.util.Date;
  * Time: 下午10:24
  * To change this template use File | Settings | File Templates.
  */
-public class SmsRecord {
+public class SmsRecord extends BaseEntity{
 
     private int id;
 

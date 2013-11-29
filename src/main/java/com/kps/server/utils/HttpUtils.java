@@ -3,6 +3,7 @@ package com.kps.server.utils;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,17 @@ public class HttpUtils {
         Document doc;
         try {
             doc = Jsoup.connect(url).get();
-            return doc.getElementsByTag("title").text();
+            String title = doc.getElementsByTag("title").text();
+            String[] titles = StringUtils.split(title,",");
+            if(titles.length > 2) {
+                return titles[0]+titles[1];
+            } else {
+                if(StringUtils.length(title) > 40) {
+                    return title.substring(0,39);
+                } else {
+                    return title;
+                }
+            }
         } catch (IOException e) {
             logger.error("HttpUtils@getTitle error", e);
         }

@@ -79,8 +79,8 @@ public class CardCodeServiceImpl implements ICardCodeService {
                 Date now = new Date();
                 cardCode.setBeginTime(now);
                 cardCode.setUserName(username);
-                cardCodeDAO.bindUser(cardCode);
                 cardCode.setClientId(clientId);
+                cardCodeDAO.bindUser(cardCode);
                 result.setData(cardCode);
                 return result;
             }

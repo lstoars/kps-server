@@ -40,13 +40,13 @@ public class CardCodeController {
     @RequestMapping("/auth")
     @ResponseBody
     public Map<String, Object> auth(String code, String uname, String clientId) {
-        BaseResultBean<CardCode> result = cardCodeService.verfifyCode(code, uname,clientId);
+        BaseResultBean<CardCode> result = cardCodeService.verfifyCode(code, uname, clientId);
 
         Map<String, Object> r = new LinkedHashMap<String, Object>();
         r.put("success", result.isSuccess());
         r.put("errorMsg", result.getErrorMessage());
 
-        if (result.isSuccess()) {
+        if (result.isSuccess() && result.getData().getEndTime() != null) {
             r.put("endTime", DateFormatUtils.format(result.getData().getEndTime(), "yyyy-MM-dd HH:mm:ss"));
         }
 

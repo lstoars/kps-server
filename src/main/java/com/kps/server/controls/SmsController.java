@@ -1,8 +1,13 @@
 package com.kps.server.controls;
 
+import com.kps.server.bean.BaseResultBean;
+import com.kps.server.entity.SmsRecord;
+import com.kps.server.service.ISmsSendService;
+import com.kps.server.utils.HttpUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +36,7 @@ import java.util.Random;
 public class SmsController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";//放到session中的key
+    private static final String RANDOM_CODE_KEY = "RANDOMVALIDATECODEKEY";//放到session中的key
 
     /**
      * 短信发送页面
@@ -43,7 +48,7 @@ public class SmsController {
     @RequestMapping("/page")
     public ModelAndView sendPage(@RequestHeader(value = "referer") String refer,
                                  String phone) {
-        logger.info("SmsController@sendPage refer:{},phone:{}");
+        logger.info("SmsController@sendPage refer:{},phone:{}",refer,phone);
         ModelAndView view = new ModelAndView();
         String title = HttpUtils.getTitle(refer);
         view.addObject("title", title);
@@ -63,19 +68,24 @@ public class SmsController {
      */
     @RequestMapping("/send")
     @ResponseBody
-    public Map<String, Object> send(HttpSession session, String phone, String authCode, String title, String refer) {
-        String randCode = (String) session.getAttribute(RANDOMCODEKEY);
-        session.removeAttribute(RANDOMCODEKEY);
+    public Map<String, Object> send(HttpSession session, String phone, String authCode, String title, String refer, String customerPhone) {
+        String randCode = (String) session.getAttribute(RANDOM_CODE_KEY);
+        session.removeAttribute(RANDOM_CODE_KEY);
         Map<String, Object> result = new HashMap<String, Object>();
-        if (!StringUtils.equals(authCode, randCode)) {
+        if (!StringUtils.equalsIgnoreCase(authCode, randCode)) {
             result.put("success", false);
             result.put("message", "验证码错误！");
             return result;
         }
-
-
-
-        return null;
+        SmsRecord record = new SmsRecord();
+        record.setCustomerPhone(customerPhone);
+        record.setPhone(phone);
+        record.setRefer(refer);
+        record.setTitle(title);
+        BaseResultBean<SmsRecord> r = smsSendService.sendSms(record);
+        result.put("success", r.isSuccess());
+        result.put("message", r.getErrorMessage());
+        return result;
     }
 
     @RequestMapping("/verfiyImg")
@@ -88,10 +98,13 @@ public class SmsController {
         validateCode.getRandcode(request, response);
     }
 
+    @Autowired
+    private ISmsSendService smsSendService;
+
 
     class RandomValidateCode {
         private Random random = new Random();
-        private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生的字符串
+        private String randString = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";//随机产生的字符串
 
         private int width = 80;//图片宽
         private int height = 26;//图片高
@@ -140,8 +153,8 @@ public class SmsController {
             for (int i = 1; i <= stringNum; i++) {
                 randomString = drowString(g, randomString, i);
             }
-            session.removeAttribute(RANDOMCODEKEY);
-            session.setAttribute(RANDOMCODEKEY, randomString);
+            session.removeAttribute(RANDOM_CODE_KEY);
+            session.setAttribute(RANDOM_CODE_KEY, randomString);
             g.dispose();
             try {
                 ImageIO.write(image, "JPEG", response.getOutputStream());//将内存中的图片通过流动形式输出到客户端

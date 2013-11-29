@@ -6,16 +6,22 @@ import com.baidu.yun.channel.exception.ChannelClientException;
 import com.baidu.yun.channel.exception.ChannelServerException;
 import com.baidu.yun.channel.model.PushUnicastMessageRequest;
 import com.baidu.yun.channel.model.PushUnicastMessageResponse;
+import com.baidu.yun.core.log.YunLogEvent;
+import com.baidu.yun.core.log.YunLogHandler;
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.dao.ICardCodeDAO;
+import com.kps.server.dao.ISmsRecordDAO;
 import com.kps.server.entity.CardCode;
 import com.kps.server.entity.SmsRecord;
 import com.kps.server.service.ISmsSendService;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +30,7 @@ import java.util.List;
  * Date: 13-11-28
  * Time: 下午10:32
  */
+@Service
 public class SmsSendServiceImpl implements ISmsSendService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -34,6 +41,9 @@ public class SmsSendServiceImpl implements ISmsSendService {
 
     @Autowired
     private ICardCodeDAO cardCodeDAO;
+
+    @Autowired
+    private ISmsRecordDAO smsRecordDAO;
 
     /**
      * 发送短信
@@ -72,25 +82,46 @@ public class SmsSendServiceImpl implements ISmsSendService {
         boolean r = doSend(record);
         if (r) {
             //发送保存发送纪录
+            int row = smsRecordDAO.saveSmsRecord(record);
+            result.setData(record);
+            logger.warn("SmsSendServiceImpl@sendSms saveSmsRecord row:{},codeId:{}", row, addCountCodeId);
         } else {
             //发送失败 回滚扣除的发送数量 根据addCountCodeId
+            int row = cardCodeDAO.reduceSmsUseCount(addCountCodeId);
+            logger.warn("SmsSendServiceImpl@sendSms reduceSmsUseCount row:{},codeId:{}", row, addCountCodeId);
+            result.setErrorMessage("短信发送失败！");
         }
         return result;
     }
 
-
+    /**
+     * 发送
+     * 10:32中惠香樟绿洲二手房出售,三室两厅两卫客户感兴趣，请马上回电13944993987
+     *
+     * @param record
+     * @return
+     */
     private boolean doSend(SmsRecord record) {
         ChannelKeyPair pair = new ChannelKeyPair(API_KEY, SECRET_KEY);
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
+
+        channelClient.setChannelLogHandler(new YunLogHandler() {
+            @Override
+            public void onHandle(YunLogEvent event) {
+                logger.info("SmsSendServiceImpl@doSend handle,message:{}",event.getMessage());
+            }
+        });
+
         try {
             PushUnicastMessageRequest request = new PushUnicastMessageRequest();
             request.setDeviceType(3);
-            request.setMessage(record.getPhone() + "|" + record.getTitle());
+            request.setMessage(record.getPhone() + "|"+ DateFormatUtils.format(new Date(),"HH:mm") + record.getTitle()+"客户感兴趣，请马上回电"+record.getCustomerPhone());
             // 5. 调用pushMessage接口
             PushUnicastMessageResponse response = channelClient.pushUnicastMessage(request);
             // 6. 认证推送成功
-            System.out.println("push amount : " + response.getSuccessAmount());
-            return response.getSuccessAmount() == 2;
+            logger.info("SmsSendServiceImpl@doSend success,amount:{},record:{}", response.getSuccessAmount(), record);
+//            System.out.println("push amount : " + response.getSuccessAmount());
+            return response.getSuccessAmount() > 0;
         } catch (ChannelClientException e) {
             // 处理客户端错误异常
             logger.error("SmsSendServiceImpl@doSend error", e);

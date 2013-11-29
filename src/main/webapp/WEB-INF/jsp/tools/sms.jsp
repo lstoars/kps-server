@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>宏发领域二手房出售,四室两厅三卫,前海中心宏发领域豪宅 无税房,地铁口物业_深圳二手房_搜房网</title>
     <style type="text/css">
         .page_wrap {
             width: 600px;
@@ -160,6 +161,7 @@
                             我们会将客户的预约信息通过短信方式发送到您的手机号上。您可即刻给用户回电。我们给您发的短信，典型运营商是收
                             我们的钱的，所以该插件是工具箱唯一收费插件。前300个客户，免收10月月功能费，短信费按1
                             毛\条（成本价）计算。您的每一个客户电话，您只需要付费1毛钱。名额有限，赶紧开通。
+                            <a href="/kps/sms/page?phone=18926056668">sadfsafasdf</a>
                         </td>
                     </tr>
                     </tbody>
@@ -168,7 +170,9 @@
         </div>
     </div>
 </div>
-
+<div style="display: none" >
+    <h1 class="icon_tag20120517">业主急售 大芬沃尔玛后面 简贝小区 高层小三房 视野开阔</h1>
+</div>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
     function copyClick() {

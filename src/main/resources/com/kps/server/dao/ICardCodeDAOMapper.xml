@@ -17,7 +17,7 @@
         <result property="createTime" column="CREATE_TIME"/>
     </resultMap>
 
-    <insert id="saveCardCode" parameterType="com.kps.server.entity.CardCode">
+    <insert id="saveCardCode" parameterType="com.kps.server.entity.CardCode" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO CARD_CODE (CODE,TERM,SMS_COUNT,SALE_CHANNEL,CREATE_TIME)
         values (#{code},#{term},#{smsCount},#{saleChannel},now())
     </insert>
@@ -37,5 +37,12 @@
           and CLIENT_ID='tools' and SMS_USE_COUNT &lt; SMS_COUNT
     </select>
 
+    <update id="addSmsUseCount" parameterType="java.lang.Integer">
+        update CARD_CODE set SMS_USE_COUNT=SMS_USE_COUNT+1 where id = #{id} and SMS_USE_COUNT &lt;SMS_COUNT;
+    </update>
+
+    <update id="reduceSmsUseCount" parameterType="java.lang.Integer">
+        update CARD_CODE set SMS_USE_COUNT=SMS_USE_COUNT-1 where id = #{id} and SMS_USE_COUNT &gt;0;
+    </update>
 
 </mapper>

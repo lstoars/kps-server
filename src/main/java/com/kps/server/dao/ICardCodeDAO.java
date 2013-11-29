@@ -47,5 +47,17 @@ public interface ICardCodeDAO {
      */
     public List<CardCode> querySmsCodeByMobile(String mobile);
 
+    /**
+     * 增加卡密短信发送数量
+     * @param codeId
+     * @return
+     */
     public int addSmsUseCount(int codeId);
+
+    /**
+     * 減少卡密短信发送数量
+     * @param codeId
+     * @return
+     */
+    public int reduceSmsUseCount(int codeId);
 }

@@ -6,6 +6,7 @@
     <mappers>
         <mapper resource="com/kps/server/dao/ICardCodeDAOMapper.xml"/>
         <mapper resource="com/kps/server/dao/IVersionInfoMapper.xml"/>
+        <mapper resource="com/kps/server/dao/ISmsRecordMapper.xml"/>
     </mappers>
 
 </configuration>
