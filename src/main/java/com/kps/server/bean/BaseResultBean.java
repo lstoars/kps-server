@@ -1,5 +1,7 @@
 package com.kps.server.bean;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 操作结果，基类
  * User: fei
@@ -24,7 +26,7 @@ public class BaseResultBean<T> {
     }
 
     public String getErrorMessage() {
-        return errorMessage;
+        return StringUtils.isEmpty(errorMessage) ? StringUtils.EMPTY : errorMessage;
     }
 
     public void setErrorMessage(String errorMessage) {

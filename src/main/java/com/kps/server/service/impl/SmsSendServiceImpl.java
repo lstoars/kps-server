@@ -9,12 +9,12 @@ import com.baidu.yun.channel.model.PushUnicastMessageResponse;
 import com.baidu.yun.core.log.YunLogEvent;
 import com.baidu.yun.core.log.YunLogHandler;
 import com.kps.server.bean.BaseResultBean;
-import com.kps.server.dao.ICardCodeDAO;
+import com.kps.server.constant.ClientIdConstant;
 import com.kps.server.dao.ISmsRecordDAO;
-import com.kps.server.entity.CardCode;
+import com.kps.server.dao.IUserInfoDAO;
 import com.kps.server.entity.SmsRecord;
+import com.kps.server.entity.UserInfo;
 import com.kps.server.service.ISmsSendService;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 短信发送实现类
@@ -35,15 +36,14 @@ public class SmsSendServiceImpl implements ISmsSendService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //    public static String PUSH_URL = "http://channel.api.duapp.com/rest/2.0/channel/channel";
     public static String API_KEY = "3G4OmEMWhCGndddkLICcLMB9";
     public static String SECRET_KEY = "GqoGi9wxrS0ZeS92AZvgRbhGqQ20ptUG";
 
     @Autowired
-    private ICardCodeDAO cardCodeDAO;
+    private ISmsRecordDAO smsRecordDAO;
 
     @Autowired
-    private ISmsRecordDAO smsRecordDAO;
+    private IUserInfoDAO userInfoDAO;
 
     /**
      * 发送短信
@@ -55,25 +55,18 @@ public class SmsSendServiceImpl implements ISmsSendService {
     public BaseResultBean<SmsRecord> sendSms(SmsRecord record) {
         BaseResultBean<SmsRecord> result = new BaseResultBean<SmsRecord>();
         //检查短信条数
-        List<CardCode> codes = cardCodeDAO.querySmsCodeByMobile(record.getPhone());
-        if (CollectionUtils.isEmpty(codes)) {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("username",record.getPhone());
+        params.put("clientId", ClientIdConstant.TOOLS);
+        UserInfo info = userInfoDAO.queryByNameAndClient(params);
+        if(info == null || info.getSmsUseCount()>=info.getSmsCount()) {
             result.setErrorMessage("发送失败，号码" + record.getPhone() + "可使用的短信条数为0.");
             return result;
         }
 
-        //更新短信发送条数
-        boolean addCountResult = false;
-        int addCountCodeId = 0;
-        for (CardCode code : codes) {
-            addCountCodeId = code.getId();
-            int count = cardCodeDAO.addSmsUseCount(addCountCodeId);
-            if (count == 1) {
-                addCountResult = true;
-                break;
-            }
-        }
+        int count = userInfoDAO.addSmsUseCount(info.getId());
 
-        if (!addCountResult) {
+        if (count != 1) {
             result.setErrorMessage("发送失败，更新号码使用条数失败，有可能可发送条数为0.");
             return result;
         }
@@ -84,11 +77,11 @@ public class SmsSendServiceImpl implements ISmsSendService {
             //发送保存发送纪录
             int row = smsRecordDAO.saveSmsRecord(record);
             result.setData(record);
-            logger.warn("SmsSendServiceImpl@sendSms saveSmsRecord row:{},codeId:{}", row, addCountCodeId);
+            logger.warn("SmsSendServiceImpl@sendSms saveSmsRecord row:{},user:{},record:{}", row, info,record);
         } else {
-            //发送失败 回滚扣除的发送数量 根据addCountCodeId
-            int row = cardCodeDAO.reduceSmsUseCount(addCountCodeId);
-            logger.warn("SmsSendServiceImpl@sendSms reduceSmsUseCount row:{},codeId:{}", row, addCountCodeId);
+            //发送失败 回滚扣除的发送数量
+            int row = userInfoDAO.reduceSmsUseCount(info.getId());
+            logger.warn("SmsSendServiceImpl@sendSms reduceSmsUseCount row:{},user:{},record:{}", row, info,record);
             result.setErrorMessage("短信发送失败！");
         }
         return result;
@@ -120,7 +113,6 @@ public class SmsSendServiceImpl implements ISmsSendService {
             PushUnicastMessageResponse response = channelClient.pushUnicastMessage(request);
             // 6. 认证推送成功
             logger.info("SmsSendServiceImpl@doSend success,amount:{},record:{}", response.getSuccessAmount(), record);
-//            System.out.println("push amount : " + response.getSuccessAmount());
             return response.getSuccessAmount() > 0;
         } catch (ChannelClientException e) {
             // 处理客户端错误异常

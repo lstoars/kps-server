@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kps.server.dao.IUserInfoDAO">
+
+    <resultMap id="userInfo" type="com.kps.server.entity.UserInfo">
+        <result property="id" column="ID"/>
+        <result property="username" column="USER_NAME"/>
+        <result property="clientId" column="CLIENT_ID"/>
+        <result property="beginTime" column="BEGIN_TIME"/>
+        <result property="endTime" column="END_TIME"/>
+        <result property="smsCount" column="SMS_COUNT"/>
+        <result property="smsUseCount" column="SMS_USE_COUNT"/>
+        <result property="version" column="VERSION"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
+    </resultMap>
+
+    <insert id="saveUserInfo" parameterType="com.kps.server.entity.UserInfo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into USER_INFO (USER_NAME,CLIENT_ID,BEGIN_TIME,END_TIME,SMS_COUNT,SMS_USE_COUNT,CREATE_TIME,MODIFY_TIME)
+        values (#{username},#{clientId},#{beginTime},#{endTime},#{smsCount},#{smsUseCount},now(),now())
+    </insert>
+
+    <select id="queryByNameAndClient" parameterType="java.util.HashMap" resultMap="userInfo">
+        select * from USER_INFO where USER_NAME=#{username} and CLIENT_ID=#{clientId}
+    </select>
+
+    <update id="recharge" parameterType="com.kps.server.entity.UserInfo">
+        update USER_INFO
+        <set>
+            <if test="endTime!=null">END_TIME=#{endTime},</if>
+            <if test="smsCount!=null and smsCount !=0">SMS_COUNT=#{smsCount},</if>
+            MODIFY_TIME=now(),VERSION=VERSION+1
+        </set>
+        where id = #{id} and VERSION=#{version}
+    </update>
+
+    <update id="addSmsUseCount" parameterType="java.lang.Integer">
+        update USER_INFO set SMS_USE_COUNT=SMS_USE_COUNT+1 where id = #{id} and SMS_USE_COUNT &lt; SMS_COUNT
+    </update>
+
+    <update id="reduceSmsUseCount">
+        update USER_INFO set SMS_USE_COUNT=SMS_USE_COUNT-1 where id = #{id} and SMS_USE_COUNT &gt; 0
+    </update>
+</mapper>   

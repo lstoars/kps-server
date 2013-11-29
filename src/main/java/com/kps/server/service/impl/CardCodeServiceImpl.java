@@ -2,7 +2,9 @@ package com.kps.server.service.impl;
 
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.dao.ICardCodeDAO;
+import com.kps.server.dao.IUserInfoDAO;
 import com.kps.server.entity.CardCode;
+import com.kps.server.entity.UserInfo;
 import com.kps.server.service.ICardCodeService;
 import com.kps.server.utils.CodeUtils;
 import org.apache.commons.collections.CollectionUtils;
@@ -13,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 卡密服务接口
@@ -58,98 +58,6 @@ public class CardCodeServiceImpl implements ICardCodeService {
             }
         }
         result.setData(successCount);
-        return result;
-    }
-
-    public BaseResultBean<CardCode> verfifyCode(String code, String username, String clientId) {
-        BaseResultBean<CardCode> result = new BaseResultBean<CardCode>();
-        CardCode cardCode = cardCodeDAO.queryByCode(code);
-
-        //判断是否存在
-        if (null == cardCode) {
-            logger.warn("CardCodeServiceImpl@verfifyCode code is not exist,code:{},username:{},clientId:{}", code, username, clientId);
-            result.setErrorMessage("该卡密不存在，或者已经过期！");
-            return result;
-        }
-
-        //判断是否有绑定过用户，
-        //1.之前么有绑定过，新增绑定
-        if (StringUtils.equals("tools", clientId)) {
-            if(StringUtils.isEmpty(cardCode.getUserName())) { //没有使用过
-                Date now = new Date();
-                cardCode.setBeginTime(now);
-                cardCode.setUserName(username);
-                cardCode.setClientId(clientId);
-                cardCodeDAO.bindUser(cardCode);
-                result.setData(cardCode);
-                return result;
-            }
-        } else {
-            if (null == cardCode.getBeginTime()
-                    && StringUtils.isEmpty(cardCode.getUserName())) {
-                Date now = new Date();
-                cardCode.setBeginTime(now);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(now);
-                cal.add(Calendar.DAY_OF_MONTH, cardCode.getTerm());
-                cardCode.setEndTime(cal.getTime());
-                cardCode.setUserName(username);
-                cardCode.setClientId(clientId);
-                cardCodeDAO.bindUser(cardCode);
-                result.setData(cardCode);
-                return result;
-            }
-        }
-
-        result.setData(cardCode);
-
-        //2.之前有绑定过，判断是否到期
-        if (StringUtils.equals("tools", clientId)) {
-            //判断短信的使用条数
-            if (cardCode.getSmsUseCount() >= cardCode.getSmsCount()) {
-                result.setErrorMessage("对不起，该卡密" + cardCode.getSmsCount() + "条短信，已经全部使用完！");
-                return result;
-            }
-        } else {
-            if (cardCode.getEndTime().before(new Date())) {
-                result.setErrorMessage("对不起，该卡密已经过期！");
-                return result;
-            }
-        }
-
-        //3.之前有绑定过，判断用户名是否一致
-        if (!StringUtils.equals(username, cardCode.getUserName())) {
-            result.setErrorMessage("对不起，您输入的用户名和该卡绑定的用户不一致！");
-            return result;
-        }
-
-        //4.判断clientId 是否一致
-        if (!StringUtils.equals(clientId, cardCode.getClientId())) {
-            result.setErrorMessage("对不起，该卡密已经在其他客户端使用过了。");
-        }
-
-        //验证成功成功返回
-        return result;
-    }
-
-    /**
-     * 查询手机号码 剩余的短信条数
-     *
-     * @param mobile 手机号码
-     * @return
-     */
-    @Override
-    public int queryOverSmsCount(String mobile) {
-        List<CardCode> codes = cardCodeDAO.querySmsCodeByMobile(mobile);
-        if (CollectionUtils.isEmpty(codes)) {
-            return 0;
-        }
-
-        int result = 0;
-        for (CardCode code : codes) {
-            result += (code.getSmsCount() - code.getSmsUseCount());
-        }
-
         return result;
     }
 

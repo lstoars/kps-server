@@ -32,32 +32,9 @@ public interface ICardCodeDAO {
     public CardCode queryByCode(String code);
 
     /**
-     * 卡密绑定用户（标记开始使用）
-     *
-     * @param code
+     * 使用卡密
+     * @param id
      * @return
      */
-    public int bindUser(CardCode code);
-
-    /**
-     * 根据使用手机号码查询卡密
-     *
-     * @param mobile
-     * @return
-     */
-    public List<CardCode> querySmsCodeByMobile(String mobile);
-
-    /**
-     * 增加卡密短信发送数量
-     * @param codeId
-     * @return
-     */
-    public int addSmsUseCount(int codeId);
-
-    /**
-     * 減少卡密短信发送数量
-     * @param codeId
-     * @return
-     */
-    public int reduceSmsUseCount(int codeId);
+    public int useCardCode(int id);
 }

@@ -2,6 +2,7 @@ package com.kps.server.service;
 
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.CardCode;
+import com.kps.server.entity.UserInfo;
 
 /**
  * 卡密service
@@ -20,19 +21,4 @@ public interface ICardCodeService {
      */
     public BaseResultBean<Integer> generateCardCode(int count, int term, int smsCount, String saleChannel);
 
-    /**
-     * 根据卡密号码查询
-     *
-     * @param code
-     * @return
-     */
-    public BaseResultBean<CardCode> verfifyCode(String code, String username, String clientId);
-
-    /**
-     * 查询手机号码 剩余的短信条数
-     *
-     * @param mobile
-     * @return
-     */
-    public int queryOverSmsCount(String mobile);
 }

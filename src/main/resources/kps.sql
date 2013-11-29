@@ -10,58 +10,47 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2013-11-29 15:34:46
+Date: 2013-11-29 18:33:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for card_code
+-- Table structure for CARD_CODE
 -- ----------------------------
-DROP TABLE IF EXISTS card_code;
-CREATE TABLE card_code (
-  ID int(11) NOT NULL AUTO_INCREMENT,
-  CODE varchar(16) NOT NULL,
-  TERM int(11) NOT NULL,
-  SMS_COUNT int(11) DEFAULT NULL,
-  BEGIN_TIME datetime DEFAULT NULL,
-  SMS_USE_COUNT int(11) NOT NULL DEFAULT '0',
-  END_TIME datetime DEFAULT NULL,
-  USER_NAME varchar(100) DEFAULT NULL,
-  SALE_CHANNEL varchar(10) DEFAULT NULL,
-  CLIENT_ID varchar(10) DEFAULT NULL,
-  FEATURES varchar(255) DEFAULT NULL,
-  CREATE_TIME datetime NOT NULL,
-  PRIMARY KEY (ID),
-  UNIQUE KEY CODE_UNIQUE (CODE)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS CARD_CODE;
+CREATE TABLE CARD_CODE (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  code varchar(12) NOT NULL,
+  status tinyint(4) NOT NULL,
+  term int(11) NOT NULL,
+  sms_count int(11) NOT NULL,
+  create_time datetime NOT NULL,
+  modify_time datetime NOT NULL,
+  use_time datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for card_code_copy
+-- Table structure for PAY_HISTORY
 -- ----------------------------
-DROP TABLE IF EXISTS card_code_copy;
-CREATE TABLE card_code_copy (
-  ID int(11) NOT NULL AUTO_INCREMENT,
-  CODE varchar(16) NOT NULL,
-  TERM int(11) NOT NULL,
-  SMS_COUNT int(11) DEFAULT NULL,
-  BEGIN_TIME datetime DEFAULT NULL,
-  SMS_USE_COUNT int(11) DEFAULT NULL,
-  END_TIME datetime DEFAULT NULL,
-  USER_NAME varchar(100) DEFAULT NULL,
-  SALE_CHANNEL varchar(10) DEFAULT NULL,
-  CLIENT_ID varchar(10) DEFAULT NULL,
-  FEATURES varchar(255) DEFAULT NULL,
-  CREATE_TIME datetime NOT NULL,
-  PRIMARY KEY (ID),
-  UNIQUE KEY CODE_UNIQUE (CODE)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS PAY_HISTORY;
+CREATE TABLE PAY_HISTORY (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  user_id int(11) NOT NULL,
+  card_id int(11) NOT NULL,
+  type tinyint(4) NOT NULL COMMENT '类型，1：续费时间、2：续费短信条数',
+  old_value varchar(20) NOT NULL,
+  inc_value int(11) NOT NULL,
+  create_time datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for sms_record
+-- Table structure for SMS_RECORD
 -- ----------------------------
-DROP TABLE IF EXISTS sms_record;
-CREATE TABLE sms_record (
+DROP TABLE IF EXISTS SMS_RECORD;
+CREATE TABLE SMS_RECORD (
   id int(11) NOT NULL AUTO_INCREMENT,
   phone varchar(11) NOT NULL,
   title varchar(255) NOT NULL,
@@ -69,13 +58,32 @@ CREATE TABLE sms_record (
   customer_phone varchar(11) NOT NULL,
   create_time datetime NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for version_info
+-- Table structure for USER_INFO
 -- ----------------------------
-DROP TABLE IF EXISTS version_info;
-CREATE TABLE version_info (
+DROP TABLE IF EXISTS USER_INFO;
+CREATE TABLE USER_INFO (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  user_name varbinary(50) NOT NULL,
+  client_id varchar(10) NOT NULL,
+  begin_time date DEFAULT NULL,
+  end_time date DEFAULT NULL,
+  sms_count int(11) NOT NULL DEFAULT '0',
+  sms_use_count int(11) NOT NULL DEFAULT '0',
+  version int(11) NOT NULL DEFAULT '0',
+  create_time datetime NOT NULL,
+  modify_time datetime NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY U_C_UK (user_name,client_id) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for VERSION_INFO
+-- ----------------------------
+DROP TABLE IF EXISTS VERSION_INFO;
+CREATE TABLE VERSION_INFO (
   ID int(11) NOT NULL AUTO_INCREMENT,
   CLIENT_ID varchar(20) NOT NULL,
   VERSION varchar(5) NOT NULL,

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kps.server.dao.IPayHistoryDAO">
+
+    <resultMap id="userInfo" type="com.kps.server.entity.UserInfo">
+        <result property="id" column="ID"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="codeId" column="CODE_ID"/>
+        <result property="type" column="TYPE"/>
+        <result property="oldValue" column="OLD_VALUE"/>
+        <result property="incValue" column="INC_VALUE"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
+    </resultMap>
+
+    <insert id="savePayHistory" parameterType="com.kps.server.entity.PayHistory"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into USER_INFO (USER_ID,CODE_ID,TYPE,OLD_VALUE,INC_VALUE,CREATE_TIME,MODIFY_TIME)
+        values (#{userId},#{codeId},#{type},#{oldValue},#{incValue},now(),now())
+    </insert>
+
+
+</mapper>

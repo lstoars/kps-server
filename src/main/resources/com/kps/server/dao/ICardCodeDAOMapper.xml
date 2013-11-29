@@ -7,42 +7,24 @@
         <result property="code" column="CODE"/>
         <result property="term" column="TERM"/>
         <result property="smsCount" column="SMS_COUNT"/>
-        <result property="beginTime" column="BEGIN_TIME"/>
-        <result property="endTime" column="END_TIME"/>
-        <result property="smsUseCount" column="SMS_USE_COUNT"/>
-        <result property="userName" column="USER_NAME"/>
-        <result property="clientId" column="CLIENT_ID"/>
+        <result property="status" column="STATUS"/>
         <result property="saleChannel" column="SALE_CHANNEL"/>
-        <result property="features" column="FEATURES"/>
+        <result property="useTime" column="USE_TIME"/>
         <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
     </resultMap>
 
     <insert id="saveCardCode" parameterType="com.kps.server.entity.CardCode" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO CARD_CODE (CODE,TERM,SMS_COUNT,SALE_CHANNEL,CREATE_TIME)
-        values (#{code},#{term},#{smsCount},#{saleChannel},now())
+        INSERT INTO CARD_CODE (CODE,TERM,SMS_COUNT,STATUS,SALE_CHANNEL,CREATE_TIME,MODIFY_TIME)
+        values (#{code},#{term},#{smsCount},#{status},#{saleChannel},now(),now())
     </insert>
 
     <select id="queryByCode" parameterType="java.lang.String" resultMap="cardCode">
         select * from CARD_CODE where code = #{code}
     </select>
 
-    <update id="bindUser" parameterType="com.kps.server.entity.CardCode">
-        update CARD_CODE set BEGIN_TIME=#{beginTime},END_TIME=#{endTime},USER_NAME=#{userName},
-        CLIENT_ID=#{clientId}
-        where id = #{id} and BEGIN_TIME is null
-    </update>
-
-    <select id="querySmsCodeByMobile" parameterType="java.lang.String" resultMap="cardCode">
-        select * from CARD_CODE where USER_NAME=#{mobile}
-          and CLIENT_ID='tools' and SMS_USE_COUNT &lt; SMS_COUNT
-    </select>
-
-    <update id="addSmsUseCount" parameterType="java.lang.Integer">
-        update CARD_CODE set SMS_USE_COUNT=SMS_USE_COUNT+1 where id = #{id} and SMS_USE_COUNT &lt;SMS_COUNT;
-    </update>
-
-    <update id="reduceSmsUseCount" parameterType="java.lang.Integer">
-        update CARD_CODE set SMS_USE_COUNT=SMS_USE_COUNT-1 where id = #{id} and SMS_USE_COUNT &gt;0;
+    <update id="useCardCode" parameterType="java.lang.Integer">
+         update CARD_CODE set STATUS=1 ,USE_TIME=now() where id = #{id}
     </update>
 
 </mapper>

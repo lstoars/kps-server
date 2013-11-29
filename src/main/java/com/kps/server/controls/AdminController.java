@@ -30,7 +30,7 @@ public class AdminController {
     @RequestMapping("/add")
     public ModelAndView generate(int count, int term, int smsCount, String saleChannel) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("admin/add_success");     //设置返回的文件名
+        mav.setViewName("admin/add_success");
         mav.addObject("result", cardCodeService.generateCardCode(count, term, smsCount, saleChannel));
         return mav;
     }

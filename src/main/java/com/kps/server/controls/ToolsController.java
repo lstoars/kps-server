@@ -3,6 +3,7 @@ package com.kps.server.controls;
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.CardCode;
 import com.kps.server.service.ICardCodeService;
+import com.kps.server.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +24,16 @@ import java.util.Map;
 public class ToolsController {
 
     @Autowired
-    private ICardCodeService cardCodeService;
+    private IUserInfoService userInfoService;
 
-    @RequestMapping("/qq")
+    @RequestMapping("/qq_page")
     public ModelAndView qqPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("tools/qq");
         return mav;
     }
 
-    @RequestMapping("/sms")
+    @RequestMapping("/sms_page")
     public ModelAndView smsPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("tools/sms");
@@ -42,9 +43,9 @@ public class ToolsController {
     @RequestMapping("get_sms_count")
     @ResponseBody
     public Map<String, Object> getSmsCount(String mobile) {
-        int count = cardCodeService.queryOverSmsCount(mobile);
+        BaseResultBean<Integer> r = userInfoService.querySmsCount(mobile);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("count", count);
+        result.put("count", r.getData());
         result.put("mobile", mobile);
         return result;
     }
