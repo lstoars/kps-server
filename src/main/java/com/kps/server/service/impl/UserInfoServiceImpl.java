@@ -14,6 +14,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +27,7 @@ import java.util.Map;
  * Date: 13-11-29
  * Time: 下午5:19
  */
+@Service
 public class UserInfoServiceImpl implements IUserInfoService {
 
     @Override
@@ -36,12 +38,12 @@ public class UserInfoServiceImpl implements IUserInfoService {
         //判断是否存在
         if (null == cardCode) {
             logger.warn("UserInfoServiceImpl@recharge code is not exist,code:{},username:{},clientId:{}", code, username, clientId);
-            result.setErrorMessage("该卡密不存在，或者已经过期！");
+            result.setErrorMessage("该卡密不存在，或者已经使用！");
             return result;
         }
 
         if (cardCode.getStatus() != 0) {
-            result.setErrorMessage("该卡密不存在，或者已经过期！");
+            result.setErrorMessage("该卡密不存在，或者已经使用！");
             return result;
         }
 
@@ -79,6 +81,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
             if (StringUtils.equals(ClientIdConstant.TOOLS, clientId)) {
                 info.setSmsCount(cardCode.getSmsCount());
 
+                history.setOldValue("");
                 history.setType(1);
                 history.setIncValue(cardCode.getSmsCount());
             } else {
@@ -88,6 +91,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
                 info.setBeginTime(new Date());
                 info.setEndTime(cal.getTime());
 
+                history.setOldValue("");
                 history.setType(2);
                 history.setIncValue(cardCode.getTerm());
             }
