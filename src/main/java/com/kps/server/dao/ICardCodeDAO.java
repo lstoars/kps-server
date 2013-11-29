@@ -46,4 +46,6 @@ public interface ICardCodeDAO {
      * @return
      */
     public List<CardCode> querySmsCodeByMobile(String mobile);
+
+    public int addSmsUseCount(int codeId);
 }

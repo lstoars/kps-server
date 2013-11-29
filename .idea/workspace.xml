@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f63326f1-604c-439c-9132-7ff6ccfbc9e7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/CardCodeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/CardCodeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kps-server.iml" afterPath="$PROJECT_DIR$/kps-server.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kps-server.iws" />
@@ -11,7 +12,7 @@
     <file path="/spring-ds.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385270883717" ignored="false" />
     <file path="/kps-server.properties" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385220661895" ignored="false" />
     <file path="/CardCode.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385563447919" ignored="false" />
-    <file path="/ICardCodeDAO.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385563018624" ignored="false" />
+    <file path="/ICardCodeDAO.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385685532089" ignored="false" />
     <file path="/ICardCodeServiceImpl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385218710811" ignored="false" />
     <file path="/ICardCodeDAOMapper.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385568443371" ignored="false" />
     <file path="/sql-map-config.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385219404643" ignored="false" />
@@ -45,14 +46,65 @@
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/setting/report_new.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385601515226" ignored="false" />
     <file path="/qq.jsp" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385602455156" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/web/controls/netport/ComSettingControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385601813518" ignored="false" />
-    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/web/controls/netport/PersonalControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385602038814" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/web/controls/netport/PersonalControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385624048080" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/ant_classes/spring-controls.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385602308578" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/finance/index2.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385617349330" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/finance/index4.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385617354814" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/finance/index5.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385617360153" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/finance/index6.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385617364439" ignored="false" />
-    <file path="/Dummy.txt" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385619173184" ignored="false" />
+    <file path="/Dummy.txt" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385685443889" ignored="false" />
     <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/finance/index.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385618039932" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/personal/zy_list.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385619587670" ignored="false" />
+    <file path="/zy_list.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385619587670" ignored="false" />
+    <file path="/PersonalControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385624046308" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/web/timertask/netport/LiZhiAutoNoPass.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385625209294" ignored="false" />
+    <file path="/LiZhiAutoNoPass.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385626493087" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/web/timertask/netport/LiZhiAutoNoPassTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385628226118" ignored="false" />
+    <file path="/LiZhiAutoNoPassTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385625817312" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/spring-timertask.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385626542763" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/zsjm.jsp" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385627833406" ignored="false" />
+    <file path="/zsjm.jsp" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385627830420" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/ant_classes/spring-timertask.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385628370691" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/ant_classes/conf/spring/nsx_timertask.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385628110581" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/src/com/erp/service/netport/NetPortService.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385629277860" ignored="false" />
+    <file path="/NetPortService.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385629268784" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/com/erp/web/timertask/qqlh/QqlZeorDistanceSendRemindTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631338225" ignored="false" />
+    <file path="/QqlZeorDistanceSendRemindTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631337826" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/com/erp/web/timertask/qqlh/QqLhRightRemindTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631333648" ignored="false" />
+    <file path="/QqLhRightRemindTask.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631325785" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/com/erp/web/controls/qqlh/BaseQqLhControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631221189" ignored="false" />
+    <file path="/BaseQqLhControl.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631189936" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/add_p.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631730158" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/js/center/my_wldk1111.js" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385634667508" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/setting/index.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631985273" ignored="false" />
+    <file path="/my_wldk1111.js" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385634664288" ignored="false" />
+    <file path="/index.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385631982664" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/returnNumber.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/my_center/my_hdz/add.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/my_center/my_hdz/addjy.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/spring-timertask.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/hbm/TelNumChoiceRight.hbm.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/com/erp/web/tools/DateUtil.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/testCase/TestTelNumBack.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/cw/bhgl/inc.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/conf/spring/zc_spring.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/hbm/TelNumCode.hbm.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/conf/spring/common_spring.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/conf/struts2/zc_struts.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/manage_addnumb.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/manage_admin.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/manage_model.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/cw/bhgl/index.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/index.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/hbm/TelNumCodeUser.hbm.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/web.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/my_center/my_remind/content.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/com/jjshome/erp/entity/HrWorker.java" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/telnum/managenumb_syr.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/src/applicationContext.xml" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633110402" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3_NETPORT/WebRoot/WEB-INF/templates/net_port/site/list.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385633284607" ignored="false" />
+    <file path="/list.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385635120712" ignored="false" />
+    <file path="$PROJECT_DIR$/../JERP_BETA_3/WebRoot/WEB-INF/templates/net_port/site/list.html" changelist="f63326f1-604c-439c-9132-7ff6ccfbc9e7" time="1385635385901" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +119,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -103,7 +156,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -113,15 +165,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CardCodeServiceImpl.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/CardCodeServiceImpl.java">
+      <file leaf-file-name="ISmsSendService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/ISmsSendService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="9" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.5940803">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1201#1210#0" expanded="true" />
-                <element signature="e#2103#2113#0" expanded="true" />
-              </folding>
+            <state line="13" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmsSendServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/SmsSendServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="21" selection-start="1971" selection-end="1976" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ICardCodeDAO.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="6" selection-start="667" selection-end="667" vertical-scroll-proportion="0.6714579">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmsRecord.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/entity/SmsRecord.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="25" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,7 +220,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/sms.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kps/server/entity/CardCode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kps/server/controls/admin/CardCodeAdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kps/server/controls/admin/AdminController.java" />
@@ -160,6 +234,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kps/server/controls/CardCodeController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tools/qq.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/CardCodeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java" />
       </list>
     </option>
   </component>
@@ -204,6 +279,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -235,51 +312,23 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kps-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kps-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="settings.github" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/bccs-api-lib-1.0.jar!/" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
@@ -553,7 +602,11 @@
       <created>1385619175733</created>
       <updated>1385619175733</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ddd">
+      <created>1385619308898</created>
+      <updated>1385619308898</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -567,11 +620,10 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57193816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38763377" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38717338" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -579,12 +631,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32818073" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32467532" sideWeight="0.61236626" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32467532" sideWeight="0.6128266" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -654,28 +707,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="6" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/entity/CardCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="30" selection-start="612" selection-end="623" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="-3.125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/qq.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="0" selection-start="2509" selection-end="4260" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/controls/ToolsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="39" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" />
@@ -733,12 +764,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/CardCodeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="9" selection-start="5000" selection-end="5000" vertical-scroll-proportion="0.5940803">
+        <state line="134" column="7" selection-start="4566" selection-end="4566" vertical-scroll-proportion="0.3861607">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1201#1210#0" expanded="true" />
-            <element signature="e#2103#2113#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/ISmsSendService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/entity/SmsRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="25" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/service/impl/SmsSendServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="21" selection-start="1971" selection-end="1976" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kps/server/dao/ICardCodeDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="6" selection-start="667" selection-end="667" vertical-scroll-proportion="0.6714579">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -784,7 +841,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.6 (1)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -801,7 +858,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -809,7 +865,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.6 (1)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -821,7 +877,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: junit:junit:3.8.1</last-edited>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
