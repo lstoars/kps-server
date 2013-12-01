@@ -46,10 +46,20 @@ public class SmsController {
      * @return
      */
     @RequestMapping("/page")
-    public ModelAndView sendPage(@RequestHeader(value = "referer") String refer,
+    public ModelAndView sendPage(@RequestHeader(value = "referer", required = false) String refer, HttpSession session,
                                  String phone) {
-        logger.info("SmsController@sendPage refer:{},phone:{}",refer,phone);
+        if (StringUtils.isEmpty(refer)) {
+            refer = (String) session.getAttribute("refer");
+        } else {
+            session.setAttribute("refer", refer);
+        }
+
+        logger.info("SmsController@sendPage refer:{},phone:{}", refer, phone);
         ModelAndView view = new ModelAndView();
+        if (StringUtils.isEmpty(refer)) {
+            view.setViewName("tools/error");
+            return view;
+        }
         String title = HttpUtils.getTitle(refer);
         view.addObject("title", title);
         view.addObject("phone", phone);

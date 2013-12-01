@@ -7,6 +7,8 @@ import com.kps.server.service.IUserInfoService;
 import com.kps.server.service.IVersionInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,18 +62,25 @@ public class UserInfoController {
             result.put("errorMsg", "PARAM_ERROR");
         }
 
-        BaseResultBean<UserInfo> info = userInfoService.recharge(uname, clientId, code);
-        result.put("success", info.isSuccess());
-        result.put("errorMsg", info.getErrorMessage());
-        if (info.isSuccess() && info.getData().getEndTime() != null) {
-            result.put("endTime", DateFormatUtils.format(info.getData().getEndTime(),
-                    "yyyy-MM-dd"));
-        } else if (info.isSuccess() && info.getData().getSmsCount() != 0) {
-            result.put("smsCount", info.getData().getSmsCount() - info.getData().getSmsUseCount());
+        try {
+            BaseResultBean<UserInfo> info = userInfoService.recharge(uname, clientId, code);
+            result.put ("success", info.isSuccess());
+            result.put("errorMsg", info.getErrorMessage());
+            if (info.isSuccess() && info.getData().getEndTime() != null) {
+                result.put("endTime", DateFormatUtils.format(info.getData().getEndTime(),
+                        "yyyy-MM-dd"));
+            } else if (info.isSuccess() && info.getData().getSmsCount() != 0) {
+                result.put("smsCount", info.getData().getSmsCount() - info.getData().getSmsUseCount());
+            }
+        } catch (Exception e) {
+            logger.error("UserInfoController@recharge error", e);
+            result.put("success", false);
+            result.put("errorMsg", "SYSTEM_ERROR");
         }
         return result;
     }
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private IUserInfoService userInfoService;

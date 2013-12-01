@@ -19,7 +19,7 @@
         }
 
         .section1 .section_middle {
-            margin: 30px 0 0 72px
+            margin: 5px 0 0 72px
         }
 
         .set_style_table {
@@ -134,7 +134,7 @@
                                    maxlength="30" style="width: 60px">
                         </td>
                         <td>
-                            <img src="/kps/sms/verfiyImg" alt="验证码图片">
+                            <img src="/kps/sms/verfiyImg" id="verfiy_img" alt="验证码图片"><a href="javascript:;" onclick="changeImg()">换一张</a>
                         </td>
                     </tr>
 
@@ -155,6 +155,10 @@
 </div>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
+    function changeImg() {
+        $("#verfiy_img").attr("src","/kps/sms/verfiyImg?t="+Math.random());
+    }
+
     function send_sms() {
         var phone = $("#phone").val();
         var title = $("#title").val();

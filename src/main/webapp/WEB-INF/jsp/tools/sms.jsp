@@ -19,7 +19,7 @@
         }
 
         .section1 .section_middle {
-            margin: 30px 0 0 72px
+            margin: 5px 0 0 72px
         }
 
         .set_style_table {
@@ -95,9 +95,10 @@
             margin: 19px 0 0 70px
         }
 
-        #CssGaga {
-            content: "131010171502,peu,290"
+        .c_div {
+            display: none;
         }
+
     </style>
 </head>
 <body>
@@ -108,41 +109,50 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr class="row1">
-                        <td class="col1">组件样式：</td>
+                        <td colspan="7">使用该插件后来电量比没有该插件高出180%</td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" height="10"></td>
+                    </tr>
+                    <tr class="row1">
+                        <td class="col1"><nobr>组件样式：</nobr></td>
                         <td class="col_ipt">
                                 <span>
-                                    <input type="radio" class="ipt_radio" name="pictype" id="logo52" value="52">
+                                    <input type="radio" class="ipt_radio" name="pictype" id="logo52" value="jj">
                                 </span>
                         </td>
                         <td class="col"><label for="logo52">简洁型</label></td>
                         <td class="col_ipt">
                                 <span>
-                                    <input type="radio" class="ipt_radio" name="pictype" id="logo51" value="51"
+                                    <input type="radio" class="ipt_radio" name="pictype" id="logo51" value="bz"
                                            checked="checked">
                                 </span>
                         </td>
                         <td class="col"><label for="logo51">标准型</label></td>
                         <td class="col_ipt">
                                 <span>
-                                    <input type="radio" class="ipt_radio" name="pictype" id="logo53" value="53">
+                                    <input type="radio" class="ipt_radio" name="pictype" id="logo53" value="kz">
                                 </span>
                         </td>
                         <td><label for="logo53">拓展型</label></td>
                     </tr>
                     <tr class="row2">
                         <td colspan="2"></td>
-                        <td>
-                            <img src="http://pub.idqqimg.com/wpa/images/counseling_style_51.png" title="点击这里给我发消息"
+                        <td valign="bottom">
+                            <img src="http://ww1.sinaimg.cn/mw690/90f49884gw1eb4at01213j21dw0d5abg.jpg"
+                                 width="100px" height="30px" title="点击这里给我发消息"
                                  class="logo_img">
                         </td>
                         <td></td>
-                        <td>
-                            <img src="http://pub.idqqimg.com/wpa/images/counseling_style_52.png" title="点击这里给我发消息"
-                                 class="logo_img">
+                        <td valign="bottom">
+                            <img src="http://ww3.sinaimg.cn/mw690/90f49884gw1eb4at1bo5gj21kw0g9dhv.jpg"
+                                 title="点击这里给我发消息"
+                                 width="120px" height="40px" class="logo_img">
                         </td>
                         <td></td>
-                        <td>
-                            <img src="http://pub.idqqimg.com/wpa/images/counseling_style_52.png" title="点击这里给我发消息"
+                        <td valign="bottom">
+                            <img src="http://ww4.sinaimg.cn/mw690/90f49884gw1eb4asyquz3j21kw0gejx7.jpg"
+                                 width="180px" height="80px" title="点击这里给我发消息"
                                  class="logo_img">
                         </td>
                     </tr>
@@ -157,7 +167,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="7" style="border-style:dotted;line-height: 22px">
                             我们会将客户的预约信息通过短信方式发送到您的手机号上。您可即刻给用户回电。我们给您发的短信，典型运营商是收
                             我们的钱的，所以该插件是工具箱唯一收费插件。前300个客户，免收10月月功能费，短信费按1
                             毛\条（成本价）计算。您的每一个客户电话，您只需要付费1毛钱。名额有限，赶紧开通。
@@ -170,9 +180,30 @@
         </div>
     </div>
 </div>
-<div style="display: none" >
-    <h1 class="icon_tag20120517">业主急售 大芬沃尔玛后面 简贝小区 高层小三房 视野开阔</h1>
+
+
+<div id="cp_div" class="c_div">
+    <a href="/kps/sms/page?phone=" target="_blank" id="link_a">
+
+    </a>
 </div>
+
+<div id="jj_img" class="c_div">
+    <img src="http://ww1.sinaimg.cn/mw690/90f49884gw1eb4at01213j21dw0d5abg.jpg"
+         width="100px" height="30px" title="点击这里给我发消息" class="logo_img">
+</div>
+
+<div id="bz_img" class="c_div">
+    <img src="http://ww3.sinaimg.cn/mw690/90f49884gw1eb4at1bo5gj21kw0g9dhv.jpg"
+         title="点击这里给我发消息"
+         width="120px" height="40px" class="logo_img">
+</div>
+
+<div id="kz_img" class="c_div">
+    <img src="http://ww4.sinaimg.cn/mw690/90f49884gw1eb4asyquz3j21kw0gejx7.jpg"
+         width="180px" height="80px" title="点击这里给我发消息" class="logo_img">
+</div>
+
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
     function copyClick() {
@@ -193,14 +224,27 @@
                 if (msg.count == 0) {
                     window.location.href = "/kps/tools/sms_renew?phone=" + mobile;
                 } else {
-                    copyContent();
+                    copyContent(mobile);
                 }
             }
         })
     }
 
-    function copyContent() {
+    function copyContent(mobile) {
+        var pictype = $('input[name="pictype"]:checked').val();
+        $("#link_a").html($("#" + pictype + "_img").html());
+        $("#link_a").attr("href", "/kps/sms/page?phone=" + mobile);
 
+        div = document.getElementById("cp_div");
+        alert(div.innerHTML);
+        div.contentEditable = 'true';
+        var controlRange;
+        if (document.body.createControlRange) {
+            controlRange = document.body.createControlRange();
+            controlRange.addElement(div);
+            controlRange.execCommand('Copy');
+        }
+        div.contentEditable = 'false';
     }
 </script>
 </body>

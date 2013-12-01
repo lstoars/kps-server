@@ -26,6 +26,11 @@ public class ToolsController {
     @Autowired
     private IUserInfoService userInfoService;
 
+    /**
+     * QQ在先
+     *
+     * @return
+     */
     @RequestMapping("/qq_page")
     public ModelAndView qqPage() {
         ModelAndView mav = new ModelAndView();
@@ -33,6 +38,11 @@ public class ToolsController {
         return mav;
     }
 
+    /**
+     * 预约看房copy界面
+     *
+     * @return
+     */
     @RequestMapping("/sms_page")
     public ModelAndView smsPage() {
         ModelAndView mav = new ModelAndView();
@@ -40,6 +50,12 @@ public class ToolsController {
         return mav;
     }
 
+    /**
+     * 获取用户可用短信条数
+     *
+     * @param mobile
+     * @return
+     */
     @RequestMapping("get_sms_count")
     @ResponseBody
     public Map<String, Object> getSmsCount(String mobile) {
@@ -50,11 +66,41 @@ public class ToolsController {
         return result;
     }
 
+    /**
+     * 短信数量卡密续费基面
+     *
+     * @param phone
+     * @return
+     */
     @RequestMapping("/sms_renew")
     public ModelAndView smsRenew(String phone) {
         ModelAndView result = new ModelAndView();
         result.addObject("phone", phone);
         result.setViewName("tools/sms_renew");
+        return result;
+    }
+
+    /**
+     * 文字特效
+     *
+     * @return
+     */
+    @RequestMapping("/text_effects")
+    public ModelAndView textEffects() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/text_effects");
+        return result;
+    }
+
+    /**
+     * 广告橱窗
+     *
+     * @return
+     */
+    @RequestMapping("/ad_show")
+    public ModelAndView adShow() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/ad_show");
         return result;
     }
 }

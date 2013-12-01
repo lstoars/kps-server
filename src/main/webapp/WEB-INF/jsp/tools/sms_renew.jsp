@@ -18,7 +18,7 @@
         }
 
         .section1 .section_middle {
-            margin: 30px 0 0 72px
+            margin: 5px 0 0 72px
         }
 
         .set_style_table {
@@ -152,7 +152,7 @@
 <script type="text/javascript">
     function renew() {
         $.ajax({
-            url: "/kps/cc/auth",
+            url: "/kps/user/recharge",
             type: "post",
             dataType: "json",
             async: false,
@@ -160,6 +160,7 @@
             success: function (msg) {
                 if (msg.success) {
                     alert("续费成功！");
+                    window.location.href = "/kps/tools/sms_page";
                 } else {
                     alert(msg.errorMsg);
                 }
