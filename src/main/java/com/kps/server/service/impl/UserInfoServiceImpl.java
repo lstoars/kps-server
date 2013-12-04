@@ -131,7 +131,20 @@ public class UserInfoServiceImpl implements IUserInfoService {
         UserInfo info = userInfoDAO.queryByNameAndClient(params);
         if (info == null) {
             result.setErrorMessage("用户不存在！");
+            return result;
         }
+
+        if(StringUtils.equals(info.getClientId(),ClientIdConstant.SOUFUN)) {
+            Calendar now = Calendar.getInstance();
+            now.set(Calendar.HOUR_OF_DAY,0);
+            now.set(Calendar.MINUTE,0);
+            now.set(Calendar.SECOND,0);
+            now.set(Calendar.MILLISECOND,0);
+            if(info.getEndTime().before(now.getTime())) {
+                result.setErrorMessage("用户使用期限已经过期！");
+            }
+        }
+
         result.setData(info);
         return result;
     }

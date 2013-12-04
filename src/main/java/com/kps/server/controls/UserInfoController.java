@@ -5,6 +5,7 @@ import com.kps.server.entity.UserInfo;
 import com.kps.server.entity.VersionInfo;
 import com.kps.server.service.IUserInfoService;
 import com.kps.server.service.IVersionInfoService;
+import com.kps.server.utils.MD5Utils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserInfoController {
 
+    private static final String TOKEN_KEY = "T3-EZ05ZDeRf$W*V*f@Eoe(W[iC+Zy";
+
     @RequestMapping("/login")
     @ResponseBody
     public Map<String, Object> login(String uname, String clientId) {
@@ -36,9 +39,11 @@ public class UserInfoController {
         result.put("success", info.isSuccess());
         result.put("errorMsg", info.getErrorMessage());
 
-        if (info.isSuccess() && info.getData().getEndTime() != null) {
+        if (info.getData() != null && info.getData().getEndTime() != null) {
             result.put("endTime", DateFormatUtils.format(info.getData().getEndTime(),
                     "yyyy-MM-dd"));
+        } else {
+            result.put("endTime", "ERROR");
         }
 
         BaseResultBean<VersionInfo> versionResult = versionInfoService.queryByClientId(clientId);
@@ -54,8 +59,14 @@ public class UserInfoController {
 
     @RequestMapping("/recharge")
     @ResponseBody
-    public Map<String, Object> recharge(String uname, String clientId, String code) {
+    public Map<String, Object> recharge(String uname, String clientId, String code, String token) {
         Map<String, Object> result = new LinkedHashMap<String, Object>();
+        String t = MD5Utils.MD5(code + TOKEN_KEY);
+        if (!StringUtils.equalsIgnoreCase(t, token)) {
+            result.put("success", false);
+            result.put("errorMsg", "非法请求");
+        }
+
         if (StringUtils.isEmpty(uname) || StringUtils.isEmpty(clientId)
                 || StringUtils.isEmpty(code)) {
             result.put("success", false);
@@ -64,13 +75,15 @@ public class UserInfoController {
 
         try {
             BaseResultBean<UserInfo> info = userInfoService.recharge(uname, clientId, code);
-            result.put ("success", info.isSuccess());
+            result.put("success", info.isSuccess());
             result.put("errorMsg", info.getErrorMessage());
             if (info.isSuccess() && info.getData().getEndTime() != null) {
                 result.put("endTime", DateFormatUtils.format(info.getData().getEndTime(),
                         "yyyy-MM-dd"));
             } else if (info.isSuccess() && info.getData().getSmsCount() != 0) {
                 result.put("smsCount", info.getData().getSmsCount() - info.getData().getSmsUseCount());
+            } else {
+                result.put("endTime", "ERROR");
             }
         } catch (Exception e) {
             logger.error("UserInfoController@recharge error", e);

@@ -13,4 +13,6 @@ public class ClientIdConstant {
      * 工具箱
      */
     public static final String TOOLS = "tools";
+
+    public static final String SOUFUN = "sf";
 }

@@ -35,4 +35,8 @@ public class MD5Utils {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(MD5("1008134331293T-EZ05ZDeRf$W*V*f@Eoe(W[iC+Zy"));
+    }
 }

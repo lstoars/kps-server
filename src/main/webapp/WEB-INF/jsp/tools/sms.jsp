@@ -159,7 +159,7 @@
                     <tr class="row3">
                         <td colspan="6" style="text-align: right;height: 50px">
                             手机号码：<input type="text" name="wordTipIpt" class="word_tip_ipt" id="wordTipIpt" value=""
-                                        maxlength="30">
+                                        maxlength="11">
                         </td>
                         <td>
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
@@ -204,14 +204,20 @@
          width="180px" height="80px" title="点击这里给我发消息" class="logo_img">
 </div>
 
-<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
     function copyClick() {
         var mobile = $("#wordTipIpt").val();
         if ($.trim(mobile) == '') {
-            $("#wordTipIpt").attr("placeholder", "请输入您的手机号码");
+            alert("请输入手机号码！");
             $("#wordTipIpt").focus();
             return;
+        }
+
+        if (!checkMobile(mobile)) {
+            alert("手机号码格式不正确！")
+            $("#cus_phone").focus();
+            return false;
         }
 
         $.ajax({
@@ -236,7 +242,6 @@
         $("#link_a").attr("href", "/kps/sms/page?phone=" + mobile);
 
         div = document.getElementById("cp_div");
-        alert(div.innerHTML);
         div.contentEditable = 'true';
         var controlRange;
         if (document.body.createControlRange) {
@@ -245,6 +250,25 @@
             controlRange.execCommand('Copy');
         }
         div.contentEditable = 'false';
+    }
+
+    function checkMobile(mobile) {
+        var reg0 = /^13\d{9}$/;  // 130--139。至少7位
+        var reg1 = /^15\d{9}$/;  // 联通150-159。至少7位
+        var reg2 = /^18\d{9}$/;  // 移动180-189。至少7位
+        var reg3 = /^14\d{9}$/;  // 移动140-149。至少7位
+        var reg4 = /^00852\d{5,15}$/;  //香港的手机号码
+        var reg5 = /^00853\d{5,15}$/; //澳门的手机号码
+        var reg6 = /^00886\d{5,15}$/; //台湾的手机号码
+        var my = false;
+        if (reg0.test(mobile))my = true;
+        if (reg1.test(mobile))my = true;
+        if (reg2.test(mobile))my = true;
+        if (reg3.test(mobile))my = true;
+        if (reg4.test(mobile))my = true;
+        if (reg5.test(mobile))my = true;
+        if (reg6.test(mobile))my = true;
+        return my;
     }
 </script>
 </body>

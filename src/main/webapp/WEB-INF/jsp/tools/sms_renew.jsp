@@ -148,7 +148,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
     function renew() {
         $.ajax({

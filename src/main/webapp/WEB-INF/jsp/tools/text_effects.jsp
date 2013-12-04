@@ -170,21 +170,21 @@
                         <td colspan="2">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width: 340px"
-                                   value="">
+                                   value="滚动文字的链接地址，如没有可不填" >
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+</div>
 </div>
 
-<div class="c_div" id="cp_div">
+<div class="c_div" id="cp_div" style="width: 700px">
 
 </div>
 
-<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
     function preView() {
         var contentValue = $("#textContent").val();
@@ -234,6 +234,7 @@
         }
         content += "</marquee>";
         $("#c_div").html(content);
+        $("#cp_div").html(content);
         copyContent();
     }
 
