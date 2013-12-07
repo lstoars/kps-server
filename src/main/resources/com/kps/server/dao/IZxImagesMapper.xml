@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kps.server.dao.IZxImagesDAO">
+
+    <resultMap id="zxImages" type="com.kps.server.entity.ZxImages">
+        <result property="id" column="ID"/>
+        <result property="path" column="path"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="sortIndex" column="sort_index"/>
+        <result property="status" column="STATUS"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
+    </resultMap>
+
+    <select id="queryByType" parameterType="java.lang.Integer" resultMap="zxImages">
+        select * from ZX_IMAGES where type = #{type} order by sort_index
+    </select>
+
+</mapper>

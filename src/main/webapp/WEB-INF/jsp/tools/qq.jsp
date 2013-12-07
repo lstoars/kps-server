@@ -214,6 +214,7 @@
             controlRange.execCommand('Copy');
         }
         div.contentEditable = 'false';
+        alert("复制成功。")
     }
 
     /**

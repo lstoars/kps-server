@@ -2,15 +2,19 @@ package com.kps.server.controls;
 
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.CardCode;
+import com.kps.server.entity.ZxImages;
 import com.kps.server.service.ICardCodeService;
+import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,9 @@ public class ToolsController {
     @Autowired
     private IUserInfoService userInfoService;
 
+    @Autowired
+    private IToolsService toolsService;
+
     /**
      * QQ在先
      *
@@ -35,6 +42,7 @@ public class ToolsController {
     public ModelAndView qqPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("tools/qq");
+        mav.addObject("type", "qq");
         return mav;
     }
 
@@ -47,6 +55,7 @@ public class ToolsController {
     public ModelAndView smsPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("tools/sms");
+        mav.addObject("type", "sms");
         return mav;
     }
 
@@ -89,6 +98,7 @@ public class ToolsController {
     public ModelAndView textEffects() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/text_effects");
+        result.addObject("type", "text_effects");
         return result;
     }
 
@@ -101,6 +111,30 @@ public class ToolsController {
     public ModelAndView adShow() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/ad_show");
+        result.addObject("type", "ad_show");
+        return result;
+    }
+
+    @RequestMapping("/zx_images/{type}")
+    public ModelAndView zxImages(@PathVariable("type") int type) {
+        ModelAndView result = new ModelAndView();
+        List<ZxImages> images = toolsService.queryByType(type);
+        result.addObject("images", images);
+        result.setViewName("tools/zx_images");
+        return result;
+    }
+
+    @RequestMapping("/mains")
+    public ModelAndView mains() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/mains");
+        return result;
+    }
+
+    @RequestMapping("/head")
+    public ModelAndView head() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/head");
         return result;
     }
 }

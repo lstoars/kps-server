@@ -5,21 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>宏发领域二手房出售,四室两厅三卫,前海中心宏发领域豪宅 无税房,地铁口物业_深圳二手房_搜房网</title>
     <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
         .page_wrap {
-            width: 600px;
-            height: 400px;
+            width:453px;
+            height:250px;
         }
 
         .section {
             position: relative
-        }
-
-        .section1 {
-            border-bottom: 1px solid #dedede
-        }
-
-        .section1 .section_middle {
-            margin: 5px 0 0 72px
         }
 
         .set_style_table {
@@ -34,6 +30,10 @@
 
         .set_style_table .col {
             width: 102px
+        }
+        .set_style_table .col label{
+            float: left;
+            margin:1px 0 0 0;
         }
 
         .set_style_table .col1 {
@@ -54,7 +54,7 @@
         }
 
         .set_style_table .row2 td {
-            height: 62px
+            height: 162px
         }
 
         .set_style_table .row2 td img {
@@ -81,18 +81,34 @@
             padding-right: 13px;
             height: 26px;
             line-height: 26px;
-            border: 1px solid #cdd2d7;
-            border-radius: 3px;
-            -moz-border-radius: 3px;
             color: #a1a1a1
         }
 
-        .word_tip_ipt:focus, {
+        .word_tip_ipt:focus{
             border-color: #8ac5e5
         }
 
         .section2 .section_middle {
             margin: 19px 0 0 70px
+        }
+        .word_tip_ipt2{
+            width:50px;
+            height: 30px;
+            background: #ccc;
+            border: 1px solid #b0afaf;
+        }
+        .wraps{
+            float: right;
+        }
+        .wraps span{
+            float: left;
+            margin-top:5px;;
+        }
+        .wraps input{
+            float: left;
+        }
+        .wraps .word_tip_ipt2{
+            margin-left: 5px;;
         }
 
         .c_div {
