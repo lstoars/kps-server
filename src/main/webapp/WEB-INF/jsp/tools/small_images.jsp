@@ -132,7 +132,7 @@
                     <tr>
                         <c:forEach items="${images}" var="image" varStatus="status">
                         <td class="col1" style="margin-top: 10px">
-                            <div ondblclick="buttonClick(this)">
+                            <div ondblclick="copyContent(this)">
                                 <img src="${image.path}" alt="" image_id=${image.id}>
                             </div>
                         </td>
@@ -147,18 +147,6 @@
         </div>
     </div>
 </div>
-<script language="javascript">
-    function buttonClick(div) {
-        div.contentEditable = 'true';
-        var controlRange;
-        if (document.body.createControlRange) {
-            controlRange = document.body.createControlRange();
-            controlRange.addElement(div);
-            controlRange.execCommand('Copy');
-        }
-        div.contentEditable = 'false';
-        alert("复制成功。")
-    }
-</script>
+<script src="/scripts/common.js"></script>
 </body>
 </html>

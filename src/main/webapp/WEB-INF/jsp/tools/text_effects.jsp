@@ -5,15 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>文字特效</title>
     <style type="text/css">
-        *{
-            margin:0;
-            padding:0;
+        * {
+            margin: 0;
+            padding: 0;
         }
 
         .page_wrap {
-            width:650px;
-            height:250px;
-            margin:0px 0 0 0px;
+            width: 650px;
+            height: 250px;
+            margin: 0px 0 0 0px;
         }
 
         .section {
@@ -33,9 +33,10 @@
         .set_style_table .col {
             width: 102px
         }
-        .set_style_table .col label{
+
+        .set_style_table .col label {
             float: left;
-            margin:1px 0 0 0;
+            margin: 1px 0 0 0;
         }
 
         .set_style_table .col1 {
@@ -86,38 +87,44 @@
             color: #a1a1a1
         }
 
-        .word_tip_ipt:focus{
+        .word_tip_ipt:focus {
             border-color: #8ac5e5
         }
 
         .section2 .section_middle {
             margin: 19px 0 0 70px
         }
-        .word_tip_ipt2{
-            width:50px;
+
+        .word_tip_ipt2 {
+            width: 50px;
             height: 30px;
             background: #ccc;
             border: 1px solid #b0afaf;
         }
-        .wraps{
+
+        .wraps {
             float: right;
         }
-        .wraps span{
+
+        .wraps span {
             float: left;
-            margin-top:5px;;
+            margin-top: 5px;;
         }
-        .wraps input{
+
+        .wraps input {
             float: left;
         }
-        .wraps .word_tip_ipt2{
+
+        .wraps .word_tip_ipt2 {
             margin-left: 5px;;
         }
 
         .c_div {
             display: none;
         }
-        .copy_button{
-            width:50px;
+
+        .copy_button {
+            width: 50px;
             height: 30px;
             background: #ccc;
             border: 1px solid #b0afaf;
@@ -140,13 +147,14 @@
                     <tr class="row1">
                         <td colspan="2">
                             <b>文字：</b><input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
-                                      stexttyle="width: 400px" value="">
+                                             stexttyle="width: 400px" value="">
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
                                    style="width: 50px;" onclick="preView()"/>
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
                                    style="width: 50px;" onclick="copyClick()"/>
                             <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
-                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}" onblur="if(value ==''){value='文字链接地址，可不填'}" >
+                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}"
+                                   onblur="if(value ==''){value='文字链接地址，可不填'}">
                         </td>
                     </tr>
                     <tr>
@@ -190,7 +198,8 @@
                                        direction="down">上进下出
                             </div>
                         </td>
-                        <td class="col_ipt" style="border-style:dotted;width: 400px;text-align: center;height: 205" id="yl_td">
+                        <td class="col_ipt" style="border-style:dotted;width: 400px;text-align: center;height: 205"
+                            id="yl_td">
                             预览区
                         </td>
                     </tr>
@@ -198,7 +207,7 @@
                 </table>
             </div>
         </div>
-</div>
+    </div>
 </div>
 
 <div class="c_div" id="cp_div" style="width: 700px">
@@ -209,7 +218,7 @@
 <script type="text/javascript">
     function preView() {
         var contentValue = $("#textContent").val();
-        if($.trim(contentValue) =='') {
+        if ($.trim(contentValue) == '') {
             alert("请输入要加入特效的文字！");
             return false;
         }
@@ -235,7 +244,7 @@
 
     function copyClick() {
         var contentValue = $("#textContent").val();
-        if($.trim(contentValue) =='') {
+        if ($.trim(contentValue) == '') {
             alert("请输入要加入特效的文字！");
             return false;
         }
@@ -256,20 +265,8 @@
         content += "</marquee>";
         $("#c_div").html(content);
         $("#cp_div").html(content);
-        copyContent();
-    }
-
-    function copyContent() {
         div = document.getElementById("cp_div");
-        div.contentEditable = 'true';
-        var controlRange;
-        if (document.body.createControlRange) {
-            controlRange = document.body.createControlRange();
-            controlRange.addElement(div);
-            controlRange.execCommand('Copy');
-        }
-        div.contentEditable = 'false';
-        alert("复制成功。")
+        copyContent(div);
     }
 </script>
 <script src="/scripts/common.js"></script>

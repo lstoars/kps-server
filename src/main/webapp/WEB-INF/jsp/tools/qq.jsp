@@ -4,13 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style type="text/css">
-        *{
-            margin:0;
-            padding:0;
+        * {
+            margin: 0;
+            padding: 0;
         }
+
         .page_wrap {
-            width:453px;
-            height:250px;
+            width: 453px;
+            height: 250px;
             margin: 10px 0 0 10px;;
         }
 
@@ -31,9 +32,10 @@
         .set_style_table .col {
             width: 102px
         }
-        .set_style_table .col label{
+
+        .set_style_table .col label {
             float: left;
-            margin:1px 0 0 0;
+            margin: 1px 0 0 0;
         }
 
         .set_style_table .col1 {
@@ -84,34 +86,39 @@
             color: #a1a1a1
         }
 
-        .word_tip_ipt:focus{
+        .word_tip_ipt:focus {
             border-color: #8ac5e5
         }
 
         .section2 .section_middle {
             margin: 19px 0 0 70px
         }
-        .word_tip_ipt2{
-            width:50px;
+
+        .word_tip_ipt2 {
+            width: 50px;
             height: 30px;
             background: #ccc;
             border: 1px solid #b0afaf;
         }
-        .wraps{
+
+        .wraps {
             float: right;
         }
-        .wraps span{
+
+        .wraps span {
             float: left;
-            margin-top:5px;;
+            margin-top: 5px;;
         }
-        .wraps input{
+
+        .wraps input {
             float: left;
         }
-        .wraps .word_tip_ipt2{
+
+        .wraps .word_tip_ipt2 {
             margin-left: 5px;;
         }
 
-        #copy_div{
+        #copy_div {
             display: none;
         }
     </style>
@@ -167,8 +174,9 @@
                             <span class="wraps">
                                 <span class="text"> QQ号码： </span>
                                 <input type="text" name="wordTipIpt" class="word_tip_ipt" id="wordTipIpt" value=""
-                                            maxlength="30">
-                                <input type="button" name="copy" value="复制" class="word_tip_ipt2" onclick="buttonClick()"/>
+                                       maxlength="30">
+                                <input type="button" name="copy" value="复制" class="word_tip_ipt2"
+                                       onclick="buttonClick()"/>
                             </span>
                         </td>
                     </tr>
@@ -188,43 +196,24 @@
 <div id="copy_div">
 
 </div>
-
 <script language="javascript">
     function buttonClick() {
         var content = document.getElementById("copy_content_div").innerHTML;
         var code = document.getElementById("wordTipIpt").value;
         var pictypes = document.getElementsByName("pictype");
         var picValue = 52;
-        for(var i=0;i<pictypes.length;i++) {
-            if(pictypes[i].checked == true) {
+        for (var i = 0; i < pictypes.length; i++) {
+            if (pictypes[i].checked == true) {
                 picValue = pictypes[i].value;
             }
         }
-
-        content = content.replaceAll("qq_code_num",code);
-        content = content.replace("style_type",picValue);
-        document.getElementById("copy_div").innerHTML=content;
+        content = content.replaceAll("qq_code_num", code);
+        content = content.replace("style_type", picValue);
+        document.getElementById("copy_div").innerHTML = content;
 
         div = document.getElementById("copy_div");
-        div.contentEditable = 'true';
-
-        var controlRange;
-        if (document.body.createControlRange) {
-            controlRange = document.body.createControlRange();
-            controlRange.addElement(div);
-            controlRange.execCommand('Copy');
-        }
-        div.contentEditable = 'false';
-        alert("复制成功。")
+        copyContent(div);
     }
-
-    /**
-     * 替换字符
-     */
-    String.prototype.replaceAll = function(s1, s2) {
-        return this.replace(new RegExp(s1, "gm"), s2);
-    };
-
 </script>
 <script src="/scripts/common.js"></script>
 </body>

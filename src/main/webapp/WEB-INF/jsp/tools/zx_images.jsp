@@ -150,7 +150,7 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td >店铺装修图片，<span class="cred"> 双击您需要的图片复制</span></td>
+                        <td >店铺装修图片，<span class="cred">双击您需要的图片复制</span></td>
                     </tr>
                     <tr style="margin-top: 5px">
                         <td class="btns">
@@ -164,7 +164,7 @@
                     <c:forEach items="${images}" var="image">
                         <tr>
                             <td class="col1">
-                                <div ondblclick="buttonClick(this)">
+                                <div ondblclick="copyContent(this)">
                                     <img src="${image.path}" alt="" image_id=${image.id}>
                                 </div>
                             </td>
@@ -176,19 +176,6 @@
         </div>
     </div>
 </div>
-<script language="javascript">
-    function buttonClick(div) {
-        div.contentEditable = 'true';
-        var controlRange;
-        if (document.body.createControlRange) {
-            controlRange = document.body.createControlRange();
-            controlRange.addElement(div);
-            controlRange.execCommand('Copy');
-        }
-        div.contentEditable = 'false';
-        alert("复制成功。")
-    }
-</script>
 <script src="/scripts/common.js"></script>
 </body>
 </html>
