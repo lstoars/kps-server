@@ -47,6 +47,8 @@
     <li><a class="current head_banner" href="/kps/tools/qq_page" hidefocus="true" target="content">QQ在线</a></li>
     <li><a class="head_banner" href="/kps//tools/zx_images/1" hidefocus="true" target="content">装修素材</a></li>
     <li><a class="head_banner" href="/kps/tools/text_effects" hidefocus="true" target="content">文字特效</a></li>
+    <li><a class="head_banner" href="/kps/tools/smallImg" hidefocus="true" target="content">小图片</a></li>
+    <li><a class="head_banner" href="/kps/tools/ad_sc" hidefocus="true" target="content">广告素材</a></li>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">去水印</a></li>--%>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">加水印</a></li> --%>
     <%--<li><a <c:if test="${type=='sms'}"> class="current" </c:if> href="/kps/tools/sms_page" target="content">预约看房</a></li>--%>
