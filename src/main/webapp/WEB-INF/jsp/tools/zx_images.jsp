@@ -11,7 +11,7 @@
         }
 
         .page_wrap {
-            margin:5px 0 0 3px;
+            margin:5px 0 0 0;
             width: 700px;
             height: 250px;
         }

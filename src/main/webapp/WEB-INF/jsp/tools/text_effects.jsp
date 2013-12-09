@@ -13,7 +13,7 @@
         .page_wrap {
             width:650px;
             height:250px;
-            margin:0px 0 0 10px;
+            margin:0px 0 0 0px;
         }
 
         .section {
@@ -146,8 +146,11 @@
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
                                    style="width: 50px;" onclick="copyClick()"/>
                             <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
-                                   value="文字链接地址，可不填" >
+                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}" onblur="if(value ==''){value='文字链接地址，可不填'}" >
                         </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height=10>&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="col1" style="width: 130px">

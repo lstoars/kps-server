@@ -32,13 +32,14 @@
         text-align: center;
         text-decoration: none;
         width: 89px;
-        background: url(/images/nav_bg.png) 0 0 no-repeat;
-        color: #f0f0f0;
+        background: url(/images/nav_bg.png) 0 -30px no-repeat;
+        color: #333;
     }
 
     .nav li a.current {
-        background: url(/images/nav_bg.png) 0 -30px no-repeat;
-        color: #333;
+        background: url(/images/nav_bg.png) 0 0 no-repeat;
+
+        color: #f0f0f0;
     }
 </style>
 <body>
