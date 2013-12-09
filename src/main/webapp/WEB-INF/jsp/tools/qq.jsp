@@ -11,6 +11,7 @@
         .page_wrap {
             width:453px;
             height:250px;
+            margin: 10px 0 0 10px;;
         }
 
         .section {
@@ -225,5 +226,6 @@
     };
 
 </script>
+<script src="/scripts/common.js"></script>
 </body>
 </html>

@@ -11,8 +11,9 @@
         }
 
         .page_wrap {
-            width:453px;
+            width:650px;
             height:250px;
+            margin:0px 0 0 0px;
         }
 
         .section {
@@ -115,6 +116,14 @@
         .c_div {
             display: none;
         }
+        .copy_button{
+            width:50px;
+            height: 30px;
+            background: #ccc;
+            border: 1px solid #b0afaf;
+            color: #000;
+        }
+
 
     </style>
 </head>
@@ -128,11 +137,23 @@
                     <tr class="row1">
                         <td colspan="2">加入特效会有不一样的效果。</td>
                     </tr>
-                    <tr>
-                        <td colspan="2" height="10"></td>
+                    <tr class="row1">
+                        <td colspan="2">
+                            <b>文字：</b><input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
+                                      stexttyle="width: 400px" value="">
+                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
+                                   style="width: 50px;" onclick="preView()"/>
+                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
+                                   style="width: 50px;" onclick="copyClick()"/>
+                            <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
+                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}" onblur="if(value ==''){value='文字链接地址，可不填'}" >
+                        </td>
                     </tr>
                     <tr>
-                        <td class="col1" style="width: 120px">
+                        <td colspan="2" height=10>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="col1" style="width: 130px">
                             <div style="margin-top: 5px">
                                 <input type="radio" name="xg" value="1" prop="direction"
                                        direction="left" checked="checked">右进左出
@@ -171,23 +192,6 @@
                         </td>
                         <td class="col_ipt" style="border-style:dotted;width: 400px;text-align: center;height: 205" id="yl_td">
                             预览区
-                        </td>
-                    </tr>
-                    <tr class="row3">
-                        <td colspan="2">
-                            文字：<input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
-                                      stexttyle="width: 400px" value="">
-                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
-                                   style="width: 50px;" onclick="preView()"/>
-                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
-                                   style="width: 50px;" onclick="copyClick()"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width: 340px"
-                                   value="滚动文字的链接地址，如没有可不填" >
                         </td>
                     </tr>
                     </tbody>
@@ -268,5 +272,6 @@
         alert("复制成功。")
     }
 </script>
+<script src="/scripts/common.js"></script>
 </body>
 </html>

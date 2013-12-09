@@ -155,4 +155,11 @@ public class ToolsController {
         result.setViewName("tools/head");
         return result;
     }
+
+    @RequestMapping("/left")
+    public ModelAndView left() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/left");
+        return result;
+    }
 }

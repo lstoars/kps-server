@@ -58,4 +58,5 @@
 </div>
 
 </body>
+<script src="/scripts/common.js"></script>
 </html>
