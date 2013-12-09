@@ -21,5 +21,5 @@
     </frameset><noframes></noframes>
 </frameset>
 
-
+<script src="/scripts/common.js"></script>
 </html>
