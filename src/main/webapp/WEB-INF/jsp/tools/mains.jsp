@@ -13,7 +13,7 @@
     <title>房入口-工具箱</title>
 </head>
 
-<frameset rows="32,*" border="0">
+<frameset rows="33,*" border="0">
     <frame name="index" src="/kps/tools/head">
     <frame name="content" src="/kps/tools/qq_page">
 </frameset><noframes></noframes>
