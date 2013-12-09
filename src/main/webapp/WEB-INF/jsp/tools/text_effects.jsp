@@ -269,5 +269,6 @@
         alert("复制成功。")
     }
 </script>
+<script src="/scripts/common.js"></script>
 </body>
 </html>

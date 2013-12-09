@@ -51,6 +51,7 @@
     <%--<li><a <c:if test="${type=='sms'}"> class="current" </c:if> href="/kps/tools/sms_page" target="content">预约看房</a></li>--%>
     <%--<li><a <c:if test="${type=='ad_show'}"> class="current" </c:if> href="/kps/tools/ad_show" target="content">广告橱窗</a></li>--%>
 </ul>
+<script src="/scripts/common.js"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
     $(function () {
