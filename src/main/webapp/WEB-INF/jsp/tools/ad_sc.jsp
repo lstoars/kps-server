@@ -11,7 +11,6 @@
         }
 
         .page_wrap {
-            margin:5px 0 0 0;
             width: 700px;
             height: 250px;
         }
@@ -118,28 +117,6 @@
         .wraps .word_tip_ipt2 {
             margin-left: 5px;;
         }
-        .btns{
-            border-bottom: 1px solid #ccc;;
-        }
-        .btns a:link,.btns a:active,.btns a:visited,.btns a:hover{
-            display:inline-block;
-            height: 24px;
-            border:1px solid #ccc ;
-            border-bottom: none;
-            color: #333;
-            font:normal 12px/24px "SinSun";
-            text-decoration: none;
-            padding: 0 8px;
-            float: left;
-            margin-right: 5px;;
-        }
-        .btns a.current{
-           background: #ccc;
-            color: #000;
-        }
-        .cred{
-            color:#f00;
-        }
     </style>
 </head>
 <body>
@@ -150,20 +127,11 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td >店铺装修图片，<span class="cred">双击您需要的图片复制</span></td>
-                    </tr>
-                    <tr style="margin-top: 5px">
-                        <td class="btns">
-                            <a class="current" href="/kps/tools/zx_images/1">主题1</a>
-                            <a href="/kps/tools/zx_images/2">主题2</a>
-                            <a href="/kps/tools/zx_images/3">主题3</a>
-                            <a href="/kps/tools/zx_images/4">主题4</a>
-                            <a href="/kps/tools/zx_images/5">主题5</a>
-                        </td>
+                        <td>店铺装修图片，双击复制</td>
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
-                            <td class="col1">
+                            <td class="col1"  style="margin-top: 10px">
                                 <div ondblclick="copyContent(this)">
                                     <img src="${image.path}" alt="" image_id=${image.id}>
                                 </div>

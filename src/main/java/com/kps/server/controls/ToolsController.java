@@ -124,6 +124,24 @@ public class ToolsController {
         return result;
     }
 
+    @RequestMapping("/smallImg")
+    public ModelAndView smallImg() {
+        ModelAndView result = new ModelAndView();
+        List<ZxImages> images = toolsService.queryByType(6);
+        result.addObject("images", images);
+        result.setViewName("tools/small_images");
+        return result;
+    }
+
+    @RequestMapping("/ad_sc")
+    public ModelAndView adSc(){
+        ModelAndView result = new ModelAndView();
+        List<ZxImages> images = toolsService.queryByType(7);
+        result.addObject("images", images);
+        result.setViewName("tools/ad_sc");
+        return result;
+    }
+
     @RequestMapping("/mains")
     public ModelAndView mains() {
         ModelAndView result = new ModelAndView();
