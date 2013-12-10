@@ -186,10 +186,7 @@
                 copyContent(div);
             }, cancelVal: '取消',cancel:true
         });
-
     }
-
-
 </script>
 <script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=jjs-alog"
         charset="utf-8"></script>

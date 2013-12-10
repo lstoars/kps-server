@@ -5,14 +5,13 @@
  * Time: 下午1:40
  * To change this template use File | Settings | File Templates.
  */
-function stop() {
-    return false;
-}
-document.oncontextmenu = stop;
+//function stop() {
+//    return false;
+//}
+//document.oncontextmenu = stop;
 
 function copyContent(div) {
     div.contentEditable = 'true';
-
     var controlRange;
     if (document.body.createControlRange) {
         controlRange = document.body.createControlRange();

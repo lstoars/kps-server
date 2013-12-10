@@ -97,8 +97,9 @@ public class ToolsController {
     @RequestMapping("/text_effects")
     public ModelAndView textEffects() {
         ModelAndView result = new ModelAndView();
+        List<ZxImages> images = toolsService.queryByType(9);
+        result.addObject("images", images);
         result.setViewName("tools/text_effects");
-        result.addObject("type", "text_effects");
         return result;
     }
 
@@ -111,7 +112,6 @@ public class ToolsController {
     public ModelAndView adShow() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/ad_show");
-        result.addObject("type", "ad_show");
         return result;
     }
 
@@ -120,6 +120,7 @@ public class ToolsController {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(type);
         result.addObject("images", images);
+        result.addObject("type",type);
         result.setViewName("tools/zx_images");
         return result;
     }

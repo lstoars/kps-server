@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,7 +12,7 @@
         }
 
         .page_wrap {
-            width: 650px;
+            width: 750px;
             height: 250px;
             margin: 0px 0 0 0px;
         }
@@ -131,6 +132,9 @@
             color: #000;
         }
 
+        .image_type {
+            margin-left: 10px;
+        }
 
     </style>
 </head>
@@ -144,7 +148,62 @@
                     <tr class="row1">
                         <td colspan="2">加入特效会有不一样的效果。</td>
                     </tr>
-                    <tr class="row1">
+                    <tr>
+                        <td style="padding-top: 15px">背景图片</td>
+                        <td colspan="2" style="padding-top: 15px">
+                            <c:forEach items="${images}" var="image" varStatus="status">
+                                <label><input type="radio" name="back_type" class="image_type" value="${image.path}">背景图片${status.index+1}
+                                </label>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="padding-top: 15px">效果</td>
+                        <td colspan="2" style="padding-top: 15px">
+                            <label>
+                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
+                                       direction="up">由下自上
+                            </label>
+
+                            <label>
+                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
+                                       direction="right">左进右出
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding-top: 15px">
+                            <label>
+                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
+                                       direction="down">由上自下
+                            </label>
+
+                            <label>
+                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
+                                       direction="left">右进左出
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>文字</td>
+                        <td  style="padding-top: 15px">
+                            <textarea rows="8" cols="60" id="textContent"></textarea>
+                        </td>
+                        <td valign="bottom">
+                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
+                                   style="width: 50px;" onclick="preView()"/>
+                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
+                                   style="width: 50px;" onclick="copyClick()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td colspan="3" style="border-style:dotted;padding-top:15px;height: auto;width: auto" >
+                        <div style="height:auto;width:auto;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg)">
+
+                        </div>
+                    </td>
+                    </tr>
+                    <%--<tr class="row1">
                         <td colspan="2">
                             <b>文字：</b><input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
                                              stexttyle="width: 400px" value="">
@@ -155,7 +214,6 @@
                                    style="width: 50px;" onclick="preView()"/>
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
                                    style="width: 50px;" onclick="copyClick()"/>
-
                         </td>
                     </tr>
                     <tr>
@@ -203,7 +261,7 @@
                             id="yl_td">
                             预览区
                         </td>
-                    </tr>
+                    </tr>--%>
                     </tbody>
                 </table>
             </div>
