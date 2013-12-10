@@ -151,43 +151,48 @@
                     <tr>
                         <td style="padding-top: 15px">背景图片</td>
                         <td colspan="2" style="padding-top: 15px">
-                            <c:forEach items="${images}" var="image" varStatus="status">
-                                <label><input type="radio" name="back_type" class="image_type" value="${image.path}">背景图片${status.index+1}
-                                </label>
-                            </c:forEach>
+                            <label>
+                                <input type="radio" name="back_type" checked="checked" class="image_type" w="650"
+                                       h="239" t="135" l="60"
+                                       value="1">背景图片1
+                            </label>
+                            <label>
+                                <input type="radio" name="back_type" class="image_type" w="650" h="328"
+                                       value="2">背景图片2
+                            </label>
+                            <label>
+                                <input type="radio" name="back_type" class="image_type" w="650" h="328"
+                                       value="3">背景图片3
+                            </label>
                         </td>
                     </tr>
                     <tr>
                         <td rowspan="2" style="padding-top: 15px">效果</td>
                         <td colspan="2" style="padding-top: 15px">
                             <label>
-                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
-                                       direction="up">由下自上
+                                <input type="radio" style="margin-left: 10px" name="xg" class="direction_type" value="up" checked="checked">由下自上
                             </label>
 
                             <label>
-                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
-                                       direction="right">左进右出
+                                <input type="radio" name="xg" class="direction_type" value="right" >左进右出
                             </label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" style="padding-top: 15px">
                             <label>
-                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
-                                       direction="down">由上自下
+                                <input type="radio" name="xg" style="margin-left: 10px" class="direction_type" value="down">由上自下
                             </label>
 
                             <label>
-                                <input type="radio" name="xg" class="image_type" value="1" prop="direction"
-                                       direction="left">右进左出
+                                <input type="radio" name="xg" class="direction_type" value="left" >右进左出
                             </label>
                         </td>
                     </tr>
                     <tr>
                         <td>文字</td>
-                        <td  style="padding-top: 15px">
-                            <textarea rows="8" cols="60" id="textContent"></textarea>
+                        <td style="padding-top: 15px">
+                            <textarea rows="8" cols="50" id="textContent"></textarea>
                         </td>
                         <td valign="bottom">
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
@@ -196,72 +201,38 @@
                                    style="width: 50px;" onclick="copyClick()"/>
                         </td>
                     </tr>
-                    <tr>
-                    <td colspan="3" style="border-style:dotted;padding-top:15px;height: auto;width: auto" >
-                        <div style="height:auto;width:auto;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg)">
-
-                        </div>
-                    </td>
-                    </tr>
-                    <%--<tr class="row1">
-                        <td colspan="2">
-                            <b>文字：</b><input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
-                                             stexttyle="width: 400px" value="">
-                            <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
-                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}"
-                                   onblur="if(value ==''){value='文字链接地址，可不填'}">
-                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
-                                   style="width: 50px;" onclick="preView()"/>
-                            <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
-                                   style="width: 50px;" onclick="copyClick()"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" height=10>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="col1" style="width: 130px">
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="1" prop="direction"
-                                       direction="left" checked="checked">右进左出
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="2" prop="direction"
-                                       direction="right">左进右出
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="3" prop="direction,behavior"
-                                       direction="left" behavior="slide">右进只走一次
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="4"
-                                       prop="direction,behavior" direction="right"
-                                       behavior="slide">左进只走一次
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="5"
-                                       prop="direction,behavior" direction="left"
-                                       behavior="alternate">右进来回走
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="6"
-                                       prop="direction,behavior" direction="right"
-                                       behavior="alternate">左进来回走
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="7" prop="direction"
-                                       direction="up">下进上出
-                            </div>
-                            <div style="margin-top: 5px">
-                                <input type="radio" name="xg" value="8" prop="direction"
-                                       direction="down">上进下出
+                    <tr id="type_1" class="preview_tr">
+                        <td colspan="3" style="border-style:dotted;">
+                            <div id="preview_div_1"
+                                 style="width: 650;height:239px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg);position:relative;">
+                                <marquee id="marquee_1" scrollamount="3" behavior="alternate" width="325" height="200"
+                                         direction="up"
+                                         style="position:absolute; top:24px; left:175px;"></marquee>
                             </div>
                         </td>
-                        <td class="col_ipt" style="border-style:dotted;width: 400px;text-align: center;height: 205"
-                            id="yl_td">
-                            预览区
+                    </tr>
+                    <tr id="type_2" style="display: none" class="preview_tr">
+                        <td colspan="3" style="border-style:dotted;">
+                            <div id="preview_div_2"
+                                 style="width: 650;height:328px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9t1nxwj20i2094wfo.jpg);position:relative;">
+                                <marquee id="marquee_2" direction="up" scrollamount="3" width="276" height="224"
+                                         behavior="alternate"
+                                         style="position:absolute; top:92px; left:250px;">
+                                    dsafsadfsafdsafasdf
+                                </marquee>
+                            </div>
                         </td>
-                    </tr>--%>
+                    </tr>
+                    <tr id="type_3" style="display: none" class="preview_tr">
+                        <td colspan="3" style="border-style:dotted;">
+                            <div id="preview_div_3"
+                                 style="width: 650;height:328px;background: url(http://ww4.sinaimg.cn/mw690/ea81c460gw1eben9sn9i8j20i2094jsa.jpg);position:relative;">
+                                <marquee id="marquee_3" direction="up" scrollamount="3" width="412" height="225"
+                                         behavior="alternate"
+                                         style="position:absolute; top:62px; left:265px;"></marquee>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -275,56 +246,32 @@
 
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
+    $(function () {
+        $(".image_type").click(function () {
+            $(".preview_tr").css("display", "none");
+            $("#type_" + $(this).val()).css("display", "");
+        });
+    });
+
     function preView() {
         var contentValue = $("#textContent").val();
         if ($.trim(contentValue) == '') {
             alert("请输入要加入特效的文字！");
             return false;
         }
-
-        var checkObj = $('input[name="xg"]:checked');
-        var props = checkObj.attr("prop").split(",");
-        var content = "<marquee ";
-        for (var i = 0; i < props.length; i++) {
-            content += props[i] + "='" + checkObj.attr(props[i]) + "'";
-        }
-        content += ">";
-        var link = $("#link").val();
-        if ($.trim(link) == '') {
-            content += contentValue;
-        } else {
-            content += "<a target='_blank' href='" + link + "' >" + contentValue;
-            +"</a>";
-        }
-        content += "</marquee>";
-        $("#yl_td").html(content);
-        $("#c_div").html(content);
+        content = contentValue.replaceAll("\n", "<br/>");
+        var xgObj = $('input[name="xg"]:checked');
+        var backTypeObj = $('input[name="back_type"]:checked');
+        $("#marquee_"+backTypeObj.val()).attr("direction",xgObj.val());
+        $("#marquee_"+backTypeObj.val()).html(content);
+        $(".preview_tr").css("display", "none");
+        $("#type_" + backTypeObj.val()).css("display", "");
     }
 
     function copyClick() {
-        var contentValue = $("#textContent").val();
-        if ($.trim(contentValue) == '') {
-            alert("请输入要加入特效的文字！");
-            return false;
-        }
-        var checkObj = $('input[name="xg"]:checked');
-        var props = checkObj.attr("prop").split(",");
-        var content = "<marquee ";
-        for (var i = 0; i < props.length; i++) {
-            content += props[i] + "='" + checkObj.attr(props[i]) + "'";
-        }
-        content += ">";
-        var link = $("#link").val();
-        if ($.trim(link) == '') {
-            content += contentValue;
-        } else {
-            content += "<a target='_blank' href='" + link + "' >" + contentValue;
-            +"</a>";
-        }
-        content += "</marquee>";
-        $("#c_div").html(content);
-        $("#cp_div").html(content);
-        div = document.getElementById("cp_div");
+        preView();
+        var type = $('input[name="xg"]:checked').val();
+        div = document.getElementById("preview_div_"+type);
         copyContent(div);
     }
 </script>
