@@ -118,7 +118,11 @@
             margin-left: 5px;;
         }
 
-        #cp_div{
+        #cp_div {
+            display: none;
+        }
+
+        #link_input_div {
             display: none;
         }
     </style>
@@ -153,17 +157,42 @@
 
 </div>
 
+<div id="link_input_div">
+    <input type="text" name="image_url" id="image_url" value="" style="width: 350px">
+</div>
+
 <script type="text/javascript">
     function clickCopy(div) {
-        var url = prompt("请输入图片链接地址：");
-        var html = "<a href='" + url + "' target='_blank'>"
-        html += div.innerHTML;
-        html += "</a>";
-        $("#cp_div").html(html);
-        var div = document.getElementById("cp_div");
-        copyContent(div);
+        var content = div.innerHTML;
+        art.dialog({
+            padding: '10px',
+            esc: false,
+            lock: true,
+            width:'400px',
+            title: "请输入图片链接地址",
+            content: document.getElementById("link_input_div"),
+            okVal: "复制",
+            ok: function () {
+                var url = $("#image_url").val();
+                if($.trim(url) == '') {
+                    alert("请输入链接地址！");
+                    return false;
+                }
+                var html = "<a href='" + url + "' target='_blank'>"
+                html += content;
+                html += "</a>";
+                $("#cp_div").html(html);
+                var div = document.getElementById("cp_div");
+                copyContent(div);
+            }, cancelVal: '取消',cancel:true
+        });
+
     }
+
+
 </script>
+<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=jjs-alog"
+        charset="utf-8"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="/scripts/common.js"></script>
 </body>
