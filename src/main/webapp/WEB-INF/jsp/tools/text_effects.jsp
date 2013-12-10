@@ -148,13 +148,14 @@
                         <td colspan="2">
                             <b>文字：</b><input type="text" name="wordTipIpt" class="word_tip_ipt" id="textContent"
                                              stexttyle="width: 400px" value="">
+                            <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
+                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}"
+                                   onblur="if(value ==''){value='文字链接地址，可不填'}">
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
                                    style="width: 50px;" onclick="preView()"/>
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
                                    style="width: 50px;" onclick="copyClick()"/>
-                            <input type="text" name="wordTipIpt" class="word_tip_ipt" id="link" style="width:200px"
-                                   value="文字链接地址，可不填" onfocus="if(value =='文字链接地址，可不填'){value =''}"
-                                   onblur="if(value ==''){value='文字链接地址，可不填'}">
+
                         </td>
                     </tr>
                     <tr>
