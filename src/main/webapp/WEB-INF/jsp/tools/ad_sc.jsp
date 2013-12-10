@@ -117,6 +117,10 @@
         .wraps .word_tip_ipt2 {
             margin-left: 5px;;
         }
+
+        #cp_div{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -131,8 +135,8 @@
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
-                            <td class="col1"  style="margin-top: 10px">
-                                <div ondblclick="copyContent(this)">
+                            <td class="col1" style="margin-top: 10px">
+                                <div ondblclick="clickCopy(this)">
                                     <img src="${image.path}" alt="" image_id=${image.id}>
                                 </div>
                             </td>
@@ -144,6 +148,23 @@
         </div>
     </div>
 </div>
+
+<div id="cp_div">
+
+</div>
+
+<script type="text/javascript">
+    function clickCopy(div) {
+        var url = prompt("请输入图片链接地址：");
+        var html = "<a href='" + url + "' target='_blank'>"
+        html += div.innerHTML;
+        html += "</a>";
+        $("#cp_div").html(html);
+        var div = document.getElementById("cp_div");
+        copyContent(div);
+    }
+</script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="/scripts/common.js"></script>
 </body>
 </html>
