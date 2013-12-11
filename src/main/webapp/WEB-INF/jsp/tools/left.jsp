@@ -5,6 +5,7 @@
   Time: 下午1:51
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -46,12 +47,11 @@ ul li{
 }
 </style>
 <body>
-  <p class="tc"><img src="/images/erwei.png" /></p>
-  <p class="tc pt5 pb5">微信账号：fangrukou</p>
-  <ul>
-    <li><a href="www.baidu.com" target="_blank">231231</a></li>
-    <li><a href="www.baidu.com" target="_blank">231231</a></li>
-    <li><a href="www.baidu.com" target="_blank">231231</a></li>
+  <p class="tc" style="margin-top: 3px"><img src="/images/erwei.png" /></p>
+  <ul style="margin-top: 5px">
+      <c:forEach items="${news}" var="new" varStatus="status">
+          <li><a href="${new.url}" target="_blank">${new.title}</a></li>
+      </c:forEach>
   </ul>
 </body>
 <script src="/scripts/common.js"></script>

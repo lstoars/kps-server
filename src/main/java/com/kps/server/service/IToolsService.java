@@ -1,5 +1,6 @@
 package com.kps.server.service;
 
+import com.kps.server.entity.NewsInfo;
 import com.kps.server.entity.ZxImages;
 
 import java.util.List;
@@ -19,4 +20,10 @@ public interface IToolsService {
      * @return
      */
     public List<ZxImages> queryByType(int type);
+
+    /**
+     * 查询新闻
+     * @return
+     */
+    public List<NewsInfo> queryAllNews();
 }

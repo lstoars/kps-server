@@ -12,7 +12,7 @@
         }
 
         .page_wrap {
-            width: 750px;
+            width: 800px;
             height: 250px;
             margin: 0px 0 0 0px;
         }
@@ -203,34 +203,31 @@
                     </tr>
                     <tr id="type_1" class="preview_tr">
                         <td colspan="3" style="border-style:dotted;">
-                            <div id="preview_div_1"
-                                 style="width: 650;height:239px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg);position:relative;">
-                                <marquee id="marquee_1" scrollamount="3" behavior="alternate" width="325" height="200"
+                            <span id="preview_div_1"
+                                 style="display: block;width: 650px;height:239px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg);position:relative;">
+                                <marquee id="marquee_1" scrollamount="3" width="325" height="200"
                                          direction="up"
                                          style="position:absolute; top:24px; left:175px;"></marquee>
-                            </div>
+                            </span>
                         </td>
                     </tr>
                     <tr id="type_2" style="display: none" class="preview_tr">
                         <td colspan="3" style="border-style:dotted;">
-                            <div id="preview_div_2"
-                                 style="width: 650;height:328px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9t1nxwj20i2094wfo.jpg);position:relative;">
+                            <span id="preview_div_2"
+                                 style="display: block;width: 650px;height:328px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9t1nxwj20i2094wfo.jpg);position:relative;">
                                 <marquee id="marquee_2" direction="up" scrollamount="3" width="276" height="224"
-                                         behavior="alternate"
                                          style="position:absolute; top:92px; left:250px;">
-                                    dsafsadfsafdsafasdf
                                 </marquee>
-                            </div>
+                            </span>
                         </td>
                     </tr>
                     <tr id="type_3" style="display: none" class="preview_tr">
                         <td colspan="3" style="border-style:dotted;">
-                            <div id="preview_div_3"
-                                 style="width: 650;height:328px;background: url(http://ww4.sinaimg.cn/mw690/ea81c460gw1eben9sn9i8j20i2094jsa.jpg);position:relative;">
+                            <span id="preview_div_3"
+                                 style="display: block;width: 650px;height:328px;background: url(http://ww4.sinaimg.cn/mw690/ea81c460gw1eben9sn9i8j20i2094jsa.jpg);position:relative;">
                                 <marquee id="marquee_3" direction="up" scrollamount="3" width="412" height="225"
-                                         behavior="alternate"
                                          style="position:absolute; top:62px; left:265px;"></marquee>
-                            </div>
+                            </span>
                         </td>
                     </tr>
                     </tbody>
@@ -270,7 +267,8 @@
 
     function copyClick() {
         preView();
-        var type = $('input[name="xg"]:checked').val();
+        var type = $('input[name="back_type"]:checked').val();
+        alert(type);
         div = document.getElementById("preview_div_"+type);
         copyContent(div);
     }

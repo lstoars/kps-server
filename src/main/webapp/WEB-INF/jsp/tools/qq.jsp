@@ -193,9 +193,9 @@
     </a>
 </div>
 
-<div id="copy_div">
+<span id="copy_div">
 
-</div>
+</span>
 <script language="javascript">
     function buttonClick() {
         var content = document.getElementById("copy_content_div").innerHTML;

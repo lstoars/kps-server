@@ -2,6 +2,7 @@ package com.kps.server.controls;
 
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.CardCode;
+import com.kps.server.entity.NewsInfo;
 import com.kps.server.entity.ZxImages;
 import com.kps.server.service.ICardCodeService;
 import com.kps.server.service.IToolsService;
@@ -160,6 +161,8 @@ public class ToolsController {
     @RequestMapping("/left")
     public ModelAndView left() {
         ModelAndView result = new ModelAndView();
+        List<NewsInfo> news = toolsService.queryAllNews();
+        result.addObject("news",news);
         result.setViewName("tools/left");
         return result;
     }

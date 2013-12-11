@@ -139,7 +139,7 @@
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
-                            <td class="col1" style="margin-top: 10px">
+                            <td class="col1" style="padding-top: 10px">
                                 <div ondblclick="clickCopy(this)">
                                     <img src="${image.path}" alt="" image_id=${image.id}>
                                 </div>

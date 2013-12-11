@@ -165,30 +165,15 @@
                             <a href="/kps/tools/zx_images/5">主题5</a>
                         </td>
                     </tr>
-                    <c:choose>
-                        <%--<c:when test="${type==6}">
-                            <c:forEach items="${images}" var="image" varStatus="status">
-                                <tr>
-                                    <td class="col1">
-                                        <div ondblclick="copyContent(this)">
-                                            <img src="${image.path}" alt="" image_id=${image.id}>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:when>
-                        <c:choose>--%>
-                            <c:forEach items="${images}" var="image" varStatus="status">
-                                <tr>
-                                    <td class="col1">
-                                        <div ondblclick="copyContent(this)">
-                                            <img src="${image.path}" alt="" image_id=${image.id}>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                       <%-- </c:choose>
-                    </c:choose>--%>
+                        <c:forEach items="${images}" var="image" varStatus="status">
+                            <tr>
+                                <td class="col1" style="padding-top: 5px">
+                                    <div ondblclick="copyContent(this)">
+                                        <img src="${image.path}" alt="" image_id=${image.id}>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

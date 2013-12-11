@@ -131,10 +131,10 @@
                     </tr>
                     <tr>
                         <c:forEach items="${images}" var="image" varStatus="status">
-                        <td class="col1" style="margin-top: 10px">
-                            <div ondblclick="copyContent(this)">
+                        <td class="col1" style="padding-top: 10px">
+                            <span ondblclick="copyContent(this)" >
                                 <img src="${image.path}" alt="" image_id=${image.id}>
-                            </div>
+                            </span>
                         </td>
                         <c:if test="${(status.index+1)%3==0}">
                     </tr>
