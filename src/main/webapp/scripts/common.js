@@ -11,7 +11,7 @@ function stop() {
 document.oncontextmenu = stop;
 
 function copyContent(div) {
-    //div.contentEditable = 'true';
+    div.contentEditable = 'true';
     var controlRange;
     if (document.body.createControlRange) {
         controlRange = document.body.createControlRange();
@@ -21,7 +21,7 @@ function copyContent(div) {
     } else {
         alert("复制失败。")
     }
-   // div.contentEditable = 'false';
+    div.contentEditable = 'false';
 
 }
 
