@@ -122,6 +122,7 @@
             display: none;
         }
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">
@@ -134,13 +135,13 @@
                         <td class="col1">组件样式：</td>
                         <td class="col_ipt">
                                 <span>
-                                    <input type="radio" class="ipt_radio" name="pictype" id="logo52" value="51">
+                                    <input type="radio" class="ipt_radio" name="pictype" id="logo52" value="52">
                                 </span>
                         </td>
                         <td class="col"><label for="logo52">简洁型</label></td>
                         <td class="col_ipt">
                                 <span>
-                                    <input type="radio" class="ipt_radio" name="pictype" id="logo51" value="52"
+                                    <input type="radio" class="ipt_radio" name="pictype" id="logo51" value="51"
                                            checked="checked">
                                 </span>
                         </td>
@@ -188,10 +189,10 @@
 </div>
 
 <div id="copy_content_div" style="display:none">
-    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=qq_code_num&site=qq&menu=yes"><img border="0" src="http://pub.idqqimg.com/wpa/images/counseling_style_style_type.png" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=qq_code_num&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:qq_code_num:style_type" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
 </div>
 
-<span id="copy_div">
+<span id="copy_div" >
 
 </span>
 <script language="javascript">
@@ -210,7 +211,7 @@
         document.getElementById("copy_div").innerHTML = content;
 
         div = document.getElementById("copy_div");
-        copyContent(div);
+        copyContent2(div);
     }
 </script>
 <script src="/scripts/common.js"></script>

@@ -118,6 +118,7 @@
             margin-left: 5px;;
         }
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">
@@ -132,7 +133,7 @@
                     <tr>
                         <c:forEach items="${images}" var="image" varStatus="status">
                         <td class="col1" style="padding-top: 10px">
-                            <span ondblclick="copyContent(this)" >
+                            <span ondblclick="copyContent2(this)" >
                                 <img src="${image.path}" alt="" image_id=${image.id}>
                             </span>
                         </td>

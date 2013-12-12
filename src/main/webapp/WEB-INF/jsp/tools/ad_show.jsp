@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>广告橱窗</title>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="box">

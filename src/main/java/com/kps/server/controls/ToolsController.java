@@ -7,6 +7,8 @@ import com.kps.server.entity.ZxImages;
 import com.kps.server.service.ICardCodeService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,7 +124,7 @@ public class ToolsController {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(type);
         result.addObject("images", images);
-        result.addObject("type",type);
+        result.addObject("type", type);
         result.setViewName("tools/zx_images");
         return result;
     }
@@ -136,7 +139,7 @@ public class ToolsController {
     }
 
     @RequestMapping("/ad_sc")
-    public ModelAndView adSc(){
+    public ModelAndView adSc() {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(7);
         result.addObject("images", images);
@@ -162,8 +165,10 @@ public class ToolsController {
     public ModelAndView left() {
         ModelAndView result = new ModelAndView();
         List<NewsInfo> news = toolsService.queryAllNews();
-        result.addObject("news",news);
+        result.addObject("news", news);
         result.setViewName("tools/left");
         return result;
     }
+
+
 }

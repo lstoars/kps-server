@@ -126,6 +126,7 @@
             display: none;
         }
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">
@@ -173,22 +174,31 @@
             content: document.getElementById("link_input_div"),
             okVal: "复制",
             ok: function () {
-                var url = $("#image_url").val();
-                if($.trim(url) == '') {
-                    alert("请输入链接地址！");
+                var path = $("#image_url").val();
+                if($.trim(path) == '') {
+                    alert("建议填入网店地址，无请填 #！");
                     return false;
                 }
-                var html = "<a href='" + url + "' target='_blank'>"
+                var html = "";
+                if(path=='#') {
+                    html += "<a href='javascript:;' target='_blank'>";
+                } else {
+                    if(path.substring(0,7)=="") {
+                        html += "<a href='" + path + "' target='_blank'>"
+                    } else {
+                        html += "<a href='http://" + path + "' target='_blank'>"
+                    }
+                }
                 html += content;
                 html += "</a>";
                 $("#cp_div").html(html);
                 var div = document.getElementById("cp_div");
-                copyContent(div);
+                copyContent2(div);
             }, cancelVal: '取消',cancel:true
         });
     }
 </script>
-<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=jjs-alog"
+<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
         charset="utf-8"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="/scripts/common.js"></script>

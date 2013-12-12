@@ -8,7 +8,9 @@ import com.kps.server.service.IToolsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,5 +36,31 @@ public class ToolsServiceImpl implements IToolsService {
     @Override
     public List<NewsInfo> queryAllNews() {
         return newsInfoDAO.queryAllNews();
+    }
+
+    @Override
+    public int saveNews(String title, String url) {
+        NewsInfo info = new NewsInfo();
+        info.setSortIndex(99);
+        info.setTitle(title);
+        info.setUrl(url);
+        return newsInfoDAO.saveNews(info);
+    }
+
+    @Override
+    public int updateNewsSortIndex(Map<Integer, Integer> params) {
+        int count = 0;
+        for (Map.Entry<Integer, Integer> entry : params.entrySet()) {
+            Map<String, Integer> m = new HashMap<String, Integer>();
+            m.put("id", entry.getKey());
+            m.put("sortIndex", entry.getValue());
+            count += newsInfoDAO.updateSortIndex(m);
+        }
+        return count;
+    }
+
+    @Override
+    public int delNews(int id) {
+        return newsInfoDAO.delNews(id);
     }
 }

@@ -1,9 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: hcf
+  Date: 13-12-12
+  Time: 上午10:42
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html; charset=utf-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>管理页</title>
     <style type="text/css">
         * {
             margin: 0;
@@ -11,8 +17,7 @@
         }
 
         .page_wrap {
-            margin: 5px 0 0 0;
-            width: 700px;
+            width: 800px;
             height: 250px;
         }
 
@@ -22,7 +27,7 @@
 
         .set_style_table {
             font-size: 14px;
-            color: #5c5c5c
+            color: #5c5c5c;
         }
 
         .set_style_table .row1 {
@@ -119,74 +124,66 @@
             margin-left: 5px;;
         }
 
-        .btns {
-            border-bottom: 1px solid #ccc;;
-        }
-
-        .btns a:link, .btns a:active, .btns a:visited, .btns a:hover {
-            display: inline-block;
-            height: 24px;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            color: #333;
-            font: normal 12px/24px "SinSun";
-            text-decoration: none;
-            padding: 0 8px;
-            float: left;
-            margin-right: 5px;;
-        }
-
-        .btns a.current {
-            background: #ccc;
-            color: #000;
-        }
-
-        .cred {
-            color: #f00;
-        }
-        .c_div {
-            display: none;
+        .list td {
+            height: 30px;
+            font-size: 14px;
         }
     </style>
-    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">
     <div class="content">
-        <div class="section section1">
-            <div class="section_middle">
+        <div class="section section1" style="margin-top: 10px;margin-left: 10px">
+            <form class="section_middle" action="/kps/admin/save_news" method="post">
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修图片，<span class="cred">双击您需要的图片复制</span></td>
+                        <td>标题</td>
+                        <td><input type="text" name="title" style="width: 300px;height: 30px"></td>
                     </tr>
-                    <tr style="margin-top: 5px">
-                        <td class="btns">
-                            <a href="/kps/tools/zx_images/1">主题1</a>
-                            <a href="/kps/tools/zx_images/2">主题2</a>
-                            <a href="/kps/tools/zx_images/3">主题3</a>
-                            <a href="/kps/tools/zx_images/4">主题4</a>
-                            <a href="/kps/tools/zx_images/5">主题5</a>
+                    <tr>
+                        <td style="padding-top:5px;">URL</td>
+                        <td style="padding-top:5px;"><input type="text" name="url" style="width: 300px;height: 30px">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding-top:5px;" align="right">
+                            <input type="submit" value="保存" class="word_tip_ipt2">
                         </td>
                     </tr>
-                        <c:forEach items="${images}" var="image" varStatus="status">
-                            <tr>
-                                <td class="col1" style="padding-top: 5px">
-                                    <div ondblclick="copyContent2(this)" id="image_${image.id}">
-                                        <img src="${image.path}" alt="" image_id=${image.id}>
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:forEach>
                     </tbody>
                 </table>
-            </div>
+            </form>
         </div>
+        <form class="section section1" style="margin-top: 10px;margin-left: 10px" method="post" action="/kps/admin/set_news_index">
+            <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border:1px solid #8fc7f0;"
+                   class="list">
+                <tbody>
+                <tr>
+                    <th style="width: 30%">标题</th>
+                    <th style="width: 30%">排序号</th>
+                    <th style="width: 30%">操作</th>
+                </tr>
+                <c:forEach items="${news}" var="new" varStatus="status">
+                    <tr>
+                        <td><a href="${new.url}">${new.title}</a></td>
+                        <td>
+                            <input type="hidden" name="newsid" value="${new.id}">
+                            <input type="text" name="sort_index_${new.id}" value="${new.sortIndex}">
+                        </td>
+                        <td align="center"><a href="/kps/admin/del_news?id=${new.id}">删除</a></td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td colspan="3" align="center">
+                        <input type="submit" value="保存" class="word_tip_ipt2">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
-<div class="c_div" id="cp_div" >
-
-</div>
-<script src="/scripts/common.js"></script>
 </body>
 </html>

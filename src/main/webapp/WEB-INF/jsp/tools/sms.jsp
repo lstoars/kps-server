@@ -116,6 +116,7 @@
         }
 
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">

@@ -7,7 +7,7 @@ package com.kps.server.entity;
  * Time: 下午4:44
  * To change this template use File | Settings | File Templates.
  */
-public class NewsInfo extends BaseEntity{
+public class NewsInfo extends BaseEntity {
 
     private int id;
 
@@ -16,6 +16,8 @@ public class NewsInfo extends BaseEntity{
     private String url;
 
     private int status;
+
+    private int sortIndex;
 
     public int getId() {
         return id;
@@ -47,5 +49,13 @@ public class NewsInfo extends BaseEntity{
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getSortIndex() {
+        return sortIndex;
+    }
+
+    public void setSortIndex(int sortIndex) {
+        this.sortIndex = sortIndex;
     }
 }

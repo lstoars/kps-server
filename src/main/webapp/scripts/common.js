@@ -11,15 +11,35 @@ function stop() {
 document.oncontextmenu = stop;
 
 function copyContent(div) {
-    div.contentEditable = 'true';
-    var controlRange;
-    if (document.body.createControlRange) {
-        controlRange = document.body.createControlRange();
-        controlRange.addElement(div);
-        controlRange.execCommand('Copy');
-        alert("复制成功，到网站粘贴(Ctrl+V)即可。")
-    } else {
-        alert("复制失败。")
+    try {
+        var controlRange;
+        if (document.body.createControlRange) {
+            controlRange = document.body.createControlRange();
+            controlRange.addElement(div);
+            controlRange.execCommand('Copy');
+            alert("复制成功，到网站粘贴(Ctrl+V)即可。")
+        } else {
+            alert("复制失败。")
+        }
+    }catch(e) {
+        alert("复制失败了,"+e)
+    }
+}
+
+function copyContent2(div) {
+    div.contentEditable = 'false';
+    try {
+        var controlRange;
+        if (document.body.createControlRange) {
+            controlRange = document.body.createControlRange();
+            controlRange.addElement(div);
+            controlRange.execCommand('Copy');
+            alert("复制成功，到网站粘贴(Ctrl+V)即可。")
+        } else {
+            alert("复制失败。")
+        }
+    }catch(e) {
+        alert("复制失败了,"+e)
     }
     div.contentEditable = 'false';
 

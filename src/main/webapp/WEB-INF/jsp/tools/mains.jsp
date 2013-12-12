@@ -11,11 +11,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>房入口-工具箱</title>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 
-<frameset cols="180,720"  border="1">
-    <frame name="index" src="/kps/tools/left">
-    <frameset rows="33,*" border="0">
+<frameset cols="180,720"  border="1"  scrolling="no" >
+    <frame name="index" src="/kps/tools/left"  scrolling="no" noresize >
+    <frameset rows="33,*" border="0"  frameborder="no" scrolling="no" noresize >
         <frame name="index" src="/kps/tools/head">
         <frame name="content" src="/kps/tools/qq_page">
     </frameset><noframes></noframes>

@@ -30,7 +30,7 @@
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/kps/*</url-pattern>
     </filter-mapping>
 
     <servlet>

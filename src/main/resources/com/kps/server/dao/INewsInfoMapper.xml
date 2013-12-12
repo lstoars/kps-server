@@ -7,12 +7,26 @@
         <result property="url" column="url"/>
         <result property="title" column="title"/>
         <result property="status" column="status"/>
+        <result property="sortIndex" column="sort_index"/>
         <result property="createTime" column="CREATE_TIME"/>
         <result property="modifyTime" column="MODIFY_TIME"/>
     </resultMap>
 
     <select id="queryAllNews" resultMap="NewsInfo">
-        select * from NEWS_INFO where status = 1
+        select * from NEWS_INFO where status = 1 order by sort_index
     </select>
 
+    <insert id="saveNews" parameterType="com.kps.server.entity.NewsInfo"
+            useGeneratedKeys="true" keyProperty="id">
+      insert into NEWS_INFO (url,title,status,sort_index,CREATE_TIME,MODIFY_TIME)
+      values (#{url},#{title},1,#{sortIndex},now(),now())
+    </insert>
+
+    <update id="updateSortIndex" parameterType="java.util.HashMap">
+        update NEWS_INFO set sort_index=#{sortIndex},MODIFY_TIME=now() where id = #{id}
+    </update>
+    
+    <update id="delNews" parameterType="java.lang.Integer">
+        update NEWS_INFO set status=-1,MODIFY_TIME=now() where id = #{id}
+    </update>
 </mapper>

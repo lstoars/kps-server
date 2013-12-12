@@ -99,6 +99,7 @@
             content: "131010171502,peu,290"
         }
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">

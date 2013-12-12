@@ -3,6 +3,7 @@ package com.kps.server.dao;
 import com.kps.server.entity.NewsInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,4 +15,10 @@ import java.util.List;
 public interface INewsInfoDAO {
 
     public List<NewsInfo> queryAllNews();
+
+    public int saveNews(NewsInfo info);
+
+    public int updateSortIndex(Map<String,Integer> params);
+
+    public int delNews(int id);
 }

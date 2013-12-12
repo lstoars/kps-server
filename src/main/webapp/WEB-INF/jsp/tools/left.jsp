@@ -34,8 +34,6 @@ body{
 }
 a:link,a:active,a:visited{
     font-size:12px;
-    text-decoration:none;
-    color:#333;
     outline:none;
 }
 a:hover{
@@ -48,7 +46,8 @@ ul li{
 </style>
 <body>
   <p class="tc" style="margin-top: 3px"><img src="/images/erwei.png" /></p>
-  <ul style="margin-top: 5px">
+  <p class="tc pt5 pb5">微信账号：fangrukou</p>
+  <ul style="margin-top: 10px">
       <c:forEach items="${news}" var="new" varStatus="status">
           <li><a href="${new.url}" target="_blank">${new.title}</a></li>
       </c:forEach>

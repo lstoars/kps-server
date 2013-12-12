@@ -137,6 +137,7 @@
         }
 
     </style>
+    <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
 <div class="page_wrap">
@@ -268,7 +269,6 @@
     function copyClick() {
         preView();
         var type = $('input[name="back_type"]:checked').val();
-        alert(type);
         div = document.getElementById("preview_div_"+type);
         copyContent(div);
     }
