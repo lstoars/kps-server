@@ -46,8 +46,12 @@ ul li{
 </style>
 <body>
   <p class="tc" style="margin-top: 3px"><img src="/images/erwei.png" /></p>
-  <p class="tc pt5 pb5">微信账号：fangrukou</p>
-  <ul style="margin-top: 10px">
+  <p class="tc pt5 pb5">微信号：fangrukou</p>
+  <p style="border:1px black solid;margin-left: 3px;margin-right: 3px" >
+      房入口小助手公众帐号每天都会分享N条干货。
+      今日微信干货分享：
+  </p>
+  <ul style="margin-top: 10px;border:1px black solid;margin-left: 3px;margin-right: 3px;height: 270px">
       <c:forEach items="${news}" var="new" varStatus="status">
           <li><a href="${new.url}" target="_blank">${new.title}</a></li>
       </c:forEach>
