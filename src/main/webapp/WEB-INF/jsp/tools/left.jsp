@@ -44,7 +44,8 @@ a:hover{
 }
 ul li{
     line-height: 20px;
-    padding-left: 8px;
+    padding:3px 0 3px 8px;
+    border-bottom: 1px solid #f0f0f0;
 }
 </style>
 <body>
