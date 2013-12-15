@@ -45,10 +45,11 @@
 <body>
 <ul class="nav">
     <li><a class="current head_banner" href="/kps/tools/qq_page" hidefocus="true" target="content">QQ在线</a></li>
-    <li><a class="head_banner" href="/kps//tools/zx_images/1" hidefocus="true" target="content">标题图</a></li>
-    <li><a class="head_banner" href="/kps/tools/text_effects" hidefocus="true" target="content">公告栏</a></li>
-    <li><a class="head_banner" href="/kps/tools/smallImg" hidefocus="true" target="content">图片素材</a></li>
-    <li><a class="head_banner" href="/kps/tools/ad_sc" hidefocus="true" target="content">链接广告</a></li>
+    <li><a class="head_banner" href="/kps//tools/title_images/1" hidefocus="true" target="content">标题图</a></li>
+    <li><a class="head_banner" href="/kps/tools/bulletin_board" hidefocus="true" target="content">公告栏</a></li>
+    <li><a class="head_banner" href="/kps/tools/image_material" hidefocus="true" target="content">图片素材</a></li>
+    <li><a class="head_banner" href="/kps/tools/link_ads" hidefocus="true" target="content">链接广告</a></li>
+    <li><a class="head_banner" href="/kps/tools/tel_query_page" hidefocus="true" target="content">同行鉴定</a></li>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">去水印</a></li>--%>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">加水印</a></li> --%>
     <%--<li><a <c:if test="${type=='sms'}"> class="current" </c:if> href="/kps/tools/sms_page" target="content">预约看房</a></li>--%>

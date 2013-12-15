@@ -1,6 +1,8 @@
 package com.kps.server.service.impl;
 
+import com.kps.server.bean.BaseQueryBean;
 import com.kps.server.bean.BaseResultBean;
+import com.kps.server.bean.QueryResultBean;
 import com.kps.server.dao.ICardCodeDAO;
 import com.kps.server.dao.IUserInfoDAO;
 import com.kps.server.entity.CardCode;
@@ -58,6 +60,14 @@ public class CardCodeServiceImpl implements ICardCodeService {
             }
         }
         result.setData(successCount);
+        return result;
+    }
+
+    @Override
+    public QueryResultBean<CardCode> queryCardCode(BaseQueryBean query) {
+        QueryResultBean<CardCode> result = new QueryResultBean<CardCode>();
+        result.setTotalRecord(cardCodeDAO.countCardCode(query));
+        result.setDatas(cardCodeDAO.queryCardCode(query));
         return result;
     }
 

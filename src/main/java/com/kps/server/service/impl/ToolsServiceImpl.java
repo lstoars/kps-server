@@ -1,8 +1,10 @@
 package com.kps.server.service.impl;
 
 import com.kps.server.dao.INewsInfoDAO;
+import com.kps.server.dao.IThTelInfoDAO;
 import com.kps.server.dao.IZxImagesDAO;
 import com.kps.server.entity.NewsInfo;
+import com.kps.server.entity.ThTelInfo;
 import com.kps.server.entity.ZxImages;
 import com.kps.server.service.IToolsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ToolsServiceImpl implements IToolsService {
 
     @Autowired
     private INewsInfoDAO newsInfoDAO;
+
+    @Autowired
+    private IThTelInfoDAO thTelInfoDAO;
 
     @Override
     public List<ZxImages> queryByType(int type) {
@@ -62,5 +67,21 @@ public class ToolsServiceImpl implements IToolsService {
     @Override
     public int delNews(int id) {
         return newsInfoDAO.delNews(id);
+    }
+
+    @Override
+    public int saveThTel(String tel) {
+        return thTelInfoDAO.saveThTelInfo(tel);
+    }
+
+    /**
+     * 查询同行手机
+     *
+     * @param tel
+     * @return
+     */
+    @Override
+    public ThTelInfo queryThTel(String tel) {
+        return thTelInfoDAO.queryByTel(tel);
     }
 }

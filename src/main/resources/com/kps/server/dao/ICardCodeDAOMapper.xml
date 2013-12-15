@@ -27,4 +27,12 @@
          update CARD_CODE set STATUS=1 ,USE_TIME=now() where id = #{id}
     </update>
 
+    <select id="queryCardCode" parameterType="com.kps.server.bean.BaseQueryBean" resultMap="cardCode">
+        select * from CARD_CODE order by id desc limit ${start},${pageSize}
+    </select>
+
+    <select id="countCardCode" parameterType="com.kps.server.bean.BaseQueryBean" resultType="java.lang.Integer">
+        select count(*) from CARD_CODE
+    </select>
+
 </mapper>

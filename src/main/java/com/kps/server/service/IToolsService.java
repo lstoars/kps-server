@@ -1,6 +1,7 @@
 package com.kps.server.service;
 
 import com.kps.server.entity.NewsInfo;
+import com.kps.server.entity.ThTelInfo;
 import com.kps.server.entity.ZxImages;
 
 import java.util.List;
@@ -46,8 +47,25 @@ public interface IToolsService {
 
     /**
      * 删除新闻
+     *
      * @param id
      * @return
      */
     public int delNews(int id);
+
+    /**
+     * 保存同行电话
+     *
+     * @param tel
+     * @return
+     */
+    public int saveThTel(String tel);
+
+    /**
+     * 查询同行手机
+     *
+     * @param tel
+     * @return
+     */
+    public ThTelInfo queryThTel(String tel);
 }

@@ -162,11 +162,11 @@
                     </tr>
                     <tr style="margin-top: 5px">
                         <td class="btns">
-                            <a href="/kps/tools/zx_images/1">主题1</a>
-                            <a href="/kps/tools/zx_images/2">主题2</a>
-                            <a href="/kps/tools/zx_images/3">主题3</a>
-                            <a href="/kps/tools/zx_images/4">主题4</a>
-                            <a href="/kps/tools/zx_images/5">主题5</a>
+                            <a href="/kps/tools/title_images/1">主题1</a>
+                            <a href="/kps/tools/title_images/2">主题2</a>
+                            <a href="/kps/tools/title_images/3">主题3</a>
+                            <a href="/kps/tools/title_images/4">主题4</a>
+                            <a href="/kps/tools/title_images/5">主题5</a>
                         </td>
                     </tr>
                         <c:forEach items="${images}" var="image" varStatus="status">

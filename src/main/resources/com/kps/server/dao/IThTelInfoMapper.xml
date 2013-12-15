@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kps.server.dao.IThTelInfoDAO">
+
+    <resultMap id="thTelInfo" type="com.kps.server.entity.ThTelInfo">
+        <result property="id" column="ID"/>
+        <result property="tel" column="TEL"/>
+        <result property="status" column="STATUS"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="modifyTime" column="MODIFY_TIME"/>
+    </resultMap>
+
+    <select id="queryByTel" parameterType="java.lang.String" resultMap="thTelInfo">
+        select * from TH_TEL_INFO where TEL=#{tel} and status=1
+    </select>
+
+    <insert id="saveThTelInfo" parameterType="java.lang.String">
+        insert into TH_TEL_INFO (TEL,STATUS,CREATE_TIME,MODIFY_TIME) values (#{tel},1,now(),now());
+    </insert>
+
+</mapper>

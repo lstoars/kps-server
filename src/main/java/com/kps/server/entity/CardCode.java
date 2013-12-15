@@ -1,6 +1,9 @@
 package com.kps.server.entity;
 
 
+import com.kps.server.utils.JsonDateSerializer;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.util.Date;
 
 /**
@@ -41,6 +44,7 @@ public class CardCode extends BaseEntity {
     /**
      * 使用时间
      */
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date useTime;
 
     public int getId() {

@@ -1,8 +1,12 @@
 package com.kps.server.service;
 
+import com.kps.server.bean.BaseQueryBean;
 import com.kps.server.bean.BaseResultBean;
+import com.kps.server.bean.QueryResultBean;
 import com.kps.server.entity.CardCode;
 import com.kps.server.entity.UserInfo;
+
+import java.util.List;
 
 /**
  * 卡密service
@@ -20,5 +24,7 @@ public interface ICardCodeService {
      * @return 操作结果，data 为成功生成张数
      */
     public BaseResultBean<Integer> generateCardCode(int count, int term, int smsCount, String saleChannel);
+
+    public QueryResultBean<CardCode> queryCardCode(BaseQueryBean query);
 
 }

@@ -3,12 +3,14 @@ package com.kps.server.controls;
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.CardCode;
 import com.kps.server.entity.NewsInfo;
+import com.kps.server.entity.ThTelInfo;
 import com.kps.server.entity.ZxImages;
 import com.kps.server.service.ICardCodeService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,7 +44,7 @@ public class ToolsController {
     private IToolsService toolsService;
 
     /**
-     * QQ在先
+     * QQ在线
      *
      * @return
      */
@@ -94,16 +100,16 @@ public class ToolsController {
     }
 
     /**
-     * 文字特效
+     * 公告栏
      *
      * @return
      */
-    @RequestMapping("/text_effects")
-    public ModelAndView textEffects() {
+    @RequestMapping("/bulletin_board")
+    public ModelAndView bulletinBoard() {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(9);
         result.addObject("images", images);
-        result.setViewName("tools/text_effects");
+        result.setViewName("tools/bulletin_board");
         return result;
     }
 
@@ -119,34 +125,79 @@ public class ToolsController {
         return result;
     }
 
-    @RequestMapping("/zx_images/{type}")
-    public ModelAndView zxImages(@PathVariable("type") int type) {
+    /**
+     * 标题图
+     *
+     * @param type
+     * @return
+     */
+    @RequestMapping("/title_images/{type}")
+    public ModelAndView titleImages(@PathVariable("type") int type) {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(type);
         result.addObject("images", images);
         result.addObject("type", type);
-        result.setViewName("tools/zx_images");
+        result.setViewName("tools/title_images");
         return result;
     }
 
-    @RequestMapping("/smallImg")
-    public ModelAndView smallImg() {
+    /**
+     * 图片素材
+     *
+     * @return
+     */
+    @RequestMapping("/image_material")
+    public ModelAndView imageMaterial() {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(6);
         result.addObject("images", images);
-        result.setViewName("tools/small_images");
+        result.setViewName("tools/image_material");
         return result;
     }
 
-    @RequestMapping("/ad_sc")
-    public ModelAndView adSc() {
+    /**
+     * 链接广告
+     *
+     * @return
+     */
+    @RequestMapping("/link_ads")
+    public ModelAndView linkAds() {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(7);
         result.addObject("images", images);
-        result.setViewName("tools/ad_sc");
+        result.setViewName("tools/link_ads");
         return result;
     }
 
+    /**
+     * 同行鉴定
+     *
+     * @return
+     */
+    @RequestMapping("/tel_query_page")
+    public ModelAndView tel_query_page() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/tel_query");
+        return result;
+    }
+
+    @RequestMapping("/tel_query")
+    @ResponseBody
+    public Map<String, Object> thQuery(String tel) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        ThTelInfo info = toolsService.queryThTel(tel);
+        result.put("find", info != null);
+        if (info != null) {
+            result.put("createDate", DateFormatUtils.format(info.getCreateTime(), "yyyy年MM月dd日"));
+        }
+        return result;
+    }
+
+    /**
+     * 首页
+     *
+     * @return
+     */
     @RequestMapping("/mains")
     public ModelAndView mains() {
         ModelAndView result = new ModelAndView();
@@ -154,6 +205,11 @@ public class ToolsController {
         return result;
     }
 
+    /**
+     * 头部页面
+     *
+     * @return
+     */
     @RequestMapping("/head")
     public ModelAndView head() {
         ModelAndView result = new ModelAndView();
@@ -161,6 +217,11 @@ public class ToolsController {
         return result;
     }
 
+    /**
+     * 左边页
+     *
+     * @return
+     */
     @RequestMapping("/left")
     public ModelAndView left() {
         ModelAndView result = new ModelAndView();

@@ -1,7 +1,9 @@
 package com.kps.server.entity;
 
+import com.kps.server.utils.JsonDateSerializer;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.util.Date;
 
@@ -12,8 +14,10 @@ import java.util.Date;
  */
 public class BaseEntity {
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     private Date createTime;
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     private Date modifyTime;
 
     private int version;

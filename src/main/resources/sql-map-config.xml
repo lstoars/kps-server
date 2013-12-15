@@ -10,6 +10,8 @@
         <mapper resource="com/kps/server/dao/IUserInfoDAOMapper.xml"/>
         <mapper resource="com/kps/server/dao/IPayHistoryMapper.xml"/>
         <mapper resource="com/kps/server/dao/IZxImagesMapper.xml"/>
+        <mapper resource="com/kps/server/dao/INewsInfoMapper.xml"/>
+        <mapper resource="com/kps/server/dao/IThTelInfoMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -1,6 +1,7 @@
 package com.kps.server.dao;
 
 
+import com.kps.server.bean.BaseQueryBean;
 import com.kps.server.entity.CardCode;
 
 import java.util.List;
@@ -33,8 +34,24 @@ public interface ICardCodeDAO {
 
     /**
      * 使用卡密
+     *
      * @param id
      * @return
      */
     public int useCardCode(int id);
+
+    /**
+     * 查询卡密列表
+     *
+     * @return
+     */
+    public List<CardCode> queryCardCode(BaseQueryBean query);
+
+    /**
+     * 查询卡密总数
+     *
+     * @param query
+     * @return
+     */
+    public int countCardCode(BaseQueryBean query);
 }
