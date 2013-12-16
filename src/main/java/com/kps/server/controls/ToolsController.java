@@ -11,6 +11,8 @@ import com.kps.server.service.IUserInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,10 +24,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -183,15 +188,38 @@ public class ToolsController {
 
     @RequestMapping("/tel_query")
     @ResponseBody
-    public Map<String, Object> thQuery(String tel) {
+    public Map<String, Object> thQuery(String tel) throws IOException {
         Map<String, Object> result = new HashMap<String, Object>();
         ThTelInfo info = toolsService.queryThTel(tel);
         result.put("find", info != null);
+
+        //查询手机号码归属地
         if (info != null) {
             result.put("createDate", DateFormatUtils.format(info.getCreateTime(), "yyyy年MM月dd日"));
         }
+        result.put("location", getLocation(tel));
         return result;
     }
+
+    private String getLocation(String tel) throws IOException {
+        String respone = Jsoup.connect("http://shouji.duapp.com/phone.php?m=" + tel).get().toString();
+        respone = respone.replaceAll("\\n\\s", "");
+        String pattern = "归属地区：(.*?) <br /> ";
+        Pattern p = Pattern.compile(pattern);
+        Matcher matcher = p.matcher(respone);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "";
+    }
+
+    @RequestMapping("/add_watermark")
+    public ModelAndView addWatermark() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/add_watermark");
+        return result;
+    }
+
 
     /**
      * 首页

@@ -128,13 +128,16 @@
         #copy_div {
             display: none;
         }
-        .cf60{
+
+        .cf60 {
             color: #f60;
         }
-        .fb{
+
+        .fb {
             font-weight: bold;
         }
-        .result_text{
+
+        .result_text {
             border: 1px solid #ccc;
             padding: 20px;
         }
@@ -162,10 +165,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="padding-top:15px ">本工具目前总计收录<span class="fb cf60">61803</span>个同行电话号码</td>
+                        <td colspan="3" style="padding-top:15px ">本工具目前总计收录<span class="fb cf60">61803</span>个同行电话号码
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="height: 20px;padding-top:10px "><div id="r" class="result_text"></div></td>
+                        <td colspan="3" style="height: 20px;padding-top:10px; ">
+                            <div id="r" class="result_text" style="width: 450px"></div>
+                        </td>
                     </tr>
 
                     </tbody>
@@ -177,16 +183,14 @@
 <script src="/scripts/common.js"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script>
-    String.prototype.Trim = function() {
-        var m = this.match(/^\s*(\S+(\s+\S+)*)\s*$/);
-        return (m == null) ? "" : m[1];
-    }
-    String.prototype.isMobile = function() {
-        return (/^(?:13\d|15[89])-?\d{5}(\d{3}|\*{3})$/.test(this.Trim()));
-    }
+
     function telQuery() {
         $("#r").html("");
-        if ( !$("#tel").val().isMobile()){
+        /*if (!checkMobile($("#tel").val())) {
+            $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
+            return;
+        }*/
+        if(!checkMobile($("#tel").val())){
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }
@@ -198,9 +202,9 @@
             data: {'tel': $("#tel").val()},
             success: function (msg) {
                 if (msg.find) {
-                    $("#r").html("<span style='color: green'>查到了该纪录,收录于"+msg.createDate+"</span>");
+                    $("#r").html("<span style='color: red'>该手机有在库中记录，很有可能是同行，手机号码归属地:" + msg.location + "。</span>");
                 } else {
-                    $("#r").html("<span style='color: red'>没有查到该纪录！</span>");
+                    $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行，手机号码归属地:" + msg.location + "。</span>");
                 }
             }
         })
