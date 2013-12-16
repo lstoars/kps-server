@@ -1,17 +1,15 @@
 package com.kps.server.controls;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kps.server.bean.BaseResultBean;
-import com.kps.server.entity.CardCode;
 import com.kps.server.entity.NewsInfo;
 import com.kps.server.entity.ThTelInfo;
 import com.kps.server.entity.ZxImages;
-import com.kps.server.service.ICardCodeService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
+import com.kps.server.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -201,14 +194,28 @@ public class ToolsController {
         return result;
     }
 
+    /**
+     * 获取手机号码归属地
+     * @param tel
+     * @return
+     * @throws IOException
+     */
     private String getLocation(String tel) throws IOException {
-        String respone = Jsoup.connect("http://shouji.duapp.com/phone.php?m=" + tel).get().toString();
-        respone = respone.replaceAll("\\n\\s", "");
-        String pattern = "归属地区：(.*?) <br /> ";
-        Pattern p = Pattern.compile(pattern);
-        Matcher matcher = p.matcher(respone);
-        if (matcher.find()) {
-            return matcher.group(1);
+        try {
+            String resp = Jsoup.connect("http://cz.115.com/?ct=index&ac=get_mobile_local&mobile=" + tel).get().toString();
+            resp = resp.replaceAll("\\n\\s", "");
+            resp = resp.replaceAll("&quot;", "\"");
+            String pattern = "<body> (.*?)</body>";
+            Pattern p = Pattern.compile(pattern);
+            Matcher matcher = p.matcher(resp);
+            if (matcher.find()) {
+                resp = matcher.group(1);
+            }
+            resp = StringUtils.replace(StringUtils.replace(resp, ")", ""), "(", "");
+            JSONObject jsonObject = JSONObject.parseObject(resp);
+            return StringUtil.unescape(jsonObject.getString("province"));
+        } catch (Exception e) {
+
         }
         return "";
     }

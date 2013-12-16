@@ -205,6 +205,9 @@
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }
+
+
+
         $.ajax({
             url: "/kps/tools/tel_query",
             type: "post",
