@@ -141,6 +141,15 @@
             border: 1px solid #ccc;
             padding: 20px;
         }
+        .fl{
+            float: left;
+        }
+        .mt4{
+            margin-top: 4px;
+        }
+        .loading{
+            visibility: hidden;
+        }
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
@@ -153,14 +162,14 @@
                     <tbody>
                     <tr>
                         <td>
-                            手机号码：
+                            <span class="fl"> 手机号码：</span>
                         </td>
                         <td>
-                            <input type="text" name="tel" class="word_tip_ipt" id="tel" value=""
-                                   maxlength="11">
+                            <input type="text" name="tel" class="word_tip_ipt fl" id="tel" value=""
+                                   maxlength="11"><img src="/images/loading_min.gif" class="fl loading" />
                         </td>
                         <td>
-                            <input type="button" name="copy" value="查询" class="word_tip_ipt2"
+                            <input type="button" name="copy" value="查询" class="word_tip_ipt2 fl"
                                    onclick="telQuery()"/>
                         </td>
                     </tr>
@@ -190,7 +199,9 @@
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }*/
+        $(".loading").css("visibility","visible");
         if(!checkMobile($("#tel").val())){
+            $(".loading").css("visibility","hidden");
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }
@@ -206,6 +217,7 @@
                 } else {
                     $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行，手机号码归属地:" + msg.location + "。</span>");
                 }
+                $(".loading").css("visibility","hidden");
             }
         })
     }
