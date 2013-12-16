@@ -232,4 +232,17 @@ public class ToolsController {
     }
 
 
+    /**
+     * 加水印页面
+     *
+     * @return
+     */
+    @RequestMapping("/add_sy")
+    public ModelAndView add_sy() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/add_sy");
+        return result;
+    }
+
+
 }
