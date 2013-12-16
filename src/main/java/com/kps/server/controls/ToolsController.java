@@ -213,6 +213,11 @@ public class ToolsController {
         return "";
     }
 
+    /**
+     * 加水印页面
+     *
+     * @return
+     */
     @RequestMapping("/add_watermark")
     public ModelAndView addWatermark() {
         ModelAndView result = new ModelAndView();
@@ -258,19 +263,5 @@ public class ToolsController {
         result.setViewName("tools/left");
         return result;
     }
-
-
-    /**
-     * 加水印页面
-     *
-     * @return
-     */
-    @RequestMapping("/add_sy")
-    public ModelAndView add_sy() {
-        ModelAndView result = new ModelAndView();
-        result.setViewName("tools/add_sy");
-        return result;
-    }
-
 
 }
