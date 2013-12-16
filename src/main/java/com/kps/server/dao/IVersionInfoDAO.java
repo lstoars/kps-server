@@ -2,6 +2,8 @@ package com.kps.server.dao;
 
 import com.kps.server.entity.VersionInfo;
 
+import java.util.List;
+
 /**
  * 版本信息DAO
  * User: fei
@@ -18,4 +20,18 @@ public interface IVersionInfoDAO {
      * @return
      */
     public VersionInfo queryByClientId(String clientId);
+
+    /**
+     * 查询所以版本
+     *
+     * @return
+     */
+    public List<VersionInfo> queryAllVersion();
+
+    /**
+     * 修改版本
+     * @param info
+     * @return
+     */
+    public int updateVersion(VersionInfo info);
 }

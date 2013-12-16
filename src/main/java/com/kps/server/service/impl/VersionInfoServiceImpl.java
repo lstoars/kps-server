@@ -7,6 +7,8 @@ import com.kps.server.service.IVersionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 版本服务类
  * User: fei
@@ -33,4 +35,27 @@ public class VersionInfoServiceImpl implements IVersionInfoService {
         result.setData(version);
         return result;
     }
+
+    /**
+     * 查询所有版本
+     *
+     * @return
+     */
+    @Override
+    public List<VersionInfo> queryAllVersion() {
+        return versionInfoDAO.queryAllVersion();
+    }
+
+    /**
+     * 修改版本
+     *
+     * @param info
+     * @return
+     */
+    @Override
+    public int updateVersion(VersionInfo info) {
+        return versionInfoDAO.updateVersion(info);
+    }
+
+
 }

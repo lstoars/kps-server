@@ -25,10 +25,6 @@ public class VersionInfo extends BaseEntity{
 
     private int status;
 
-    private Date createTime;
-
-    private Date modifyTime;
-
     public int getId() {
         return id;
     }
@@ -85,19 +81,4 @@ public class VersionInfo extends BaseEntity{
         this.status = status;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
 }

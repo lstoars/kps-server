@@ -3,6 +3,8 @@ package com.kps.server.service;
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.VersionInfo;
 
+import java.util.List;
+
 /**
  * 版本服务类
  * User: fei
@@ -19,5 +21,20 @@ public interface IVersionInfoService {
      * @return
      */
     public BaseResultBean<VersionInfo> queryByClientId(String clientId);
+
+    /**
+     * 查询所有版本
+     *
+     * @return
+     */
+    public List<VersionInfo> queryAllVersion();
+
+    /**
+     * 修改版本
+     *
+     * @param info
+     * @return
+     */
+    public int updateVersion(VersionInfo info);
 
 }
