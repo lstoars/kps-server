@@ -31,7 +31,7 @@
         font: bold 13px/30px "Microsoft YaHei";
         text-align: center;
         text-decoration: none;
-        width: 89px;
+        width: 75px;
         background: url(/images/nav_bg.png) 0 -30px no-repeat;
         color: #333;
     }
