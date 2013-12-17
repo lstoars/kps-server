@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -196,6 +200,7 @@ public class ToolsController {
 
     /**
      * 获取手机号码归属地
+     *
      * @param tel
      * @return
      * @throws IOException
@@ -218,6 +223,51 @@ public class ToolsController {
 
         }
         return "";
+    }
+
+    @RequestMapping("import")
+    public void importSf() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileInputStream(new File("C:\\Users\\jjs\\Desktop\\sssss.TXT")));
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (StringUtils.isNotEmpty(line)) {
+                String[] lines = StringUtils.split(line, ",");
+                ThTelInfo info = new ThTelInfo();
+                info.setName(StringUtils.trim(lines[1]));
+                info.setTel(StringUtils.trim(lines[2]));
+                info.setCompany(StringUtils.trim(lines[4]));
+                info.setHeadPic(StringUtils.trim(lines[5]));
+                toolsService.saveThTel(info);
+            }
+        }
+    }
+
+    @RequestMapping("importTf")
+    public void importTf() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileInputStream(new File("C:\\Users\\jjs\\Desktop\\ssssss.TXT")));
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (StringUtils.isNotEmpty(line)) {
+                String[] lines = StringUtils.split(line, "\t");
+                String[] tels = StringUtils.split(lines[0], "|");
+                String[] urls = StringUtils.split(lines[1], "|");
+                String[] companys = StringUtils.split(lines[2], "|");
+                String[] names = StringUtils.split(lines[3], "|");
+                for (int i=0, length = tels.length; i < length; i++) {
+                    try {
+                        ThTelInfo info = new ThTelInfo();
+                        info.setName(names[i]);
+                        info.setTel(tels[i]);
+                        info.setCompany(StringUtils.split(companys[i],"&#12288;")[0]);
+                        info.setBranchName(StringUtils.split(companys[i],"&#12288;")[1]);
+                        info.setHeadPic(urls[i]);
+                        toolsService.saveThTel(info);
+                    }catch(Exception e) {
+
+                    }
+                }
+            }
+        }
     }
 
     /**

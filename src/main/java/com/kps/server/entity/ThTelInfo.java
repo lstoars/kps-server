@@ -12,6 +12,14 @@ public class ThTelInfo extends BaseEntity {
 
     private String tel;
 
+    private String company;
+
+    private String name;
+
+    private String branchName;
+
+    private String headPic;
+
     private int status;
 
     public int getId() {
@@ -36,5 +44,37 @@ public class ThTelInfo extends BaseEntity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
     }
 }

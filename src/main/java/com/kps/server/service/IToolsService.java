@@ -59,7 +59,7 @@ public interface IToolsService {
      * @param tel
      * @return
      */
-    public int saveThTel(String tel);
+    public int saveThTel(ThTelInfo info);
 
     /**
      * 查询同行手机

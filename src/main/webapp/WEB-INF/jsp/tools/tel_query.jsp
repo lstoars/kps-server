@@ -17,9 +17,9 @@
         }
 
         .page_wrap {
-            width: 453px;
+            width: 550px;
             height: 250px;
-            margin: 20px 0 0 30px;;
+            margin: 20px 0 0 30px;
         }
 
         .section {
@@ -114,7 +114,7 @@
 
         .wraps span {
             float: left;
-            margin-top: 5px;;
+            margin-top: 5px;
         }
 
         .wraps input {
@@ -122,7 +122,7 @@
         }
 
         .wraps .word_tip_ipt2 {
-            margin-left: 5px;;
+            margin-left: 5px;
         }
 
         #copy_div {
@@ -147,8 +147,17 @@
         .mt4{
             margin-top: 4px;
         }
+        .ml4{
+            margin-left: 4px;
+        }
         .loading{
-            visibility: hidden;
+            display:block;
+            width: 32px;
+            height: 32px;
+            background: none;
+        }
+        .show{
+            background: url("/images/loading_min.gif") 0 0 no-repeat;
         }
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
@@ -161,25 +170,23 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>
+                        <td width="100">
                             <span class="fl"> 手机号码：</span>
                         </td>
                         <td>
-                            <input type="text" name="tel" class="word_tip_ipt fl" id="tel" value=""
-                                   maxlength="11"><img src="/images/loading_min.gif" class="fl loading" />
-                        </td>
-                        <td>
-                            <input type="button" name="copy" value="查询" class="word_tip_ipt2 fl"
+                            <input type="text" name="tel" class="word_tip_ipt fl mt4" id="tel" value=""
+                                   maxlength="11"><span class="fl loading ml4"></span>
+                            <input type="button" name="copy" value="查询" class="word_tip_ipt2 fl ml4"
                                    onclick="telQuery()"/>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="padding-top:15px ">本工具目前总计收录<span class="fb cf60">61803</span>个同行电话号码
+                        <td colspan="2" style="padding-top:15px ">本工具目前总计收录<span class="fb cf60">61803</span>个同行电话号码
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="height: 20px;padding-top:10px; ">
-                            <div id="r" class="result_text" style="width: 450px"></div>
+                        <td colspan="2" style="height: 20px;padding-top:10px; ">
+                            <div id="r" class="result_text" style="width:500px"></div>
                         </td>
                     </tr>
 
@@ -195,24 +202,16 @@
 
     function telQuery() {
         $("#r").html("");
-        /*if (!checkMobile($("#tel").val())) {
-            $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
-            return;
-        }*/
-        $(".loading").css("visibility","visible");
         if(!checkMobile($("#tel").val())){
-            $(".loading").css("visibility","hidden");
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }
 
-
-
+        $(".loading").addClass("show");
         $.ajax({
             url: "/kps/tools/tel_query",
             type: "post",
             dataType: "json",
-            async: false,
             data: {'tel': $("#tel").val()},
             success: function (msg) {
                 if (msg.find) {
@@ -220,7 +219,7 @@
                 } else {
                     $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行，手机号码归属地:" + msg.location + "。</span>");
                 }
-                $(".loading").css("visibility","hidden");
+                $(".loading").removeClass("show");
             }
         })
     }

@@ -25,5 +25,7 @@ public interface IThTelInfoDAO {
      * @param tel
      * @return
      */
-    public int saveThTelInfo(String tel);
+    public int saveThTelInfo(ThTelInfo info);
+
+    public int updateThTel(ThTelInfo info);
 }

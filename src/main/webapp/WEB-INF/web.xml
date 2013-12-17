@@ -66,7 +66,7 @@
 
     <login-config>
         <auth-method>BASIC</auth-method>
-        <realm-name>rukou</realm-name>
+        <realm-name>who i am</realm-name>
     </login-config>
 
     <security-role>

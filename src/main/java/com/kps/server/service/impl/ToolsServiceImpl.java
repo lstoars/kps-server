@@ -70,8 +70,12 @@ public class ToolsServiceImpl implements IToolsService {
     }
 
     @Override
-    public int saveThTel(String tel) {
-        return thTelInfoDAO.saveThTelInfo(tel);
+    public int saveThTel(ThTelInfo info) {
+        if (thTelInfoDAO.queryByTel(info.getTel()) == null) {
+            return thTelInfoDAO.saveThTelInfo(info);
+        } else {
+            return thTelInfoDAO.updateThTel(info);
+        }
     }
 
     /**
