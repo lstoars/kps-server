@@ -189,12 +189,10 @@ public class ToolsController {
         Map<String, Object> result = new HashMap<String, Object>();
         ThTelInfo info = toolsService.queryThTel(tel);
         result.put("find", info != null);
-
-        //查询手机号码归属地
-        if (info != null) {
-            result.put("createDate", DateFormatUtils.format(info.getCreateTime(), "yyyy年MM月dd日"));
+        if(info != null) {
+            result.put("company",info.getCompany());
+            result.put("name",info.getName());
         }
-        result.put("location", getLocation(tel));
         return result;
     }
 

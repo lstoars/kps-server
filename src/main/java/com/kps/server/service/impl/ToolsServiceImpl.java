@@ -7,6 +7,8 @@ import com.kps.server.entity.NewsInfo;
 import com.kps.server.entity.ThTelInfo;
 import com.kps.server.entity.ZxImages;
 import com.kps.server.service.IToolsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ import java.util.Map;
  */
 @Service
 public class ToolsServiceImpl implements IToolsService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private IZxImagesDAO imagesDAO;
@@ -71,9 +75,13 @@ public class ToolsServiceImpl implements IToolsService {
 
     @Override
     public int saveThTel(ThTelInfo info) {
+        ThTelInfo dbInfo = thTelInfoDAO.queryByTel(info.getTel());
         if (thTelInfoDAO.queryByTel(info.getTel()) == null) {
+            logger.info("save " + info);
             return thTelInfoDAO.saveThTelInfo(info);
         } else {
+            info.setId(dbInfo.getId());
+            logger.info("update " + info);
             return thTelInfoDAO.updateThTel(info);
         }
     }

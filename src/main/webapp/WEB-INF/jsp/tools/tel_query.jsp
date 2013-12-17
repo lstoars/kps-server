@@ -215,9 +215,9 @@
             data: {'tel': $("#tel").val()},
             success: function (msg) {
                 if (msg.find) {
-                    $("#r").html("<span style='color: red'>该手机有在库中记录，很有可能是同行，手机号码归属地:" + msg.location + "。</span>");
+                    $("#r").html("<span style='color: red'>该手机是同行，所在公司:" + msg.company + "，姓名:"+msg.name+"。</span>");
                 } else {
-                    $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行，手机号码归属地:" + msg.location + "。</span>");
+                    $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行。</span>");
                 }
                 $(".loading").removeClass("show");
             }

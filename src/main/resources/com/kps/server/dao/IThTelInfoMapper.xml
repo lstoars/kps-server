@@ -24,7 +24,7 @@
     </insert>
     
     <update id="updateThTel" parameterType="com.kps.server.entity.ThTelInfo">
-        update TH_TEL_INFO set branch_name=#{branchName} where id = #{id}
+        update TH_TEL_INFO set branch_name=#{branchName},modify_time=now() where id = #{id}
     </update>
 
 </mapper>
