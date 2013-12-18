@@ -128,7 +128,8 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修小图片，双击复制</td>
+                        <td colspan="3">店铺装修小图片，双击复制。 <a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a>
+                        </td>
                     </tr>
                     <tr>
                         <c:forEach items="${images}" var="image" varStatus="status">

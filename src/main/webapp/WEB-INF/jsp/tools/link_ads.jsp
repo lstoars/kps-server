@@ -136,7 +136,7 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修图片，双击复制</td>
+                        <td>店铺装修图片，双击复制。<a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a></td>
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
@@ -183,7 +183,7 @@
                 if(path=='#') {
                     html += "<a href='javascript:;' target='_blank'>";
                 } else {
-                    if(path.substring(0,7)=="") {
+                    if(path.substring(0,7)=="http://") {
                         html += "<a href='" + path + "' target='_blank'>"
                     } else {
                         html += "<a href='http://" + path + "' target='_blank'>"

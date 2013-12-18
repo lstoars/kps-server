@@ -147,7 +147,7 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr class="row1">
-                        <td colspan="2">加入特效会有不一样的效果。</td>
+                        <td colspan="2">加入特效会有不一样的效果。<a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a></td>
                     </tr>
                     <tr>
                         <td style="padding-top: 15px">背景图片</td>

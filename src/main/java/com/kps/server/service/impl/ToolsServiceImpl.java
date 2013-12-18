@@ -80,9 +80,11 @@ public class ToolsServiceImpl implements IToolsService {
             logger.info("save " + info);
             return thTelInfoDAO.saveThTelInfo(info);
         } else {
-            info.setId(dbInfo.getId());
+           /* info.setId(dbInfo.getId());
             logger.info("update " + info);
-            return thTelInfoDAO.updateThTel(info);
+            return thTelInfoDAO.updateThTel(info);*/
+            logger.info("is exists "+info);
+            return 1;
         }
     }
 

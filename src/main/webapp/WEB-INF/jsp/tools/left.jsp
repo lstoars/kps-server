@@ -52,8 +52,8 @@ ul li{
   <p class="tc" style="margin-top: 3px"><img src="/images/erwei.png" /></p>
   <p class="tc pt5 pb5">微信号：fangrukou</p>
   <p style="border-bottom:2px #ccc solid;padding:3px 8px; color:green; line-height: 20px;" >
-      房入口小助手公众帐号每天都会分享N条干货。
-      今日微信干货分享：
+      房入口小助手每天都会分享业内最有用的营销技巧，如果你能坚持看一年，你的人生将会改变。快用微信，扫描二维码关注吧！<br/>
+      今日分享：
   </p>
   <ul style="margin-top: 10px;padding:0 3px;height: 270px">
       <c:forEach items="${news}" var="new" varStatus="status">

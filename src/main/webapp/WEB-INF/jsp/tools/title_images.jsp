@@ -158,7 +158,9 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修图片，<span class="cred">双击您需要的图片复制</span></td>
+                        <td>店铺装修图片，<span class="cred">双击您需要的图片复制</span>
+                            <a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a>
+                        </td>
                     </tr>
                     <tr style="margin-top: 5px">
                         <td class="btns">

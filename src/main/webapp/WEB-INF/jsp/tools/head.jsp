@@ -24,6 +24,9 @@
         float: left;
         margin-right: 3px;
     }
+    .nav li.fr {
+        float: right;
+    }
 
     .nav li a {
         display: inline-block;
@@ -34,6 +37,10 @@
         width: 75px;
         background: url(/images/nav_bg.png) 0 -30px no-repeat;
         color: #333;
+    }
+    .nav li.fr a{
+        background: url(/images/nav_bg.png) 0 -60px no-repeat;
+        color: #fff;
     }
 
     .nav li a.current {
@@ -50,7 +57,7 @@
     <li><a class="head_banner" href="/kps/tools/image_material" hidefocus="true" target="content">图片素材</a></li>
     <li><a class="head_banner" href="/kps/tools/link_ads" hidefocus="true" target="content">链接广告</a></li>
     <li><a class="head_banner" href="/kps/tools/tel_query_page" hidefocus="true" target="content">同行鉴定</a></li>
-    <li><a class="head_banner" href="/kps/tools/add_watermark" hidefocus="true" target="content">加水印</a></li>
+    <li class="fr"><a class="head_banner" href="/kps/tools/add_watermark" hidefocus="true" target="content">加水印</a></li>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">去水印</a></li>--%>
     <%--<li><a class="head_banner" href="http://www.sina.com" target="content">加水印</a></li> --%>
     <%--<li><a <c:if test="${type=='sms'}"> class="current" </c:if> href="/kps/tools/sms_page" target="content">预约看房</a></li>--%>

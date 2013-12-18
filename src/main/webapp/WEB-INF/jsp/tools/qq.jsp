@@ -132,6 +132,9 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr class="row1">
+                        <td colspan="7"><a href="http://www.fangrukou.com/make.htm" target="_blank">不会用，点这看教程！</a> </td>
+                    </tr>
+                    <tr class="row1">
                         <td class="col1">组件样式：</td>
                         <td class="col_ipt">
                                 <span>
