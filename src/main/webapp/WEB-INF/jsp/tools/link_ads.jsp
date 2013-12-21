@@ -118,7 +118,7 @@
             margin-left: 5px;;
         }
 
-        #cp_div {
+        .cp_div {
             display: none;
         }
 
@@ -136,7 +136,29 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修图片，双击复制。<a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a></td>
+                        <td>店铺装修图片，双击复制。<a href="http://www.fangrukou.com/make.htm" target="_blank"
+                                           style="margin-left: 10px">不会用，点这看教程！</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="padding-top:5px ">
+                            文字：<input type="text" name="text_c" class="word_tip_ipt" style="width: 330px" id="text_c"
+                                      value="">
+                            字体：<input type="text" id="font_size" class="word_tip_ipt" maxlength="3" value="16" style="width: 40px">建议范围（10-99）
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:5px ">
+                            链接：<input type="text" name="link" class="word_tip_ipt" style="width: 330px" id="link"
+                                      value="">
+                            <label><input type="checkbox" name="open_new" id="open_new" value="1" checked>新窗口</label>
+                            <input type="button" name="preview" value="预览" class="word_tip_ipt2" onclick="preView()"
+                                   style="margin-left: 5px"/>
+                            <input type="button" name="copy" value="复制" class="word_tip_ipt2" onclick="copyLink()"
+                                   style="margin-left: 5px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="preview_td"></td>
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
@@ -162,28 +184,62 @@
     <input type="text" name="image_url" id="image_url" value="" style="width: 350px">
 </div>
 
+<span id="abc_span" class="cp_div">
+
+</span>
+
 <script type="text/javascript">
+
+    function preView() {
+        $("#preview_td").html(getCopyLinkHtml());
+    }
+
+    function copyLink(){
+        $("#abc_span").html(getCopyLinkHtml());
+        copyContent2(document.getElementById("abc_span"));
+    }
+
+    function getCopyLinkHtml() {
+        var text = $("#text_c").val();
+        var link = $("#link").val();
+        var fontSize = $("#font_size").val();
+        var openNew = $("#open_new").attr("checked");
+        var html = ""
+        if (link.substring(0, 7) == "http://") {
+            html += "<a href='" + link + "'";
+        } else {
+            html += "<a href='http://" + link + "'";
+        }
+        if(openNew == "checked") {
+            html += " target='_blank'>";
+        } else {
+            html += ">";
+        }
+        html+="<span style='font-size: "+fontSize+"px;'>"+text+"</span><a>";
+        return html;
+    }
+
     function clickCopy(div) {
         var content = div.innerHTML;
         art.dialog({
             padding: '10px',
             esc: false,
             lock: true,
-            width:'400px',
+            width: '400px',
             title: "请输入图片链接地址",
             content: document.getElementById("link_input_div"),
             okVal: "复制",
             ok: function () {
                 var path = $("#image_url").val();
-                if($.trim(path) == '') {
+                if ($.trim(path) == '') {
                     alert("建议填入网店地址，无请填 #！");
                     return false;
                 }
                 var html = "";
-                if(path=='#') {
+                if (path == '#') {
                     html += "<a href='javascript:;' target='_blank'>";
                 } else {
-                    if(path.substring(0,7)=="http://") {
+                    if (path.substring(0, 7) == "http://") {
                         html += "<a href='" + path + "' target='_blank'>"
                     } else {
                         html += "<a href='http://" + path + "' target='_blank'>"
@@ -194,7 +250,7 @@
                 $("#cp_div").html(html);
                 var div = document.getElementById("cp_div");
                 copyContent2(div);
-            }, cancelVal: '取消',cancel:true
+            }, cancelVal: '取消', cancel: true
         });
     }
 </script>

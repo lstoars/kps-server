@@ -165,6 +165,10 @@
                                 <input type="radio" name="back_type" class="image_type" w="650" h="328"
                                        value="3">背景图片3
                             </label>
+                            <label>
+                                <input type="radio" name="back_type" class="image_type" w="650" h="239"
+                                       value="4">无背景图片
+                            </label>
                         </td>
                     </tr>
                     <tr>
@@ -228,6 +232,13 @@
                                  style="display: block;width: 650px;height:328px;background: url(http://ww4.sinaimg.cn/mw690/ea81c460gw1eben9sn9i8j20i2094jsa.jpg);position:relative;">
                                 <marquee id="marquee_3" direction="up" scrollamount="3" width="412" height="225"
                                          style="position:absolute; top:62px; left:265px;"></marquee>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr id="type_4" style="display: none" class="preview_tr">
+                        <td colspan="3" style="border-style:dotted;">
+                            <span id="preview_div_4" style="width: 650px;height:239px;">
+                                <marquee id="marquee_4" direction="up" scrollamount="3" width="600" height="200"  style="margin-left: 10px"></marquee>
                             </span>
                         </td>
                     </tr>
