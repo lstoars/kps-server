@@ -12,6 +12,7 @@
         <mapper resource="com/kps/server/dao/IZxImagesMapper.xml"/>
         <mapper resource="com/kps/server/dao/INewsInfoMapper.xml"/>
         <mapper resource="com/kps/server/dao/IThTelInfoMapper.xml"/>
+        <mapper resource="com/kps/server/dao/IUserFeedBackDAO.xml" />
     </mappers>
 
 </configuration>

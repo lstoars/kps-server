@@ -56,7 +56,7 @@ public interface IToolsService {
     /**
      * 保存同行电话
      *
-     * @param tel
+     * @param info
      * @return
      */
     public int saveThTel(ThTelInfo info);

@@ -16,6 +16,8 @@ public class BaseQueryBean {
 
     private int pageSize;
 
+    private int status;
+
     public int getPage() {
         return page;
     }
@@ -34,6 +36,14 @@ public class BaseQueryBean {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
