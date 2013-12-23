@@ -5,6 +5,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style type="text/css">
+        a,img{border:0;}
+        body{font:12px/180% Arial, Helvetica, sans-serif;}
+        .jscolorstyle h3{font-size:14px;margin:20px;}
+        .jscolorstyle p{padding:0 0 0 40px;margin:10px 0;}
         * {
             margin: 0;
             padding: 0;
@@ -125,6 +129,14 @@
         #link_input_div {
             display: none;
         }
+
+        .split_line {
+            height:1px;
+            width:100%;
+            background:#00CCFF;
+            overflow:hidden;
+        }
+
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
@@ -136,21 +148,25 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>店铺装修图片，双击复制。<a href="http://www.fangrukou.com/make.htm" target="_blank"
-                                           style="margin-left: 10px">不会用，点这看教程！</a></td>
+                        <td>文字链接，生成带链接的文字</td>
                     </tr>
                     <tr>
                         <td colspan="1" style="padding-top:5px ">
                             文字：<input type="text" name="text_c" class="word_tip_ipt" style="width: 330px" id="text_c"
                                       value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:5px ">
                             字体：<input type="text" id="font_size" class="word_tip_ipt" maxlength="3" value="16" style="width: 40px">建议范围（10-99）
+                            颜色：<input type="text" class="color {pickerClosable:true}" id="color" style="width: 60px">
+                            <label><input type="checkbox" name="open_new" id="open_new" value="1" checked>新窗口</label>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-top:5px ">
                             链接：<input type="text" name="link" class="word_tip_ipt" style="width: 330px" id="link"
                                       value="">
-                            <label><input type="checkbox" name="open_new" id="open_new" value="1" checked>新窗口</label>
                             <input type="button" name="preview" value="预览" class="word_tip_ipt2" onclick="preView()"
                                    style="margin-left: 5px"/>
                             <input type="button" name="copy" value="复制" class="word_tip_ipt2" onclick="copyLink()"
@@ -158,13 +174,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td id="preview_td"></td>
+                        <td id="preview_td" style="padding-top: 10px" nowrap="nowrap"></td>
+                    </tr>
+                    <tr><td ><div class="split_line"></div></td></tr>
+                    <tr>
+                        <td  style="padding-top:5px ">店铺图片链接，双击图片、输入链接地址</td>
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
-                            <td class="col1" style="padding-top: 10px">
+                            <td class="col1" style="padding-top: 10px" title="双击复制图片">
                                 <div ondblclick="clickCopy(this)">
-                                    <img src="${image.path}" alt="" image_id=${image.id}>
+                                    <img src="${image.path}" alt="" image_id="${image.id}" >
                                 </div>
                             </td>
                         </tr>
@@ -187,8 +207,15 @@
 <span id="abc_span" class="cp_div">
 
 </span>
-
+<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
+        charset="utf-8"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/scripts/common.js"></script>
+<script src="/scripts/jscolor/jscolor.js"></script>
 <script type="text/javascript">
+
+    var myPicker = new jscolor.color(document.getElementById('color'), {})
+    myPicker.fromString('4F4D4A')  // now you can access API via 'myPicker' variable
 
     function preView() {
         $("#preview_td").html(getCopyLinkHtml());
@@ -204,11 +231,12 @@
         var link = $("#link").val();
         var fontSize = $("#font_size").val();
         var openNew = $("#open_new").attr("checked");
+        var color = $("#color").val();
         var html = ""
         if (link.substring(0, 7) == "http://") {
-            html += "<a href='" + link + "'";
+            html += "<a href='" + link + "' style='color:#"+color+"'";
         } else {
-            html += "<a href='http://" + link + "'";
+            html += "<a href='http://" + link + "' style='color:#"+color+"'";
         }
         if(openNew == "checked") {
             html += " target='_blank'>";
@@ -254,9 +282,5 @@
         });
     }
 </script>
-<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
-        charset="utf-8"></script>
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script src="/scripts/common.js"></script>
 </body>
 </html>

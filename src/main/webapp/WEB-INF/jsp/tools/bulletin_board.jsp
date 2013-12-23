@@ -195,6 +195,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>字体</td>
+                        <td colspan="1" style="padding-top: 15px">
+                            <input type="text" id="font_size" class="word_tip_ipt" maxlength="3" value="16" style="width: 40px">建议范围（10-99）
+                            颜色：<input type="text" class="color" id="color" style="width: 60px">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>文字</td>
                         <td style="padding-top: 15px">
                             <textarea rows="8" cols="50" id="textContent"></textarea>
@@ -254,7 +261,12 @@
 </div>
 
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/scripts/jscolor/jscolor.js"></script>
+<script src="/scripts/common.js"></script>
 <script type="text/javascript">
+    var myPicker = new jscolor.color(document.getElementById('color'), {})
+    myPicker.fromString('4F4D4A')  // now you can access API via 'myPicker' variable
+
     $(function () {
         $(".image_type").click(function () {
             $(".preview_tr").css("display", "none");
@@ -269,8 +281,12 @@
             return false;
         }
         content = contentValue.replaceAll("\n", "<br/>");
+        var fontSize = $("#font_size").val();
         var xgObj = $('input[name="xg"]:checked');
         var backTypeObj = $('input[name="back_type"]:checked');
+        var color = $("#color").val();
+        $("#marquee_"+backTypeObj.val()).css("font-size",fontSize+"px");
+        $("#marquee_"+backTypeObj.val()).css("color","#"+color);
         $("#marquee_"+backTypeObj.val()).attr("direction",xgObj.val());
         $("#marquee_"+backTypeObj.val()).html(content);
         $(".preview_tr").css("display", "none");
@@ -284,6 +300,6 @@
         copyContent(div);
     }
 </script>
-<script src="/scripts/common.js"></script>
+
 </body>
 </html>

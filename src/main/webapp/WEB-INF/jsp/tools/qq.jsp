@@ -184,6 +184,11 @@
                             </span>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="7" style="text-align: right;padding-top:10px ">
+                            <span style="color:#F00"> <a href="http://shang.qq.com/widget/consult.php"  style="color:#F00" target="_blank">如粘贴后，图片显示<img src="http://pub.idqqimg.com/qconn/wpa/button/51_stop.gif" border="0">，请点击这里，重新登录QQ即可。</a></span>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
