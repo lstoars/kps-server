@@ -181,7 +181,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="padding-top:15px ">本工具目前总计收录<span class="fb cf60">61803</span>个同行电话号码
+                        <td colspan="2" style="padding-top:15px ">本工具目前总计收录
+                            <span class="fb cf60">61839</span>个同行电话号码，最近更新于2013-12-23日22:15
                         </td>
                     </tr>
                     <tr>

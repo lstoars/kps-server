@@ -10,7 +10,7 @@
         }
 
         .page_wrap {
-            width: 453px;
+            width: 620px;
             height: 250px;
             margin: 10px 0 0 10px;;
         }
@@ -132,7 +132,8 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr class="row1">
-                        <td colspan="7"><a href="http://www.fangrukou.com/make.htm" target="_blank">不会用，点这看教程！</a> </td>
+                        <td colspan="7"><span style="color: red">①输入QQ号码，点击复制;②在房源描述里粘贴即可（快捷键Ctrl+V）</span>
+                            <a href="http://www.fangrukou.com/make.htm" target="_blank">不会用，点这看教程！</a> </td>
                     </tr>
                     <tr class="row1">
                         <td class="col1">组件样式：</td>
@@ -186,7 +187,8 @@
                     </tr>
                     <tr>
                         <td colspan="7" style="text-align: right;padding-top:10px ">
-                            <span style="color:#F00"> <a href="http://shang.qq.com/widget/consult.php"  style="color:#F00" target="_blank">如粘贴后，图片显示<img src="http://pub.idqqimg.com/qconn/wpa/button/51_stop.gif" border="0">，请点击这里，重新登录QQ即可。</a></span>
+                            <span style="color:#F00"> <a href="http://shang.qq.com/widget/consult.php"  style="color:#F00" target="_blank">
+                                如粘贴后，图片显示<img src="http://pub.idqqimg.com/qconn/wpa/button/51_stop.gif" border="0">，请点击这里，登录QQ即可。</a></span>
                         </td>
                     </tr>
                     </tbody>

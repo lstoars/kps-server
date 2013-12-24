@@ -128,7 +128,7 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td colspan="3">店铺装修小图片，双击复制。 <a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a>
+                        <td colspan="3"><span style="color: red">①选择图片双击;②在房源描述里粘贴即可（快捷键Ctrl+V）</span><a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a>
                         </td>
                     </tr>
                     <tr>

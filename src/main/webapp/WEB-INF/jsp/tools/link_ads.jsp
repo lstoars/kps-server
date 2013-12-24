@@ -148,12 +148,12 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr>
-                        <td>文字链接，生成带链接的文字</td>
+                        <td><span style="color: red">①输入文字、链接、选择字体颜色;②点击复制;③在房源描述里粘贴即可（快捷键Ctrl+V）</span></td>
                     </tr>
                     <tr>
                         <td colspan="1" style="padding-top:5px ">
                             文字：<input type="text" name="text_c" class="word_tip_ipt" style="width: 330px" id="text_c"
-                                      value="">
+                                      value="如：百度" onclick="if(this.value=='如：百度'){this.value=''}" onblur="if(this.value==''){this.value='如：百度'}">
                         </td>
                     </tr>
                     <tr>
@@ -161,12 +161,13 @@
                             字体：<input type="text" id="font_size" class="word_tip_ipt" maxlength="3" value="16" style="width: 40px">建议范围（10-99）
                             颜色：<input type="text" class="color {pickerClosable:true}" id="color" style="width: 60px">
                             <label><input type="checkbox" name="open_new" id="open_new" value="1" checked>新窗口</label>
+                            <label><input type="checkbox" name="marquee_ck" id="marquee_ck" value="1" >文字跑动</label>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding-top:5px ">
                             链接：<input type="text" name="link" class="word_tip_ipt" style="width: 330px" id="link"
-                                      value="">
+                                      value="如：http://www.baidu.com" onclick="if(this.value=='如：http://www.baidu.com'){this.value=''}" onblur="if(this.value==''){this.value='如：http://www.baidu.com'}">
                             <input type="button" name="preview" value="预览" class="word_tip_ipt2" onclick="preView()"
                                    style="margin-left: 5px"/>
                             <input type="button" name="copy" value="复制" class="word_tip_ipt2" onclick="copyLink()"
@@ -178,7 +179,7 @@
                     </tr>
                     <tr><td ><div class="split_line"></div></td></tr>
                     <tr>
-                        <td  style="padding-top:5px ">店铺图片链接，双击图片、输入链接地址</td>
+                        <td  style="padding-top:5px "><span style="color: red">①选择图片双击;②输入链接地址;③在房源描述里粘贴即可（快捷键Ctrl+V）</span></td>
                     </tr>
                     <c:forEach items="${images}" var="image">
                         <tr>
@@ -243,7 +244,11 @@
         } else {
             html += ">";
         }
-        html+="<span style='font-size: "+fontSize+"px;'>"+text+"</span><a>";
+        var hei = fontSize*1 + 10;
+        html+="<span style='font-size: "+fontSize+"px;height:"+hei+"px;'>"+text+"</span><a>";
+        if($("#marquee_ck").is(":checked")) {
+            html = "<marquee scrollamount=\"3\"  direction=\"left\"  height=\""+hei+"\">"+html+"</marquee>";
+        }
         return html;
     }
 

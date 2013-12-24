@@ -12,7 +12,7 @@
         }
 
         .page_wrap {
-            width: 800px;
+            width: 750px;
             height: 250px;
             margin: 0px 0 0 0px;
         }
@@ -147,7 +147,7 @@
                 <table class="set_style_table" id="setTable">
                     <tbody>
                     <tr class="row1">
-                        <td colspan="2">加入特效会有不一样的效果。<a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a></td>
+                        <td colspan="3"><span style="color: red">①输入文字点击复制;②在房源描述里粘贴即可（快捷键Ctrl+V）</span><a href="http://www.fangrukou.com/make.htm" target="_blank" style="margin-left: 10px">不会用，点这看教程！</a></td>
                     </tr>
                     <tr>
                         <td style="padding-top: 15px">背景图片</td>
@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td>字体</td>
-                        <td colspan="1" style="padding-top: 15px">
+                        <td colspan="2" style="padding-top: 15px">
                             <input type="text" id="font_size" class="word_tip_ipt" maxlength="3" value="16" style="width: 40px">建议范围（10-99）
                             颜色：<input type="text" class="color" id="color" style="width: 60px">
                         </td>
@@ -204,9 +204,13 @@
                     <tr>
                         <td>文字</td>
                         <td style="padding-top: 15px">
-                            <textarea rows="8" cols="50" id="textContent"></textarea>
+                            <textarea rows="8" cols="50" id="textContent">如：感谢您的点击
+本人从事房产代理行业8年
+对八卦岭、园岭一带相当熟悉
+如果您有租房买房需求联系我！
+电话：18999999999</textarea>
                         </td>
-                        <td valign="bottom">
+                        <td valign="bottom" align="left">
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="预览"
                                    style="width: 50px;" onclick="preView()"/>
                             <input type="button" name="copy" class="copy_button word_tip_ipt" value="复制"
@@ -219,7 +223,13 @@
                                  style="display: block;width: 650px;height:239px;background: url(http://ww3.sinaimg.cn/mw690/ea81c460gw1eben9th69wj20i206ndg8.jpg);position:relative;">
                                 <marquee id="marquee_1" scrollamount="3" width="325" height="200"
                                          direction="up"
-                                         style="position:absolute; top:24px; left:175px;"></marquee>
+                                         style="position:absolute; top:24px; left:175px;color:#BA1318;font-size: 20px">
+                                    感谢您的点击<br/>
+                                    本人从事房产代理行业8年<br/>
+                                    对八卦岭、园岭一带相当熟悉<br/>
+                                    如果您有租房买房需求联系我！<br/>
+                                    电话：18999999999<br/>
+                                </marquee>
                             </span>
                         </td>
                     </tr>
