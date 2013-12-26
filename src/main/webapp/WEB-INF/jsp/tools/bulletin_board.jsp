@@ -204,6 +204,7 @@
                     <tr>
                         <td>文字</td>
                         <td style="padding-top: 15px">
+                            <%--这里的格式不要修改--%>
                             <textarea rows="8" cols="50" id="textContent">如：感谢您的点击
 本人从事房产代理行业8年
 对八卦岭、园岭一带相当熟悉
