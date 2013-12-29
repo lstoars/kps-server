@@ -19,7 +19,7 @@ public class UserFeedBack extends BaseEntity {
     /**
      * 联系方式
      */
-    private String contact;
+    private int type;
 
     /**
      * 状态
@@ -47,12 +47,12 @@ public class UserFeedBack extends BaseEntity {
         this.content = content;
     }
 
-    public String getContact() {
-        return contact;
+    public int getType() {
+        return type;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getDealOption() {

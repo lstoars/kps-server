@@ -2,6 +2,7 @@ package com.kps.server.controls.admin;
 
 import com.kps.server.entity.NewsInfo;
 import com.kps.server.service.ICardCodeService;
+import com.kps.server.service.IFangRuKouIndexService;
 import com.kps.server.service.IToolsService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -26,11 +27,19 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
+    @Autowired
+    private IFangRuKouIndexService fangRuKouIndexService;
+
     @RequestMapping("/index")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView();
         view.setViewName("admin/index");
         return view;
+    }
+
+    @RequestMapping("/create_frk_index")
+    public void createFIndex() {
+        fangRuKouIndexService.createNewIndex();
     }
 
 }

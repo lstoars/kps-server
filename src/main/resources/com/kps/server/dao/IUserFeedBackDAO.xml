@@ -5,7 +5,7 @@
     <resultMap id="userFeedBack" type="com.kps.server.entity.UserFeedBack">
         <result property="id" column="ID"/>
         <result property="content" column="content"/>
-        <result property="contact" column="contact"/>
+        <result property="type" column="type"/>
         <result property="status" column="status"/>
         <result property="dealOption" column="deal_option"/>
         <result property="createTime" column="create_time"/>
@@ -14,14 +14,14 @@
 
     <insert id="saveUserFeedBack" parameterType="com.kps.server.entity.UserFeedBack"
             useGeneratedKeys="true" keyProperty="id">
-        insert into USER_FEED_BACK (content,contact,status,deal_option,create_time,modify_time)
-        values (#{content},#{contact},#{status},#{dealOption},#{createTime},#{modifyTime})
+        insert into USER_FEED_BACK (content,type,status,deal_option,create_time,modify_time)
+        values (#{content},#{type},1,null,now(),now())
     </insert>
 
     <select id="queryUserFeedBack" parameterType="com.kps.server.bean.BaseQueryBean" resultMap="userFeedBack">
           select * from USER_FEED_BACK where status=#{status} limit ${start},${pageSize}
     </select>
-    
+
     <select id="countUserFeedBack" parameterType="com.kps.server.bean.BaseQueryBean" resultType="java.lang.Integer">
         select count(*) from USER_FEED_BACK where status=#{status}
     </select>
@@ -29,7 +29,5 @@
     <update id="updateFeedStatus" parameterType="java.util.HashMap">
         update USER_FEED_BACK set status=#{status} where id = #{id}
     </update>
-
-    
 
 </mapper>

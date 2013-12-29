@@ -1,9 +1,6 @@
 package com.kps.server.service.impl;
 
-import com.kps.server.dao.ICompanyInfoDAO;
-import com.kps.server.dao.INewsInfoDAO;
-import com.kps.server.dao.IThTelInfoDAO;
-import com.kps.server.dao.IZxImagesDAO;
+import com.kps.server.dao.*;
 import com.kps.server.entity.*;
 import com.kps.server.service.IToolsService;
 import org.apache.commons.lang.StringUtils;
@@ -38,6 +35,9 @@ public class ToolsServiceImpl implements IToolsService {
 
     @Autowired
     private ICompanyInfoDAO companyInfoDAO;
+
+    @Autowired
+    private IUserFeedBackDAO userFeedBackDAO;
 
     @Override
     public List<ZxImages> queryByType(int type) {
@@ -132,5 +132,20 @@ public class ToolsServiceImpl implements IToolsService {
     @Override
     public List<CompanyInfo> queryAllCompany() {
         return companyInfoDAO.queryAllCompany();
+    }
+
+    /**
+     * 添加反馈意见
+     *
+     * @param type
+     * @param content
+     * @return
+     */
+    @Override
+    public boolean saveUserFeed(int type, String content) {
+        UserFeedBack feed = new UserFeedBack();
+        feed.setContent(content);
+        feed.setType(type);
+        return userFeedBackDAO.saveUserFeedBack(feed) > 0;
     }
 }

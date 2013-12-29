@@ -1,16 +1,11 @@
 package com.kps.server.controls;
 
-import com.alibaba.fastjson.JSONObject;
 import com.kps.server.bean.BaseResultBean;
 import com.kps.server.entity.*;
 import com.kps.server.service.ICommunityInfoService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
-import com.kps.server.utils.StringUtil;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,16 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -221,6 +210,21 @@ public class ToolsController {
     public ModelAndView addWatermark() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/add_watermark");
+        return result;
+    }
+
+    @RequestMapping(value = "/add_user_feed"/*, method = RequestMethod.POST*/)
+    @ResponseBody
+    public Map<String, Object> addUserFeed(int type, String content) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        if (type < 0 || StringUtils.isEmpty(content)) {
+            result.put("success", false);
+            result.put("msg", "参数错误！");
+            return result;
+        }
+
+        boolean r = toolsService.saveUserFeed(type, content);
+        result.put("success", r);
         return result;
     }
 

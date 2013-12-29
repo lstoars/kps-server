@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="经纪人工具,房入口,店铺装修,房源装修,添加QQ在线,店铺橱窗,去水印,加水印,经纪人手机查询,"/>
+    <meta name="description" content="经纪人工具箱，经纪人必备的工具箱，简单5步装修店铺网店。添加在线QQ、橱窗广告、广告链接、图片素材让房源描述，留住更多网客，增加进线量，增加重复点击量。"/>
+    <title>房入口-意见反馈</title>
+</head>
+<link rel="stylesheet" type="text/css" href="styles/tools.css"/>
+<link rel="icon" href="myicos.ico" type="image/x-icon"/>
+<body>
+<div class="head">
+    <div class="cont-wrap clearfix">
+        <a class="logo" href="index.html">&nbsp;</a>
+        <span class="nva">
+           <a href="tools.html">经纪人工具箱</a>
+           <a href="shenqi.html">刷榜神器</a>
+        </span>
+    </div>
+</div>
+<div class="cont-wrap clearfix">
+    <p class="clearfix pt50 pl20">
+        <span class="inlineSpan w70 fl tr">类别：</span>
+        <label><input type="radio" name="type" checked="checked" value="1"/><span>问题反馈</span></label></label>
+        <label><input type="radio" name="type" value="2"/><span>创意点子</span></label></label>
+        <label><input type="radio" name="type" value="3"/><span>其他建议</span></label></label>
+        <label><input type="radio" name="type" value="4"/><span>申请合作</span></label></label>
+    </p>
+
+    <p class="clearfix pt10 pl20"><span class="inlineSpan w70 fl tr">意见内容：</span><textarea
+            class="w470 h200 fl" id="content"></textarea></p>
+
+    <p class="clearfix pt10 pb100 pl20"><span class="inlineSpan w70 fl tr">&nbsp;</span>
+        <button class="tj_button" onclick="tj_yj()">提交意见</button>
+    </p>
+</div>
+<div class="foot mt100">
+    <p class="tc pt30"><a href="http://www.fangrukou.com">关于Fangrukou.com</a><a href="http://www.fangrukou.com">申请合作</a>
+    </p>
+
+    <p class="tc c666 pt10">©Fangrukou.com 房入口 房产导航</p>
+</div>
+<script type="text/javascript">
+    function tj_yj() {
+        var type = $('input[name="type"]:checked').val();
+        var content = $("#content").val();
+        if ($.trim(content) == '') {
+            alert("请填写意见内容！");
+            return false;
+        }
+
+        if (content.length > 1000) {
+            alert("意见内容长度不能大于1000！");
+            return false;
+        }
+
+        $.ajax({
+            url: "/kps/tools/add_user_feed",
+            type: "post",
+            dataType: "json",
+            data: {'type': type, 'content': $.trim(content)},
+            success: function (msg) {
+                if (msg.success) {
+                    alert("意见提交成功！");
+                } else {
+                    alert(msg.msg);
+                }
+            }
+        })
+    }
+</script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</body>
+</html>

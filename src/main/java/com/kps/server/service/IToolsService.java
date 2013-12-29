@@ -80,4 +80,13 @@ public interface IToolsService {
      * @return
      */
     public List<CompanyInfo> queryAllCompany();
+
+    /**
+     * 添加反馈意见
+     *
+     * @param type
+     * @param content
+     * @return
+     */
+    public boolean saveUserFeed(int type, String content);
 }
