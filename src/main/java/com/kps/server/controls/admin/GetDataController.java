@@ -1,7 +1,11 @@
 package com.kps.server.controls.admin;
 
+import com.kps.server.entity.CommunityInfo;
 import com.kps.server.entity.ThTelInfo;
+import com.kps.server.service.ICommunityInfoService;
 import com.kps.server.service.IToolsService;
+import com.kps.server.utils.PingYinUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,6 +37,9 @@ public class GetDataController {
 
     @Autowired
     private IToolsService toolsService;
+
+    @Autowired
+    private ICommunityInfoService communityInfoService;
 
     @RequestMapping("/gettf")
     public void getTfData() throws IOException {
@@ -79,11 +88,11 @@ public class GetDataController {
     @RequestMapping("/getzy")
     public void getzydata() throws IOException {
         for (int i = 1; i <= 30; i++) {
-            String url = "http://esf.sz.soufun.com/agenthome/-c5%bc%d2%bc%d2%cb%b3-i3"+i+"-j3100/";
+            String url = "http://esf.sz.soufun.com/agenthome/-c5%bc%d2%bc%d2%cb%b3-i3" + i + "-j3100/";
             Document doc = Jsoup.connect(url).timeout(10000).get();
             Elements eles = doc.select(".agent_pic").get(0).children();
             for (int j = 0, length = eles.size(); j < length; j++) {
-                System.out.println("-----------------------------------------------"+i);
+                System.out.println("-----------------------------------------------" + i);
                 ThTelInfo info = new ThTelInfo();
                 info.setHeadPic(eles.get(j).select(".pic").get(0).getElementsByTag("img").get(0).attr("src"));
                 info.setName(eles.get(j).select(".house").select(".housetitle").get(0).getElementsByTag("a").text());
@@ -91,6 +100,69 @@ public class GetDataController {
                 info.setTel(eles.get(j).select(".house").select(".black").get(1).getElementsByTag("strong").text());
                 toolsService.saveThTel(info);
             }
+        }
+    }
+
+    @RequestMapping("/getlp")
+    public void getCommunity() throws IOException {
+        Map<String, String> maps = new HashMap<String, String>();
+        for (int i = 1; i <= 363; i++) {
+            Document doc;
+            if (maps == null || maps.isEmpty()) {
+                doc = Jsoup.connect("http://market.szhome.com/community.aspx").timeout(20000).get();
+            } else {
+                doc = Jsoup.connect("http://market.szhome.com/community.aspx").timeout(20000).data(maps).post();
+            }
+            Elements elements = doc.select(".alllist").select(".dlistl");
+            for (Element ele : elements) {
+                processDetail(ele.select(".ldtext").get(0).child(0).child(0).getElementsByTag("a").attr("href"));
+            }
+
+            maps.put("__VIEWSTATE", doc.getElementById("__VIEWSTATE").attr("value"));
+            maps.put("__EVENTTARGET", "ctl00$ContentPlaceHolder1$AspNetPager1");
+            maps.put("__EVENTARGUMENT", "" + (i + 1));
+            maps.put("__EVENTVALIDATION", doc.getElementById("__EVENTVALIDATION").attr("value"));
+            maps.put("ctl00$ContentPlaceHolder1$txtKeyword", "");
+            maps.put("ctl00$ContentPlaceHolder1$hidSearchType", "");
+        }
+    }
+
+    private void processDetail(String url) {
+        try {
+            url = "http://market.szhome.com/" + url;
+            Document document = Jsoup.connect(url).get();
+            String housename = document.select(".housesname").get(0).text();
+            CommunityInfo info = new CommunityInfo();
+            info.setName(housename);
+            info.setFullSpell(PingYinUtil.getPingYin(housename));
+            info.setSampleSpell(PingYinUtil.getFirstSpell(housename));
+            Elements es = document.getElementById("searchShow").select(".showdiv");
+
+            String traffic = "";
+            Elements trafficEles = es.get(1).getElementsByTag("li"); //交通配套
+            for (Element e : trafficEles) {
+                traffic += StringUtils.replace(e.text(), "：", "：<br/>");
+                if (!traffic.endsWith("<br/>")) {
+                    traffic += "<br/>";
+                }
+            }
+            info.setTraffic(traffic);
+
+            String supports = "";
+            Elements supportsEles = es.get(2).getElementsByTag("li"); //交通配套
+            for (Element e : supportsEles) {
+                supports += StringUtils.replace(e.text(), "：", "：<br/>");
+                if (!supports.endsWith("<br/>")) {
+                    supports += "<br/>";
+                }
+            }
+            info.setSupports(supports);
+            String desc = es.get(4).text();
+            info.setDescription(desc);
+            communityInfoService.saveCommunityInfo(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ;
         }
     }
 

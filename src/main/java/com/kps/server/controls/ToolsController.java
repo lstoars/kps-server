@@ -2,12 +2,12 @@ package com.kps.server.controls;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kps.server.bean.BaseResultBean;
-import com.kps.server.entity.NewsInfo;
-import com.kps.server.entity.ThTelInfo;
-import com.kps.server.entity.ZxImages;
+import com.kps.server.entity.*;
+import com.kps.server.service.ICommunityInfoService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
 import com.kps.server.utils.StringUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.jsoup.Jsoup;
@@ -44,6 +44,9 @@ public class ToolsController {
 
     @Autowired
     private IToolsService toolsService;
+
+    @Autowired
+    private ICommunityInfoService communityInfoService;
 
     /**
      * QQ在线
@@ -137,6 +140,8 @@ public class ToolsController {
     public ModelAndView titleImages(@PathVariable("type") int type) {
         ModelAndView result = new ModelAndView();
         List<ZxImages> images = toolsService.queryByType(type);
+        List<CompanyInfo> companys = toolsService.queryAllCompany();
+        result.addObject("companys", companys);
         result.addObject("images", images);
         result.addObject("type", type);
         result.setViewName("tools/title_images");
@@ -179,6 +184,7 @@ public class ToolsController {
     @RequestMapping("/tel_query_page")
     public ModelAndView tel_query_page() {
         ModelAndView result = new ModelAndView();
+        result.addObject("history", toolsService.queryThHistory());
         result.setViewName("tools/tel_query");
         return result;
     }
@@ -189,83 +195,21 @@ public class ToolsController {
         Map<String, Object> result = new HashMap<String, Object>();
         ThTelInfo info = toolsService.queryThTel(tel);
         result.put("find", info != null);
-        if(info != null) {
-            result.put("company",info.getCompany());
-            result.put("name",info.getName());
+        if (info != null) {
+            result.put("company", info.getCompany());
+            result.put("name", info.getName());
         }
         return result;
     }
 
-    /**
-     * 获取手机号码归属地
-     *
-     * @param tel
-     * @return
-     * @throws IOException
-     */
-    private String getLocation(String tel) throws IOException {
-        try {
-            String resp = Jsoup.connect("http://cz.115.com/?ct=index&ac=get_mobile_local&mobile=" + tel).get().toString();
-            resp = resp.replaceAll("\\n\\s", "");
-            resp = resp.replaceAll("&quot;", "\"");
-            String pattern = "<body> (.*?)</body>";
-            Pattern p = Pattern.compile(pattern);
-            Matcher matcher = p.matcher(resp);
-            if (matcher.find()) {
-                resp = matcher.group(1);
-            }
-            resp = StringUtils.replace(StringUtils.replace(resp, ")", ""), "(", "");
-            JSONObject jsonObject = JSONObject.parseObject(resp);
-            return StringUtil.unescape(jsonObject.getString("province"));
-        } catch (Exception e) {
-
-        }
-        return "";
-    }
-
-    @RequestMapping("import")
-    public void importSf() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new FileInputStream(new File("C:\\Users\\jjs\\Desktop\\sssss.TXT")));
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (StringUtils.isNotEmpty(line)) {
-                String[] lines = StringUtils.split(line, ",");
-                ThTelInfo info = new ThTelInfo();
-                info.setName(StringUtils.trim(lines[1]));
-                info.setTel(StringUtils.trim(lines[2]));
-                info.setCompany(StringUtils.trim(lines[4]));
-                info.setHeadPic(StringUtils.trim(lines[5]));
-                toolsService.saveThTel(info);
-            }
-        }
-    }
-
-    @RequestMapping("importTf")
-    public void importTf() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new FileInputStream(new File("C:\\Users\\jjs\\Desktop\\ssssss.TXT")));
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (StringUtils.isNotEmpty(line)) {
-                String[] lines = StringUtils.split(line, "\t");
-                String[] tels = StringUtils.split(lines[0], "|");
-                String[] urls = StringUtils.split(lines[1], "|");
-                String[] companys = StringUtils.split(lines[2], "|");
-                String[] names = StringUtils.split(lines[3], "|");
-                for (int i=0, length = tels.length; i < length; i++) {
-                    try {
-                        ThTelInfo info = new ThTelInfo();
-                        info.setName(names[i]);
-                        info.setTel(tels[i]);
-                        info.setCompany(StringUtils.split(companys[i],"&#12288;")[0]);
-                        info.setBranchName(StringUtils.split(companys[i],"&#12288;")[1]);
-                        info.setHeadPic(urls[i]);
-                        toolsService.saveThTel(info);
-                    }catch(Exception e) {
-
-                    }
-                }
-            }
-        }
+    @RequestMapping("/query_community")
+    @ResponseBody
+    public Map<String, Object> queryCommunity(String keys) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<CommunityInfo> infos = communityInfoService.queryCommunity(keys);
+        result.put("success", true);
+        result.put("infos", infos);
+        return result;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.kps.server.dao;
 
+import com.kps.server.entity.ThTelHistory;
 import com.kps.server.entity.ThTelInfo;
 
 /**
@@ -22,10 +23,31 @@ public interface IThTelInfoDAO {
     /**
      * 保存同行电话
      *
-     * @param tel
+     * @param info
      * @return
      */
     public int saveThTelInfo(ThTelInfo info);
 
+    /**
+     * 更新同行电话
+     *
+     * @param info
+     * @return
+     */
     public int updateThTel(ThTelInfo info);
+
+    /**
+     * 查询最近的电话号码数量
+     *
+     * @return
+     */
+    public ThTelHistory queryNewHistory();
+
+    /**
+     * 保存历史
+     *
+     * @param history
+     * @return
+     */
+    public int saveNewHistory(ThTelHistory history);
 }

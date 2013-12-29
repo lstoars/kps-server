@@ -147,6 +147,12 @@
         .c_div {
             display: none;
         }
+        .split_line {
+            height:1px;
+            width:100%;
+            background:#00CCFF;
+            overflow:hidden;
+        }
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
@@ -171,6 +177,9 @@
                             <a href="/kps/tools/title_images/5">主题5</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td><input type="text" name="xx" id="commId" onfocus="getCommunity({thisId:'commId',trafficId:'trafficId',supportsId:'supportsId',descriptionId:'descriptionId'})"></td>
+                    </tr>
                         <c:forEach items="${images}" var="image" varStatus="status">
                             <tr>
                                 <td class="col1" style="padding-top: 5px">
@@ -179,6 +188,14 @@
                                     </div>
                                 </td>
                             </tr>
+                            <c:if test="${(status.index+1)==2}">
+                                <tr>
+                                    <td id="community_show_area">
+
+                                    </td>
+                                </tr>
+                                <tr><td style="padding-top:10px;padding-bottom:10px "><div class="split_line"></div></td></tr>
+                            </c:if>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -189,6 +206,62 @@
 <div class="c_div" id="cp_div" >
 
 </div>
+
+<div class="c_div" id="company_select_div">
+    选择公司：<select id="company" name="company">
+        <c:forEach items="${companys}" var="company" varStatus="status">
+            <option value="${company.id}" img="${company.imgUrl}" desc="${company.description}">${company.name}</option>
+        </c:forEach>
+    </select>
+</div>
+
+<div class="c_div" id="community_copy_content">
+    <div class="content pt20" style="width: 700px">
+        <div style="width:100%">
+            <div style="border-bottom:1px solid #ccc; position:relative; font-size:12px; padding:10px 0;">
+                <div style="width:100px; position:absolute; text-align:center;">
+                    <p style="padding-top:3px;"><img
+                            src="http://ww2.sinaimg.cn/mw690/90f49884gw1ebzp2m0rr2j201x01xdfn.jpg"/></p>
+                    <p style="padding-top:5px; font-weight:bold;">交通配套</p>
+                </div>
+                <div style="padding:0 10px 0 110px; line-height:22px; color:#333;" id="trafficId">
+
+                </div>
+            </div>
+
+            <div style="border-bottom:1px solid #ccc; position:relative; font-size:12px; padding:10px 0;">
+                <div style="width:100px; position:absolute; text-align:center;">
+                    <p style="padding-top:3px;"><img
+                            src="http://ww2.sinaimg.cn/mw690/90f49884gw1ebzp2mww0zj201x01yglf.jpg"/></p>
+
+                    <p style="padding-top:5px; font-weight:bold;">小区配套</p>
+                </div>
+                <div style="padding:0 10px 0 110px; line-height:22px; color:#333;" id="supportsId">
+
+                </div>
+            </div>
+
+            <div style="border-bottom:1px solid #ccc; position:relative; font-size:12px; padding:10px 0;">
+                <div style="width:100px; position:absolute; text-align:center;">
+                    <p style="padding-top:3px;"><img
+                            src="http://ww1.sinaimg.cn/mw690/90f49884gw1ebzp2l9r21j201x01yglf.jpg"/></p>
+                    <p style="padding-top:5px; font-weight:bold;">楼盘概述</p>
+                </div>
+                <div style="padding:0 10px 0 110px; line-height:22px; color:#333;">
+                    <p style="text-indent:24px; word-break:break-all;" id="descriptionId">
+                    </p>
+                </div>
+            </div>
+            <p style="text-align:right;padding-top:5px;"><a style="font-size:12px; text-decoration:none; color:#1053ad;"
+                                                            href="http://www.fangrukou.com">此信息由房入口提供</a></p>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
+        charset="utf-8"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="/scripts/common.js"></script>
+<script src="/scripts/get_community.js"></script>
 </body>
 </html>

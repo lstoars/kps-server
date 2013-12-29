@@ -1,8 +1,6 @@
 package com.kps.server.service;
 
-import com.kps.server.entity.NewsInfo;
-import com.kps.server.entity.ThTelInfo;
-import com.kps.server.entity.ZxImages;
+import com.kps.server.entity.*;
 
 import java.util.List;
 import java.util.Map;
@@ -68,4 +66,18 @@ public interface IToolsService {
      * @return
      */
     public ThTelInfo queryThTel(String tel);
+
+    /**
+     * 查询同行电话历史数量信息
+     *
+     * @return
+     */
+    public ThTelHistory queryThHistory();
+
+    /**
+     * 查询公司列表
+     *
+     * @return
+     */
+    public List<CompanyInfo> queryAllCompany();
 }

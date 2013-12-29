@@ -14,6 +14,15 @@
         <result property="modifyTime" column="modify_time"/>
     </resultMap>
 
+    <resultMap id="thTelHistory" type="com.kps.server.entity.ThTelHistory">
+        <result property="id" column="ID"/>
+        <result property="status" column="status"/>
+        <result property="count" column="count"/>
+        <result property="showDate" column="show_date"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+    </resultMap>
+
     <select id="queryByTel" parameterType="java.lang.String" resultMap="thTelInfo">
         select * from TH_TEL_INFO where TEL=#{tel} and status=1 limit 1
     </select>
@@ -22,9 +31,19 @@
         insert into TH_TEL_INFO (TEL,company,branch_name,name,head_pic,STATUS,CREATE_TIME,MODIFY_TIME)
          values (#{tel},#{company},#{branchName},#{name},#{headPic},1,now(),now());
     </insert>
-    
+
     <update id="updateThTel" parameterType="com.kps.server.entity.ThTelInfo">
         update TH_TEL_INFO set branch_name=#{branchName},modify_time=now() where id = #{id}
     </update>
+
+    <select id="queryNewHistory" resultMap="thTelHistory">
+        select * from TH_TEL_HISTORY order by id desc limit 1
+    </select>
+
+    <insert id="saveNewHistory" parameterType="com.kps.server.entity.ThTelHistory" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into TH_TEL_HISTORY (status,count,show_date,create_time,modify_time)
+        values (1,#{count},#{showDate},now(),now());
+    </insert>
 
 </mapper>

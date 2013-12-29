@@ -1,20 +1,19 @@
 package com.kps.server.service.impl;
 
+import com.kps.server.dao.ICompanyInfoDAO;
 import com.kps.server.dao.INewsInfoDAO;
 import com.kps.server.dao.IThTelInfoDAO;
 import com.kps.server.dao.IZxImagesDAO;
-import com.kps.server.entity.NewsInfo;
-import com.kps.server.entity.ThTelInfo;
-import com.kps.server.entity.ZxImages;
+import com.kps.server.entity.*;
 import com.kps.server.service.IToolsService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,6 +35,9 @@ public class ToolsServiceImpl implements IToolsService {
 
     @Autowired
     private IThTelInfoDAO thTelInfoDAO;
+
+    @Autowired
+    private ICompanyInfoDAO companyInfoDAO;
 
     @Override
     public List<ZxImages> queryByType(int type) {
@@ -83,7 +85,7 @@ public class ToolsServiceImpl implements IToolsService {
            /* info.setId(dbInfo.getId());
             logger.info("update " + info);
             return thTelInfoDAO.updateThTel(info);*/
-            logger.info("is exists "+info);
+            logger.info("is exists " + info);
             return 1;
         }
     }
@@ -97,5 +99,38 @@ public class ToolsServiceImpl implements IToolsService {
     @Override
     public ThTelInfo queryThTel(String tel) {
         return thTelInfoDAO.queryByTel(tel);
+    }
+
+    /**
+     * 查询同行电话历史数量信息
+     *
+     * @return
+     */
+    @Override
+    public ThTelHistory queryThHistory() {
+        ThTelHistory history = thTelInfoDAO.queryNewHistory();
+        if (StringUtils.equals(history.getShowDate(),
+                DateFormatUtils.format(new Date(), "yyyy-MM-dd"))) {
+            return history;
+        }
+
+        history.setId(0);
+        history.setStatus(1);
+        history.setCount(history.getCount() + new Random().nextInt(99));
+        history.setShowDate(DateFormatUtils.format(new Date(), "yyyy-MM-dd"));
+        history.setCreateTime(new Date());
+        history.setModifyTime(new Date());
+        thTelInfoDAO.saveNewHistory(history);
+        return history;
+    }
+
+    /**
+     * 查询公司列表
+     *
+     * @return
+     */
+    @Override
+    public List<CompanyInfo> queryAllCompany() {
+        return companyInfoDAO.queryAllCompany();
     }
 }

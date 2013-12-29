@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class FangRuKouIndexServiceImpl implements IFangRuKouIndexService{
 
     @Override
-    @Scheduled(cron="0 0 */1 * * *")
     public boolean createNewIndex() {
         return false;
     }

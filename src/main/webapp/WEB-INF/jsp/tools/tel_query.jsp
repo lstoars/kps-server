@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fei
-  Date: 13-12-14
-  Time: 上午12:56
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -141,22 +136,27 @@
             border: 1px solid #ccc;
             padding: 20px;
         }
-        .fl{
+
+        .fl {
             float: left;
         }
-        .mt4{
+
+        .mt4 {
             margin-top: 4px;
         }
-        .ml4{
+
+        .ml4 {
             margin-left: 4px;
         }
-        .loading{
-            display:block;
+
+        .loading {
+            display: block;
             width: 32px;
             height: 32px;
             background: none;
         }
-        .show{
+
+        .show {
             background: url("/images/loading_min.gif") 0 0 no-repeat;
         }
     </style>
@@ -182,7 +182,8 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="padding-top:15px ">本工具目前总计收录
-                            <span class="fb cf60">61839</span>个同行电话号码，最近更新于2013-12-23日22:15
+                            <span class="fb cf60">${history.count}</span>个同行电话号码，最近更新于
+                            <fmt:formatDate value="${history.createTime}" pattern="yyyy-MM-dd日HH:mm"></fmt:formatDate>
                         </td>
                     </tr>
                     <tr>
@@ -203,7 +204,7 @@
 
     function telQuery() {
         $("#r").html("");
-        if(!checkMobile($("#tel").val())){
+        if (!checkMobile($("#tel").val())) {
             $("#r").html("<span style='color: red'>您输入的电话格式有误！</span>");
             return;
         }
@@ -216,7 +217,7 @@
             data: {'tel': $("#tel").val()},
             success: function (msg) {
                 if (msg.find) {
-                    $("#r").html("<span style='color: red'>该手机是同行，所在公司:" + msg.company + "，姓名:"+msg.name+"。</span>");
+                    $("#r").html("<span style='color: red'>该手机是同行，所在公司:" + msg.company + "，姓名:" + msg.name + "。</span>");
                 } else {
                     $("#r").html("<span style='color: green'>该手机没有在库中记录，可能不是同行。</span>");
                 }
