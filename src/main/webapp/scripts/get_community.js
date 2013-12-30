@@ -26,13 +26,13 @@ function getCommunity(options) {
                                 name: item.name,
                                 traffic: item.traffic,
                                 supports: item.supports,
-                                description: item.description,
+                                description: item.description
                             }
                         }));
                     } else {
                         response($.map(noData, function (item) {
                             return {
-                                name: "没有数据",
+                                name: "没有数据"
                             }
                         }));
                     }
@@ -41,7 +41,6 @@ function getCommunity(options) {
         },
         minLength: 1,
         select: function (event, ui) {
-            $("#community_show_area").html("");
             if (ui.item.name == noData.name) {
                 return false;
             } else {
@@ -50,6 +49,7 @@ function getCommunity(options) {
                 options.supportsId ? $("#" + options.supportsId + "").html(ui.item.supports) : null;
                 options.descriptionId ? $("#" + options.descriptionId + "").html(ui.item.description) : null;
                 $("#community_show_area").html($("#community_copy_content").html());
+                dialog.close();
             }
         }
     }).data("ui-autocomplete")._renderItem = function (ul, item) {

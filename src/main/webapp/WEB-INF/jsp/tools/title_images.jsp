@@ -177,17 +177,33 @@
                             <a href="/kps/tools/title_images/5">主题5</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="text" name="xx" id="commId" onfocus="getCommunity({thisId:'commId',trafficId:'trafficId',supportsId:'supportsId',descriptionId:'descriptionId'})"></td>
-                    </tr>
                         <c:forEach items="${images}" var="image" varStatus="status">
                             <tr>
                                 <td class="col1" style="padding-top: 5px">
-                                    <div ondblclick="copyContent2(this)" id="image_${image.id}">
-                                        <img src="${image.path}" alt="" image_id=${image.id}>
-                                    </div>
+                                    <c:if test="${status.index==0}">
+                                        <div  ondblclick="clickGs()" id="image_gongsi">
+                                            <img src="${image.path}" alt="" image_id=${image.id}>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${status.index==1}">
+                                        <div  ondblclick="clickXiaoqu(this)" id="image_xiaoqu">
+                                            <img src="${image.path}" alt="" image_id=${image.id}>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${status.index gt 1}">
+                                        <div  ondblclick="copyContent2(this)" id="image_${image.id}">
+                                            <img src="${image.path}" alt="" image_id=${image.id}>
+                                        </div>
+                                    </c:if>
                                 </td>
                             </tr>
+                            <c:if test="${(status.index+1)==1}">
+                                <tr>
+                                    <td id="company_show_area">
+
+                                    </td>
+                                </tr>
+                            </c:if>
                             <c:if test="${(status.index+1)==2}">
                                 <tr>
                                     <td id="community_show_area">
@@ -203,8 +219,16 @@
         </div>
     </div>
 </div>
+
 <div class="c_div" id="cp_div" >
 
+</div>
+
+<div class="c_div" id="xiaoqu_input_div">
+小区：<input type="text"  class="word_tip_ipt" name="xx" id="commId" value="在此输入小区名、拼音缩写" onclick="if(this.value=='在此输入小区名、拼音缩写'){this.value=''}"
+          onblur="if(this.value==''){this.value='在此输入小区名、拼音缩写'}"
+          onkeyup="getCommunity({thisId:'commId',trafficId:'trafficId',supportsId:'supportsId',descriptionId:'descriptionId'})"><br/>
+    <span style="color: red;font-size: 12px">该功能尚处于测试阶段，明日正式开放</span>
 </div>
 
 <div class="c_div" id="company_select_div">
@@ -216,7 +240,7 @@
 </div>
 
 <div class="c_div" id="community_copy_content">
-    <div class="content pt20" style="width: 700px">
+    <div class="content pt20" style="width: 700px" id="xiaoqu_copy_content">
         <div style="width:100%">
             <div style="border-bottom:1px solid #ccc; position:relative; font-size:12px; padding:10px 0;">
                 <div style="width:100px; position:absolute; text-align:center;">
@@ -254,10 +278,93 @@
             </div>
             <p style="text-align:right;padding-top:5px;"><a style="font-size:12px; text-decoration:none; color:#1053ad;"
                                                             href="http://www.fangrukou.com">此信息由房入口提供</a></p>
-
         </div>
     </div>
+    <div style="text-align: center">
+        <input type="button" name="copy" value="复制" class="word_tip_ipt2"
+               onclick="copyCommunityYs()"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" name="copy" value="只复制图片" class="word_tip_ipt2"
+               onclick="copyImage('image_xiaoqu')"  style=" width: 80px;"/>
+    </div>
 </div>
+
+<div class="c_div" id="company_copy_div">
+    <div style="width:700px; line-height:20px;margin-top: 5px" id="company_copy_content">
+        <img id="company_logo_img" src="" style="float:left; width:170px; height:60px; margin:0 5px 0 0;" /><span id="company_desc" style="font-size:12px; line-height:22px; color:#333;"></span>
+    </div>
+    <div style="text-align: center">
+        <input type="button" name="copy" value="复制" class="word_tip_ipt2"
+               onclick="copyCompanyDesc()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" name="copy" value="只复制图片" class="word_tip_ipt2"
+               onclick="copyImage('image_gongsi')" style=" width: 80px;"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function copyImage(id) {
+        div = document.getElementById(id);
+        copyContent2(div);
+    }
+
+    function copyCompanyDesc(){
+        var companyHtml = "<div style=\"width:700px; line-height:20px;margin-top: 5px\">" + $("#company_copy_content").html()+"</div>";
+        var imageHtml = "<div class=\"c_div\">"+$("#image_gongsi").html()+"</div>";
+        var html = imageHtml+companyHtml;
+        $("#cp_div").html(html);
+        div = document.getElementById("cp_div");
+        copyContent2(div);
+    }
+
+    function copyCommunityYs() {
+        var communityHtml = "<div class=\"content pt20\" style=\"width: 700px;margin-top: 5px\""+ $("#xiaoqu_copy_content").html()+"</div>";
+        var imageHtml = "<div class=\"c_div\">"+$("#image_xiaoqu").html()+"</div>";
+        var html = imageHtml+communityHtml;
+        $("#cp_div").html(html);
+        div = document.getElementById("cp_div");
+        copyContent2(div);
+    }
+
+    function clickGs() {
+        $("#cp_div").html("");
+        $("#community_show_area").html("");
+        $("#company_show_area").html("");
+        art.dialog({
+            padding: '10px',
+            esc: false,
+            lock: true,
+            width: '400px',
+            title: "请选择公司",
+            content: document.getElementById("company_select_div"),
+            okVal: "确定",
+            ok: function () {
+                var img = $("select[name=company]").find("option:selected").attr("img");
+                var desc = $("select[name=company]").find("option:selected").attr("desc");
+                $("#company_logo_img").attr("src",img);
+                $("#company_desc").html("&nbsp;&nbsp;&nbsp;&nbsp;"+desc);
+                $("#company_show_area").html($("#company_copy_div").html());
+            }
+        });
+    }
+    var dialog;
+    function clickXiaoqu() {
+        $("#cp_div").html("");
+        $("#community_show_area").html("");
+        $("#company_show_area").html("");
+        dialog =  art.dialog({
+            padding: '10px',
+            esc: false,
+            lock: true,
+            width: '400px',
+            title: "选择小区",
+            content: document.getElementById("xiaoqu_input_div"),
+            okVal: "确定",
+            ok: function () {
+
+            }
+        });
+    }
+</script>
 <script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
         charset="utf-8"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
