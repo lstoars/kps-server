@@ -147,11 +147,46 @@
         .c_div {
             display: none;
         }
+        .word_tip_ipt{
+            border:1px solid #999;
+        }
         .split_line {
             height:1px;
             width:100%;
             background:#00CCFF;
             overflow:hidden;
+        }
+        .checkName{
+            height:28px;
+            border:none;
+            padding:0 8px;
+            background:#f60;
+            margin-left:5px;
+            color:#fff;
+        }
+        #xiaoqu_input_div{
+            position:relative;
+        }
+        .checkResault{
+            width:186px;
+            max-height:150px;
+            overflow-y:auto;
+            border: 1px solid #ccc;
+            background:#fff;
+            position: absolute;
+            top: 28px;
+            left:48px;
+        }
+        .checkResault a{
+            font-size:13px;
+            text-decoration: none;
+            display:block;
+            line-height:20px;
+            padding:5px 5px 0 5px;
+            color: #333;
+        }
+        .checkResault a:hover{
+            background:#f0f0f0;
         }
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
@@ -226,8 +261,33 @@
 
 <div class="c_div" id="xiaoqu_input_div">
 小区：<input type="text"  class="word_tip_ipt" name="xx" id="commId" value="在此输入小区名、拼音缩写" onclick="if(this.value=='在此输入小区名、拼音缩写'){this.value=''}"
-          onblur="if(this.value==''){this.value='在此输入小区名、拼音缩写'}"
-          onkeyup="getCommunity({thisId:'commId',trafficId:'trafficId',supportsId:'supportsId',descriptionId:'descriptionId'})"><br/>
+          onblur="if(this.value==''){this.value='在此输入小区名、拼音缩写'}" /><button class="checkName">查询</button><br/>
+    <div class="checkResault">
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+        <a href="javascript:;">数据1</a>
+    </div>
     <span style="color: red;font-size: 12px">该功能尚处于测试阶段，明日正式开放</span>
 </div>
 
@@ -368,6 +428,7 @@
 <script type="text/javascript" src="http://i.jjshome.com/js/common/artDialog/artDialog.source.js?skin=green"
         charset="utf-8"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/scripts/jquery-autocom.min.js"></script>
 <script src="/scripts/common.js"></script>
 <script src="/scripts/get_community.js"></script>
 </body>
