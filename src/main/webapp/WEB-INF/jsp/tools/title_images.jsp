@@ -144,49 +144,57 @@
         .cred {
             color: #f00;
         }
+
         .c_div {
             display: none;
         }
-        .word_tip_ipt{
-            border:1px solid #999;
+
+        .word_tip_ipt {
+            border: 1px solid #999;
         }
+
         .split_line {
-            height:1px;
-            width:100%;
-            background:#00CCFF;
-            overflow:hidden;
+            height: 1px;
+            width: 100%;
+            background: #00CCFF;
+            overflow: hidden;
         }
-        .checkName{
-            height:28px;
-            border:none;
-            padding:0 8px;
-            background:#f60;
-            margin-left:5px;
-            color:#fff;
+
+        .checkName {
+            height: 28px;
+            border: none;
+            padding: 0 8px;
+            background: #f60;
+            margin-left: 5px;
+            color: #fff;
         }
-        #xiaoqu_input_div{
-            position:relative;
+
+        #xiaoqu_input_div {
+            position: relative;
         }
-        .checkResault{
-            width:186px;
-            max-height:150px;
-            overflow-y:auto;
+
+        .checkResault {
+            width: 186px;
+            max-height: 150px;
+            overflow-y: auto;
             border: 1px solid #ccc;
-            background:#fff;
+            background: #fff;
             position: absolute;
             top: 28px;
-            left:48px;
+            left: 48px;
         }
-        .checkResault a{
-            font-size:13px;
+
+        .checkResault a {
+            font-size: 13px;
             text-decoration: none;
-            display:block;
-            line-height:20px;
-            padding:5px 5px 0 5px;
+            display: block;
+            line-height: 20px;
+            padding: 5px 5px 0 5px;
             color: #333;
         }
-        .checkResault a:hover{
-            background:#f0f0f0;
+
+        .checkResault a:hover {
+            background: #f0f0f0;
         }
     </style>
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
@@ -212,42 +220,46 @@
                             <a href="/kps/tools/title_images/5">主题5</a>
                         </td>
                     </tr>
-                        <c:forEach items="${images}" var="image" varStatus="status">
+                    <c:forEach items="${images}" var="image" varStatus="status">
+                        <tr>
+                            <td class="col1" style="padding-top: 5px">
+                                <c:if test="${status.index==0}">
+                                    <div ondblclick="clickGs()" id="image_gongsi">
+                                        <img src="${image.path}" alt="" image_id=${image.id}>
+                                    </div>
+                                </c:if>
+                                <c:if test="${status.index==1}">
+                                    <div ondblclick="clickXiaoqu(this)" id="image_xiaoqu">
+                                        <img src="${image.path}" alt="" image_id=${image.id}>
+                                    </div>
+                                </c:if>
+                                <c:if test="${status.index gt 1}">
+                                    <div ondblclick="copyContent2(this)" id="image_${image.id}">
+                                        <img src="${image.path}" alt="" image_id=${image.id}>
+                                    </div>
+                                </c:if>
+                            </td>
+                        </tr>
+                        <c:if test="${(status.index+1)==1}">
                             <tr>
-                                <td class="col1" style="padding-top: 5px">
-                                    <c:if test="${status.index==0}">
-                                        <div  ondblclick="clickGs()" id="image_gongsi">
-                                            <img src="${image.path}" alt="" image_id=${image.id}>
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${status.index==1}">
-                                        <div  ondblclick="clickXiaoqu(this)" id="image_xiaoqu">
-                                            <img src="${image.path}" alt="" image_id=${image.id}>
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${status.index gt 1}">
-                                        <div  ondblclick="copyContent2(this)" id="image_${image.id}">
-                                            <img src="${image.path}" alt="" image_id=${image.id}>
-                                        </div>
-                                    </c:if>
+                                <td id="company_show_area">
+
                                 </td>
                             </tr>
-                            <c:if test="${(status.index+1)==1}">
-                                <tr>
-                                    <td id="company_show_area">
+                        </c:if>
+                        <c:if test="${(status.index+1)==2}">
+                            <tr>
+                                <td id="community_show_area">
 
-                                    </td>
-                                </tr>
-                            </c:if>
-                            <c:if test="${(status.index+1)==2}">
-                                <tr>
-                                    <td id="community_show_area">
-
-                                    </td>
-                                </tr>
-                                <tr><td style="padding-top:10px;padding-bottom:10px "><div class="split_line"></div></td></tr>
-                            </c:if>
-                        </c:forEach>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top:10px;padding-bottom:10px ">
+                                    <div class="split_line"></div>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -255,48 +267,30 @@
     </div>
 </div>
 
-<div class="c_div" id="cp_div" >
+<div class="c_div" id="cp_div">
 
 </div>
 
 <div class="c_div" id="xiaoqu_input_div">
-小区：<input type="text"  class="word_tip_ipt" name="xx" id="commId" value="在此输入小区名、拼音缩写" onclick="if(this.value=='在此输入小区名、拼音缩写'){this.value=''}"
-          onblur="if(this.value==''){this.value='在此输入小区名、拼音缩写'}" /><button class="checkName">查询</button><br/>
-    <div class="checkResault">
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
-        <a href="javascript:;">数据1</a>
+    小区：<input type="text" class="word_tip_ipt" name="xx" id="commId" value="在此输入小区名、拼音缩写"
+              onclick="if(this.value=='在此输入小区名、拼音缩写'){this.value=''}"
+              onblur="if(this.value==''){this.value='在此输入小区名、拼音缩写'}"/>
+    <button class="checkName" onclick="queryCommunity()">查询</button>
+    <br/>
+
+    <div class="checkResault" id="check_result" style="display: none">
+
     </div>
-    <span style="color: red;font-size: 12px">该功能尚处于测试阶段，明日正式开放</span>
+   <%-- <span style="color: red;font-size: 12px">该功能尚处于测试阶段，明日正式开放</span>--%>
 </div>
 
 <div class="c_div" id="company_select_div">
     选择公司：<select id="company" name="company">
-        <c:forEach items="${companys}" var="company" varStatus="status">
-            <option value="${company.id}" img="${company.imgUrl}" desc="${company.description}">${company.name}</option>
-        </c:forEach>
-    </select>
+    <option value="-1">请选择</option>
+    <c:forEach items="${companys}" var="company" varStatus="status">
+        <option value="${company.id}" img="${company.imgUrl}" desc="${company.description}">${company.name}</option>
+    </c:forEach>
+</select>
 </div>
 
 <div class="c_div" id="community_copy_content">
@@ -306,6 +300,7 @@
                 <div style="width:100px; position:absolute; text-align:center;">
                     <p style="padding-top:3px;"><img
                             src="http://ww2.sinaimg.cn/mw690/90f49884gw1ebzp2m0rr2j201x01xdfn.jpg"/></p>
+
                     <p style="padding-top:5px; font-weight:bold;">交通配套</p>
                 </div>
                 <div style="padding:0 10px 0 110px; line-height:22px; color:#333;" id="trafficId">
@@ -329,6 +324,7 @@
                 <div style="width:100px; position:absolute; text-align:center;">
                     <p style="padding-top:3px;"><img
                             src="http://ww1.sinaimg.cn/mw690/90f49884gw1ebzp2l9r21j201x01yglf.jpg"/></p>
+
                     <p style="padding-top:5px; font-weight:bold;">楼盘概述</p>
                 </div>
                 <div style="padding:0 10px 0 110px; line-height:22px; color:#333;">
@@ -345,13 +341,14 @@
                onclick="copyCommunityYs()"/>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <input type="button" name="copy" value="只复制图片" class="word_tip_ipt2"
-               onclick="copyImage('image_xiaoqu')"  style=" width: 80px;"/>
+               onclick="copyImage('image_xiaoqu')" style=" width: 80px;"/>
     </div>
 </div>
 
 <div class="c_div" id="company_copy_div">
     <div style="width:700px; line-height:20px;margin-top: 5px" id="company_copy_content">
-        <img id="company_logo_img" src="" style="float:left; width:170px; height:60px; margin:0 5px 0 0;" /><span id="company_desc" style="font-size:12px; line-height:22px; color:#333;"></span>
+        <img id="company_logo_img" src="" style="float:left; width:170px; height:60px; margin:0 5px 0 0;"/><span
+            id="company_desc" style="font-size:12px; line-height:22px; color:#333;"></span>
     </div>
     <div style="text-align: center">
         <input type="button" name="copy" value="复制" class="word_tip_ipt2"
@@ -362,24 +359,60 @@
 </div>
 
 <script type="text/javascript">
+    var r_d;
+    function queryCommunity() {
+        r_d = null;
+        $.ajax({
+            type: "POST",
+            url: "/kps/tools/query_community",
+            dataType: 'json',
+            data: {keys: $.trim($("#commId").val())},
+            success: function (data) {
+                r_d = data.infos;
+                if (r_d) {
+                    var html = "";
+                    for (var i = 0; i < r_d.length; i++) {
+                        html += "<a href=\"javascript:;\" onclick=\"clickComm('" + r_d[i].id + "')\">" + r_d[i].name + "</a>";
+                    }
+                    $("#check_result").html(html);
+                    $("#check_result").css("display", "block");
+                } else {
+
+                }
+            }
+        });
+    }
+
+    function clickComm(id) {
+        for (var i = 0; i < r_d.length; i++) {
+            if (r_d[i].id == id) {
+                $("#trafficId").html(r_d[i].traffic);
+                $("#supportsId").html(r_d[i].supports);
+                $("#descriptionId").html(r_d[i].description);
+                $("#community_show_area").html($("#community_copy_content").html());
+                dialog.close();
+            }
+        }
+    }
+
     function copyImage(id) {
         div = document.getElementById(id);
         copyContent2(div);
     }
 
-    function copyCompanyDesc(){
-        var companyHtml = "<div style=\"width:700px; line-height:20px;margin-top: 5px\">" + $("#company_copy_content").html()+"</div>";
-        var imageHtml = "<div class=\"c_div\">"+$("#image_gongsi").html()+"</div>";
-        var html = imageHtml+companyHtml;
+    function copyCompanyDesc() {
+        var companyHtml = "<div style=\"width:700px; line-height:20px;margin-top: 5px\">" + $("#company_copy_content").html() + "</div>";
+        var imageHtml = "<div class=\"c_div\">" + $("#image_gongsi").html() + "</div>";
+        var html = imageHtml + companyHtml;
         $("#cp_div").html(html);
         div = document.getElementById("cp_div");
         copyContent2(div);
     }
 
     function copyCommunityYs() {
-        var communityHtml = "<div class=\"content pt20\" style=\"width: 700px;margin-top: 5px\""+ $("#xiaoqu_copy_content").html()+"</div>";
-        var imageHtml = "<div class=\"c_div\">"+$("#image_xiaoqu").html()+"</div>";
-        var html = imageHtml+communityHtml;
+        var communityHtml = "<div class=\"content pt20\" style=\"width: 700px;margin-top: 5px\"" + $("#xiaoqu_copy_content").html() + "</div>";
+        var imageHtml = "<div class=\"c_div\">" + $("#image_xiaoqu").html() + "</div>";
+        var html = imageHtml + communityHtml;
         $("#cp_div").html(html);
         div = document.getElementById("cp_div");
         copyContent2(div);
@@ -400,8 +433,8 @@
             ok: function () {
                 var img = $("select[name=company]").find("option:selected").attr("img");
                 var desc = $("select[name=company]").find("option:selected").attr("desc");
-                $("#company_logo_img").attr("src",img);
-                $("#company_desc").html("&nbsp;&nbsp;&nbsp;&nbsp;"+desc);
+                $("#company_logo_img").attr("src", img);
+                $("#company_desc").html("&nbsp;&nbsp;&nbsp;&nbsp;" + desc);
                 $("#company_show_area").html($("#company_copy_div").html());
             }
         });
@@ -411,7 +444,9 @@
         $("#cp_div").html("");
         $("#community_show_area").html("");
         $("#company_show_area").html("");
-        dialog =  art.dialog({
+        $("#commId").val('');
+        $("#check_result").html('');
+        dialog = art.dialog({
             padding: '10px',
             esc: false,
             lock: true,
