@@ -200,6 +200,7 @@
     <jsp:include page="../baidu_tj.jsp"></jsp:include>
 </head>
 <body>
+<div style="width: 650px;height: 0px" class="hidden_div"></div>
 <div class="page_wrap">
     <div class="content">
         <div class="section section1">
@@ -266,7 +267,6 @@
         </div>
     </div>
 </div>
-
 <div class="c_div" id="cp_div">
 
 </div>
@@ -332,8 +332,8 @@
                     </p>
                 </div>
             </div>
-            <p style="text-align:right;padding-top:5px;"><a style="font-size:12px; text-decoration:none; color:#1053ad;"
-                                                            href="http://www.fangrukou.com">此信息由房入口提供</a></p>
+            <p style="text-align:right;padding-top:5px;">
+                <a style="font-size:12px; text-decoration:none; color:#1053ad;" href="http://www.fangrukou.com" target="_blank">此信息由房入口提供</a></p>
         </div>
     </div>
     <div style="text-align: center">
@@ -444,7 +444,9 @@
         $("#cp_div").html("");
         $("#community_show_area").html("");
         $("#company_show_area").html("");
-        $("#commId").val('');
+        if($("#commId").val()!='在此输入小区名、拼音缩写') {
+            $("#commId").val('');
+        }
         $("#check_result").html('');
         dialog = art.dialog({
             padding: '10px',

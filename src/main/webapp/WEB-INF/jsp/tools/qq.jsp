@@ -11,7 +11,7 @@
 
         .page_wrap {
             width: 620px;
-            height: 250px;
+            height: 400px;
             margin: 10px 0 0 10px;;
         }
 
@@ -194,6 +194,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>
@@ -205,6 +206,7 @@
 <span id="copy_div" >
 
 </span>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script language="javascript">
     function buttonClick() {
         var content = document.getElementById("copy_content_div").innerHTML;
@@ -225,5 +227,6 @@
     }
 </script>
 <script src="/scripts/common.js"></script>
+<jsp:include page="jianyi.jsp"></jsp:include>
 </body>
 </html>
