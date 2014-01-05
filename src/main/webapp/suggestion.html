@@ -22,10 +22,10 @@
 <div class="cont-wrap clearfix">
     <p class="clearfix pt50 pl20">
         <span class="inlineSpan w70 fl tr">类别：</span>
-        <label><input type="radio" name="type" checked="checked" value="1"/><span>问题反馈</span></label></label>
-        <label><input type="radio" name="type" value="2"/><span>创意点子</span></label></label>
-        <label><input type="radio" name="type" value="3"/><span>其他建议</span></label></label>
-        <label><input type="radio" name="type" value="4"/><span>申请合作</span></label></label>
+        <label><input type="radio" id="radio_type_1" name="type" checked="checked" value="1"/><span>问题反馈</span></label></label>
+        <label><input type="radio" id="radio_type_2" name="type" value="2"/><span>创意点子</span></label></label>
+        <label><input type="radio" id="radio_type_3" name="type" value="3"/><span>其他建议</span></label></label>
+        <label><input type="radio" id="radio_type_4" name="type" value="4"/><span>申请合作</span></label></label>
     </p>
 
     <p class="clearfix pt10 pl20"><span class="inlineSpan w70 fl tr">意见内容：</span><textarea
@@ -41,7 +41,22 @@
 
     <p class="tc c666 pt10">©Fangrukou.com 房入口 房产导航</p>
 </div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
+    $(function () {
+        var value = getUrlParam("from");
+        if(value && value == "hz") {
+            $("#radio_type_4").attr("checked","checked");
+        }
+    });
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
     function tj_yj() {
         var type = $('input[name="type"]:checked').val();
         var content = $("#content").val();
@@ -69,6 +84,5 @@
         })
     }
 </script>
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </body>
 </html>
