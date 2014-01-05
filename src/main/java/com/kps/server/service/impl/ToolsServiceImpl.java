@@ -146,6 +146,7 @@ public class ToolsServiceImpl implements IToolsService {
         UserFeedBack feed = new UserFeedBack();
         feed.setContent(content);
         feed.setType(type);
+        //发送邮件
         return userFeedBackDAO.saveUserFeedBack(feed) > 0;
     }
 }

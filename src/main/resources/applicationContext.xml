@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd" default-autowire="byName">
 
     <context:component-scan base-package="com.kps.server.service"/>
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:kps-server.properties"/>
@@ -24,7 +24,7 @@
 
     <bean id="freeMarker"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="classpath:templates" />
+        <property name="templateLoaderPath" value="classpath:templates"/>
         <property name="freemarkerSettings">
             <props>
                 <prop key="template_update_delay">1800</prop>
@@ -34,7 +34,19 @@
         </property>
     </bean>
 
-    <task:executor id="executor" pool-size="5" />
-    <task:scheduler id="scheduler" pool-size="10" />
-    <task:annotation-driven executor="executor" scheduler="scheduler" />
+    <bean id="mailsender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.163.com"/>
+        <property name="username" value="he_chengfei@163.com"/>
+        <property name="password" value="china76.."/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+
+    <task:executor id="executor" pool-size="5"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
 </beans>

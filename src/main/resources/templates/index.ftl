@@ -21,13 +21,13 @@
         <ul>
             <li><a id="setHome" href="javascript:void(0);" onclick="SetHome(this,'http://www.fangrukou.com');"><i
                     class="m1"></i><span>设为首页</span></a></li>
-            <li><a href="#"><i class="m2"></i><span>意见反馈</span></a></li>
+            <li><a href="suggestion.html"><i class="m2"></i><span>意见反馈</span></a></li>
         </ul>
     </div>
 </div>
 <div class="frk_wrap">
 <div class="bannerwrap clearfix mt10">
-    <a href="index.ftl" class="logo">&nbsp;</a>
+    <a href="index.html" class="logo">&nbsp;</a>
 
     <div class="search_wrap">
         <form action="http://www.baidu.com/baidu" target="_blank">
@@ -266,7 +266,7 @@
     </ul>
 </div>
 <div class="footer mt10">
-    <p class="tc"><a href="http://www.fangrukou.com" class="gray">关于Fangrukou.com</a><a href="http://www.fangrukou.com"
+    <p class="tc"><a href="http://www.fangrukou.com" class="gray">关于Fangrukou.com</a><a href="http://www.fangrukou.com/suggestion.html?from=hz"
                                                                                         class="gray ml20">申请合作</a></p>
 
     <p class="tc mt5 c999 pb20">©Fangrukou.com 房入口 房产导航</p>
