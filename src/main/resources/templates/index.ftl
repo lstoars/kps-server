@@ -141,13 +141,14 @@
 
 <div class="links_wrap clearfix">
     <div class="links_title">
-        <span class="tx1">群发端口</span><span class="tx2">(4)</span>
+        <span class="tx1">群发端口</span><span class="tx2">(5)</span>
     </div>
     <ul class="links_all clearfix">
         <li><a href="http://www.zushou365.com/" target="_blank">租售365</a></li>
         <li><a href="http://www.todgo.com/" target="_blank">土地公</a></li>
         <li><a href="http://sz.fangtan007.com/" target="_blank">房探网</a></li>
         <li><a href="http://www.tuitui99.com/" target="_blank">推推99</a></li>
+        <a href="http://erp.soufun.com/CompanyLogin.aspx" target="_blank">搜房AOS</a>
     </ul>
 </div>
 
@@ -249,20 +250,14 @@
 
 <div class="links_wrap clearfix has-bor-bo">
     <div class="links_title">
-        <span class="tx1">软件下载</span><span class="tx2">(11)</span>
+        <span class="tx1">软件下载</span><span class="tx2">(5)</span>
     </div>
     <ul class="links_all clearfix">
         <li><a href="http://www.cr173.com/" target="_blank">西西软件园</a></li>
-        <li><a href="http://www.greenxf.com/" target="_blank">绿色先锋下载</a></li>
         <li><a href="http://www.3987.com/" target="_blank">统一下载站</a></li>
         <li><a href="http://www.pc0359.cn/" target="_blank">河东软件站</a></li>
-        <li><a href="http://www.xiazaiba.com/" target="_blank">下载吧</a></li>
-        <li><a href="http://www.jz5u.com/" target="_blank">JZ5U绿色下载站</a></li>
-        <li><a target="_blank" href="http://www.piaodown.com/">飘荡软件</a></li>
-        <li><a href="http://www.ddooo.com/" target="_blank">多多软件站</a></li>
         <li><a href="http://www.pc6.com/" target="_blank">pc6官方下载</a></li>
         <li><a href="http://www.xdowns.com/" target="_blank">绿盟软件</a></li>
-        <li><a href="http://www.crsky.com/" target="_blank">霏凡软件</a></li>
     </ul>
 </div>
 <div class="footer mt10">

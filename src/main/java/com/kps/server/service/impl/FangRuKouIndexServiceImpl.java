@@ -92,7 +92,7 @@ public class FangRuKouIndexServiceImpl implements IFangRuKouIndexService {
         cal.add(Calendar.DAY_OF_MONTH, -1);
         map.put("today", DateFormatUtils.format(cal.getTime(), "yyyy-MM-dd"));
         Template tpl = freeMarkerConfigurer.getConfiguration().getTemplate("index.ftl");
-        File htmlFile = new File("/web/site/i_jjshome_com/jyh/index.html");
+        File htmlFile = new File("/home/frk/web/index.html");
         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(htmlFile), "UTF-8"));
         tpl.process(map, out);
         out.flush();
