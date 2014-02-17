@@ -12,9 +12,9 @@
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
-        <property name="url" value="jdbc:mysql://localhost:3306/kps?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8" />
-        <property name="username" value="root" />
-        <property name="password" value="123456" />
+        <property name="url" value="jdbc:mysql://119.147.92.139:33098/kps?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8" />
+        <property name="username" value="kps" />
+        <property name="password" value="jjshome789&amp;*(" />
         <property name="filters" value="stat" />
         <property name="maxActive" value="50" />
         <property name="initialSize" value="1" />

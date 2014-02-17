@@ -263,7 +263,6 @@
 <div class="footer mt10">
     <p class="tc"><a href="http://www.fangrukou.com" class="gray">关于Fangrukou.com</a><a href="http://www.fangrukou.com/suggestion.html?from=hz"
                                                                                         class="gray ml20">申请合作</a></p>
-
     <p class="tc mt5 c999 pb20">©Fangrukou.com 房入口 房产导航</p>
 </div>
 </div>

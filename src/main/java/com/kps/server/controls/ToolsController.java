@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -210,6 +211,17 @@ public class ToolsController {
     public ModelAndView addWatermark() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/add_watermark");
+        return result;
+    }
+
+    /**
+     * 视频看房
+     * @return
+     */
+    @RequestMapping("/video")
+    public ModelAndView video() {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("tools/video");
         return result;
     }
 

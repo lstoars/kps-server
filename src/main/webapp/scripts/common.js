@@ -8,7 +8,7 @@
 function stop() {
     return false;
 }
-document.oncontextmenu = stop;
+//document.oncontextmenu = stop;
 
 function copyContent(div) {
     try {
