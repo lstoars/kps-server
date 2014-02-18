@@ -5,6 +5,7 @@ import com.kps.server.entity.*;
 import com.kps.server.service.ICommunityInfoService;
 import com.kps.server.service.IToolsService;
 import com.kps.server.service.IUserInfoService;
+import com.kps.server.utils.VideoUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -216,12 +217,33 @@ public class ToolsController {
 
     /**
      * 视频看房
+     *
      * @return
      */
     @RequestMapping("/video")
     public ModelAndView video() {
         ModelAndView result = new ModelAndView();
         result.setViewName("tools/video");
+        return result;
+    }
+
+    @RequestMapping(value = "/get_video_url")
+    @ResponseBody
+    public Map<String, Object> getVideoUrl(String url) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        if (StringUtils.isEmpty(url)) {
+            result.put("success", false);
+            result.put("msg", "参数错误！");
+            return result;
+        }
+
+        String videoUrl = VideoUtils.getVideoUrl(url);
+        result.put("videoUrl", videoUrl);
+        if (StringUtils.isEmpty(videoUrl)) {
+            result.put("success", false);
+        } else {
+            result.put("success", true);
+        }
         return result;
     }
 
