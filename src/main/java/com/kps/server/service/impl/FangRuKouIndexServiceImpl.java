@@ -89,14 +89,16 @@ public class FangRuKouIndexServiceImpl implements IFangRuKouIndexService {
                 xfTop10.add(new String[]{lp, count, area});
             }
         }catch(Exception ex) {
-            Document xfTopDoc = Jsoup.connect("http://news.szhome.com/housesales_overview.aspx?type=1&area=0").timeout(200000).get();
-            Elements xfTop10s = xfTopDoc.getElementsByTag("table").get(1).getElementsByTag("tr");
-            for(int i=1;i<xfTop10s.size();i++) {
-                String lp = xfTop10s.get(i).child(0).text();
-                String count = xfTop10s.get(i).child(1).text();
-                String area = xfTop10s.get(i).child(2).text();
-                xfTop10.add(new String[]{lp, count, area});
-            }
+            try  {
+                Document xfTopDoc = Jsoup.connect("http://news.szhome.com/housesales_overview.aspx?type=1&area=0").timeout(200000).get();
+                Elements xfTop10s = xfTopDoc.getElementsByTag("table").get(1).getElementsByTag("tr");
+                for(int i=1;i<xfTop10s.size();i++) {
+                    String lp = xfTop10s.get(i).child(0).text();
+                    String count = xfTop10s.get(i).child(1).text();
+                    String area = xfTop10s.get(i).child(2).text();
+                    xfTop10.add(new String[]{lp, count, area});
+                }
+            }catch(Exception ex1){}
         }
         map.put("xfTop10", xfTop10);
 

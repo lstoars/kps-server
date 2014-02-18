@@ -221,7 +221,12 @@
                         <td colspan="4">①输入视频地址②点击复制;③在房源描述里粘贴即可（快捷键Ctrl+V）.</td>
                     </tr>
                     <tr>
-                        <td colspan="4"></td>
+                        <td colspan="4">
+                            <input type="text" name="link" class="word_tip_ipt" style="width: 330px" id="link"
+                                   value="如：http://www.baidu.com" onclick="if(this.value=='如：http://www.baidu.com'){this.value=''}" onblur="if(this.value==''){this.value='如：http://www.baidu.com'}">
+                            <input type="button" name="copy" value="复制" class="word_tip_ipt2" onclick="copyLink()"
+                                   style="margin-left: 10px"/>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
